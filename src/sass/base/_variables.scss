@@ -1,16 +1,16 @@
-:root {
-  --primary-background-color: #ffffff;
-  --footer-background-color: #F7F7F7;
-  --modal-background-color: #000000;
-  --page-number-background-color: #FF6B08;
-  --rate-background-color: #FF6B01;
 
-  --header-text-color: #FFFFFF;
-  --card-name-text-color: #000000;
-  --card-info-text-color: #FF6B08;
-  --footer-text-color: #545454;
-  --modal-primary-text-color: #000000;
-  --modal-secondary-text-color: #8C8C8C;
+  $primaryBackgroundColor: #ffffff;
+  $footerBackgroundColor: #F7F7F7;
+  $modalBackgroundColor: #000000;
+  $pageNumberBackgroundColor: #FF6B08;
+  $rateBackgroundColor: #FF6B01;
 
-  --primary-font-family: Roboto;
-}
+  $headerTextColor: #FFFFFF;
+  $cardNameTextColor: #000000;
+  $cardInfoTextColor: #FF6B08;
+  $footerTextColor: #545454;
+  $modalPrimaryTextColor: #000000;
+  $modalSecondaryTextColor: #8C8C8C;
+
+  $primaryFontFamily: Roboto;
+  
