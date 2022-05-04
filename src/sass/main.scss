@@ -1,19 +1,7 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
-
 @import './base/variables';
-
-// Стили для файла с примером HTML-фрагмента
-// variables
-@import './base/variables';
-@import './base/reset';
+// @import './base/reset';
 @import './base/container';
 @import './base/section';
-@import './example';
-
-
 
 //Header
-@import './base/_headerPage1.scss';
+@import './base/headerPage1';
