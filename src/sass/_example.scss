@@ -4,8 +4,8 @@
   line-height: 1.5;
   background-color: #fff;
   color: #424242;
-  max-width: 960px;
-  padding: 16px;
+  // max-width: 960px;
+  padding: 20px;
 }
 
 .example code {
@@ -24,4 +24,13 @@
   background-image: url('../images/demo.jpg');
   background-size: cover;
   background-position: center;
+}
+
+.box {
+  background-color: blue;
+  height: 100px;
+}
+
+.second-ex {
+  color: $pageNumberBackgroundColor;
 }
