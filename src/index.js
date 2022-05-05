@@ -7,6 +7,7 @@ import HeaderPage1 from './js/headerPage1/HeaderPage1';
 import HeaderLib from './js/HeaderLib/HeaderLib';
 import footerMarkup from './js/footer';
 import * as modalCard from './js/modalCard/modalCard';
+import loadTrendMovies from './js/trend-movies';
 
 import './js/my-library-page';
 
@@ -18,7 +19,6 @@ renderFooter();
 // header.innerHTML = HeaderPage1();
 // getLogo();
 // getLibr();
-
 function onClickHome() {
   header.innerHTML = HeaderPage1();
   getLogo();
@@ -32,6 +32,8 @@ function onClickLibrary() {
   getButtons();
   getHome();
 }
+
+loadTrendMovies();
 
 function getLibr() {
   const libr = document.querySelector('.library-link');
