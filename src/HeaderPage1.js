@@ -20,7 +20,7 @@ export default function HeaderPage1() {
                             Home
                         </a>
                     </li>
-                    <li class="item">
+                    <li class="item library-link">
                         <a href="#">
                         My library
                         </a>
