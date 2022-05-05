@@ -1,5 +1,6 @@
 export default function footer() {
-    return `<footer>
+  return `
+  <footer>
     <div class="footer container">
             <p class="footer__list"> &copy; 2022 | All Rights Reserved |&nbsp;</p>  
             <p class="footer__developers" >Developed with 
@@ -12,5 +13,6 @@ export default function footer() {
              by &nbsp; <a class="link data-modal-open" href=""> GoIT Students </a> 
             </p>         
     </div>
-</footer>`;
+    </footer>
+`;
 }

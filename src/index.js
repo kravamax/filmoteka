@@ -1,14 +1,20 @@
 import './sass/main.scss';
 
+import { getRefs } from './js/getRefs';
+const { header, content, footer } = getRefs();
+
 import HeaderPage1 from './js/headerPage1/HeaderPage1';
 import HeaderLib from './js/HeaderLib/HeaderLib';
+import footerMarkup from './js/footer';
 import * as modalCard from './js/modalCard/modalCard';
 
 import './js/my-library-page';
 
-const header = document.getElementById('header');
-const content = document.getElementById('content');
+// const header = document.getElementById('header');
+// const content = document.getElementById('content');
+// const footer = document.getElementById('footer');
 onClickHome();
+renderFooter();
 // header.innerHTML = HeaderPage1();
 // getLogo();
 // getLibr();
@@ -62,15 +68,6 @@ function getLogo() {
   logo.addEventListener('click', onClickHome);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+function renderFooter() {
+  footer.innerHTML = footerMarkup();
+}
