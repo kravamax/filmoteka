@@ -2,6 +2,7 @@ import './sass/main.scss';
 
 import HeaderPage1 from './js/headerPage1/HeaderPage1';
 import HeaderLib from './js/HeaderLib/HeaderLib';
+import * as modalCard from './js/modalCard/modalCard';
 
 import './js/my-library-page';
 
@@ -60,3 +61,16 @@ function getLogo() {
   const logo = document.querySelector('.logo');
   logo.addEventListener('click', onClickHome);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
