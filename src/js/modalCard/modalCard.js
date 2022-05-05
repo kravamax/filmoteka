@@ -1,4 +1,4 @@
-import "./css/styles.css";
+//import "./css/styles.css";
 import jBox from 'jbox';
 import 'jbox/dist/jBox.all.css';
 //npm install --save jbox
@@ -66,7 +66,6 @@ const buttonHandler = e => {
 
   const modalButtonEl = document.querySelector(".modal__button");
   modalButtonEl.addEventListener("click", modalButtonHandler);
-  console.log(modalButtonEl)
 };
 
 const modalButtonHandler = e => {
