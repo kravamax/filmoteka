@@ -1,6 +1,6 @@
-export default function HeaderLib() {
-  return `<header class="header-lib">
-    <div class="header-wrapper header-wrapper--libr">
+export default function HeaderPage1() {
+  return `<section class="header">
+    <div class="header-wrapper">
         <div class="header-top">
             <div class="logo">
                 <a href='#' class="logo-link">
@@ -16,25 +16,27 @@ export default function HeaderLib() {
             <nav class="nav-menu">
                 <ul class="list-nav">
                     <li class="item ">
-                        <a href="#" class="home-link">
+                        <a href="#" class="item-current home-link">
                             Home
                         </a>
                     </li>
                     <li class="item">
-                        <a href="#" class="item-current library-link">
-                            My library
+                        <a href="#" class="library-link">
+                        My library
                         </a>
                     </li>
                 </ul>
             </nav>
-            
         </div>
-        <div class="header__btn-cont">
-            <button type="button" class="header__btn header__btn--watchet">WATCHED</button>
-            <button type="button" class="header__btn header__btn--queue">QUEUE</button>
-        </div>
+        <form class="header-form">
+            <input class='header-input' type="text" name="filmName" placeholder="Поиск фильмов" />
+            <button class='header-button--submit' type="submit">
+                <svg width="12px" height="12px" class="input-images">
+                    <use href="./images/headerPage1/symbol-defs.svg#search"></use>
+                </svg>
+            </button>
+        </form>
     </div>
-    
-</header>
+</section>
 `;
 }
