@@ -1,6 +1,9 @@
 import './sass/main.scss';
+
 import HeaderPage1 from './js/headerPage1/HeaderPage1';
 import HeaderLib from './js/HeaderLib/HeaderLib';
+
+import './js/my-library-page';
 
 const header = document.getElementById('header');
 const content = document.getElementById('content');

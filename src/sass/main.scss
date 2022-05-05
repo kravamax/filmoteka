@@ -1,8 +1,11 @@
-@import './base/variables';
-// @import './base/reset';
+@import './utils/variables';
+@import './base/reset';
 @import './base/container';
 @import './base/section';
 
 //Header
-@import './base/headerPage1';
-@import './base/headerLib';
+@import './layouts/headerPage1';
+@import './layouts/headerLib';
+
+//Card markup
+@import './components/card-markup';
