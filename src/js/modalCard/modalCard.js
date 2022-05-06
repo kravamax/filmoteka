@@ -9,35 +9,37 @@ import 'jbox/dist/jBox.all.css';
 //const buttonEl = document.querySelector("#button-modal");
 let filmId;
 
-export const modal =  new jBox('Modal', {
+export const modal = new jBox('Modal', {
   //attach: '#movies',
   content: modalCardMarkup(),
+
   closeButton: false,
   onOpen() {
-    document.querySelector(".modal__button").addEventListener("click", modalButtonHandler);
-    document.querySelector("#watchedButton").addEventListener("click", watchedButton);
-    document.querySelector("#queueButton").addEventListener("click", queueButton);
+    document.querySelector('.modal__button').addEventListener('click', modalButtonHandler);
+    document.querySelector('#watchedButton').addEventListener('click', watchedButton);
+    document.querySelector('#queueButton').addEventListener('click', queueButton);
   },
   onClose() {
-    document.querySelector(".modal__button").removeEventListener("click", modalButtonHandler);
-    document.querySelector("#watchedButton").removeEventListener("click", watchedButton);
-    document.querySelector("#queueButton").removeEventListener("click", queueButton);
-  }
+    document.querySelector('.modal__button').removeEventListener('click', modalButtonHandler);
+    document.querySelector('#watchedButton').removeEventListener('click', watchedButton);
+    document.querySelector('#queueButton').removeEventListener('click', queueButton);
+  },
 });
 
 export const buttonHandler = e => {
   e.preventDefault();
-  if (e.target.nodeName !== "IMG") {
-    return 
+
+  if (e.target.nodeName !== 'IMG') {
+    return;
   }
-  filmId = e.target.id
-  console.log(filmId)
+  filmId = e.target.id;
+  console.log(filmId);
   modal.open();
 };
 
 export const modalButtonHandler = e => {
   e.preventDefault();
-  console.log(filmId)
+  console.log(filmId);
   modal.close();
 };
 

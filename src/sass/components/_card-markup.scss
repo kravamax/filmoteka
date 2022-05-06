@@ -1,4 +1,4 @@
-#movies {
+#content {
     display: flex;
     flex-wrap: wrap;
 }
@@ -7,7 +7,13 @@
     margin: 16px;
 }
 
+.film-card img {
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+
 .film-title {
+    text-align: left;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
@@ -16,10 +22,24 @@
 }
 
 .film-info {
-    display: inline-flex;
+    display: flex;
+    align-items: center;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
     color: #FF6B08;
 }
 
+.film-info__rating {   
+    line-height: 1.16;
+    width: 36px;
+    padding: 1px 0;
+    margin-left: 8px;
+    
+    align-items: center;
+    text-align: center;
+    
+    color: #ffffff;
+    background-color: #FF6B01;
+    border-radius: 5px;
+}
