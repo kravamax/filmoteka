@@ -5,9 +5,9 @@ const { header, content, footer } = getRefs();
 
 import HeaderPage1 from './js/headerPage1/HeaderPage1';
 import HeaderLib from './js/HeaderLib/HeaderLib';
+import loadTrendMovies from './js/trend-movies';
 import footerMarkup from './js/footer';
 import * as modalCard from './js/modalCard/modalCard';
-import loadTrendMovies from './js/trend-movies';
 
 import './js/my-library-page';
 

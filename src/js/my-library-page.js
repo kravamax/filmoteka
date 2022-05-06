@@ -1,15 +1,16 @@
-// import refs from './refs';
+import { getRefs } from './getRefs';
+const { libraryButtons, buttonWatched, buttonQueue } = getRefs();
 
-// refs.buttonMyLibrary.addEventListener('click', myLibraryPage);
+buttonMyLibrary.addEventListener('click', myLibraryPage);
 
-// refs.buttonWatched.addEventListener('click', event => {
-//   getLibraryFilms(event, 'watched');
-//   refs.buttonQueue.classList.remove('library-button-current');
-//   refs.buttonWatched.classList.add('library-button-current');
-// });
+buttonWatched.addEventListener('click', event => {
+  getLibraryFilms(event, 'watched');
+  buttonQueue.classList.remove('library-button-current');
+  buttonWatched.classList.add('library-button-current');
+});
 
-// refs.buttonQueue.addEventListener('click', event => {
-//   getLibraryFilms(event, 'queue');
-//   refs.buttonWatched.classList.remove('library-button-current');
-//   refs.buttonQueue.classList.add('library-button-current');
-// });
+buttonQueue.addEventListener('click', event => {
+  getLibraryFilms(event, 'queue');
+  buttonWatched.classList.remove('library-button-current');
+  buttonQueue.classList.add('library-button-current');
+});
