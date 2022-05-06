@@ -24,7 +24,7 @@ function onClickHome() {
   header.innerHTML = HeaderPage1();
   getLogo();
   getLibr();
-  content.innerHTML = '<h1>Home</h1>';
+  loadTrendMovies();
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
