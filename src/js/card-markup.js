@@ -3,7 +3,7 @@ import allGenres from "./genres";
 export default function createsFilmCardMarkup(data, pictureUrl) {
   console.log(data);
   return data.results
-    .map(({ poster_path, title, genre_ids, release_date, vote_average }) => {
+    .map(({ id, poster_path, title, genre_ids, release_date, vote_average }) => {
       let movieGenres = [];
       function getGenre() {
         genre_ids.map(genre => {
@@ -23,7 +23,7 @@ export default function createsFilmCardMarkup(data, pictureUrl) {
       const date = release_date.slice(0, 4);
       return `
     <div class="film-card">
-      <img src="${pictureUrl}${poster_path}" alt="${title}"/>
+      <img id="${id}" src="${pictureUrl}${poster_path}" alt="${title}"/>
         <h2 class="film-title">${title}</h2>
       <div class="film-info">
         <p class="film-info__genre">${movieGenres} | ${date}</p>
