@@ -1,4 +1,5 @@
 import createsFilmCardMarkup from './card-markup'
+import { buttonHandler } from './modalCard/modalCard';
 export default function loadTrendMovies() {
     fetchTrendMovies().then(fetchTrendMoviesResponse);
 }
@@ -34,6 +35,7 @@ function fetchTrendMovies() {
 function fetchTrendMoviesResponse(movies) {
     const moviesTrendList = createsFilmCardMarkup(movies, pictureUrl);
     insertList(moviesTrendList);
+    document.querySelector("#movies").addEventListener("click", buttonHandler);
 }
 
 function insertList(moviesTrendList) {
