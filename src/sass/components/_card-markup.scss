@@ -1,3 +1,12 @@
+#movies {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.film-card {
+    margin: 16px;
+}
+
 .film-title {
     font-weight: 500;
     font-size: 12px;
@@ -13,3 +22,4 @@
     line-height: 1.33;
     color: #FF6B08;
 }
+
