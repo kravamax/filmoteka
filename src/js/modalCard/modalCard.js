@@ -9,20 +9,39 @@ const buttonEl = document.querySelector("#button-modal");
 const modal = new jBox('Modal', {
   attach: '#button-modal',
   content: modalCardMarkup,
-  closeButton: false,    
+  closeButton: false,
+  onOpen() {
+    document.querySelector(".modal__button").addEventListener("click", modalButtonHandler);
+    document.querySelector("#watchedButton").addEventListener("click", watched);
+    document.querySelector("#queueButton").addEventListener("click", queue);
+  },
+  onClose() {
+    document.querySelector(".modal__button").removeEventListener("click", modalButtonHandler);
+    document.querySelector("#watchedButton").removeEventListener("click", watched);
+    document.querySelector("#queueButton").removeEventListener("click", queue);
+  }
 });
 
 const buttonHandler = e => {
   e.preventDefault();
+  console.log(document.querySelector(".modal__button"))
   modal.open();
-
-  const modalButtonEl = document.querySelector(".modal__button");
-  modalButtonEl.addEventListener("click", modalButtonHandler);
+  console.log(document.querySelector(".modal__button"))
 };
 
 const modalButtonHandler = e => {
   e.preventDefault();
   modal.close();
+  console.log(document.querySelector(".modal__button"))
+  
 };
+
+const watched = e => {
+  console.log("watched")
+}
+
+const queue = e => {
+  console.log("queue")
+}
 
 buttonEl.addEventListener("click", buttonHandler);

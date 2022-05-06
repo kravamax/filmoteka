@@ -40,8 +40,8 @@ const modalCardMarkup = `<div class="modal">
                 lead... they’ve been double crossed – but by who and how?
             </p>
             <div class="modal__buttons">
-                <button class="button">Add to watched</button>
-                <button class="button">Add to queue</button>
+                <button class="button" id="watchedButton">Add to watched</button>
+                <button class="button" id="queueButton">Add to queue</button>
             </div>
         </div>
     </div>
