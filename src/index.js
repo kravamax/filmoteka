@@ -9,7 +9,7 @@ import loadTrendMovies from './js/trend-movies';
 import footerMarkup from './js/footer';
 import * as modalCard from './js/modalCard/modalCard';
 
-import './js/my-library-page';
+// import './js/my-library-page';
 
 // const header = document.getElementById('header');
 // const content = document.getElementById('content');
