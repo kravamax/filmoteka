@@ -21,7 +21,7 @@ const posterSizes = {
 } 
 const key = '067f291d21ed1c6d30bd9ade17d843cc';
 const url = 'https://api.themoviedb.org/3/trending/movie/week';
-const movies = document.getElementById('movies');
+const content = document.getElementById('content');
 const pictureUrl = `https://image.tmdb.org/t/p/${posterSizes.w342}`;
 
 
@@ -37,7 +37,7 @@ function fetchTrendMoviesResponse(movies) {
 }
 
 function insertList(moviesTrendList) {
-    movies.insertAdjacentHTML('beforeend', moviesTrendList);
+    content.insertAdjacentHTML('beforeend', moviesTrendList);
 }
 
 //  function getGenres() {
@@ -56,6 +56,5 @@ function insertList(moviesTrendList) {
 //           return response.json();
 //       })
 //   }
-
 
 
