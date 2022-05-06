@@ -37,7 +37,7 @@ function fetchTrendMoviesResponse(movies) {
 }
 
 function insertList(moviesTrendList) {
-    content.insertAdjacentHTML('beforeend', moviesTrendList);
+    content.innerHTML= moviesTrendList;
 }
 
 //  function getGenres() {
