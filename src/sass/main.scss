@@ -1,8 +1,16 @@
-@import './base/variables';
-// @import './base/reset';
+@import './utils/variables';
+@import './base/reset';
 @import './base/container';
 @import './base/section';
 
 //Header
 @import './layouts/headerPage1';
 @import './layouts/headerLib';
+//Card markup
+@import './components/card-markup';
+
+//Footer
+@import './layouts/footer';
+//Modal card
+@import './layouts/modalCard';
+

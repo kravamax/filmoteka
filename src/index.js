@@ -1,11 +1,25 @@
 import './sass/main.scss';
+
+import { getRefs } from './js/getRefs';
+const { header, content, footer } = getRefs();
+
 import HeaderPage1 from './js/headerPage1/HeaderPage1';
 import HeaderLib from './js/HeaderLib/HeaderLib';
+import footerMarkup from './js/footer';
+import * as modalCard from './js/modalCard/modalCard';
+import loadTrendMovies from './js/trend-movies';
 
-const header = document.getElementById('header');
-const content = document.getElementById('content');
+import './js/my-library-page';
+
+// const header = document.getElementById('header');
+// const content = document.getElementById('content');
+// const footer = document.getElementById('footer');
 onClickHome();
 
+renderFooter();
+// header.innerHTML = HeaderPage1();
+// getLogo();
+// getLibr();
 function onClickHome() {
   header.innerHTML = HeaderPage1();
   getLogo();
@@ -19,6 +33,8 @@ function onClickLibrary() {
   getButtons();
   getHome();
 }
+
+loadTrendMovies();
 
 function getLibr() {
   const libr = document.querySelector('.library-link');
@@ -53,4 +69,8 @@ function onClickWatched() {}
 function getLogo() {
   const logo = document.querySelector('.logo');
   logo.addEventListener('click', onClickHome);
+}
+
+function renderFooter() {
+  footer.innerHTML = footerMarkup();
 }

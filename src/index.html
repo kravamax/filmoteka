@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Заголовок страницы</title>
+    <title>Filmoteka</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://img.icons8.com/external-microdots-premium-microdot-graphic/64/000000/external-film-lifestyle-entertainment-vol3-microdots-premium-microdot-graphic.png"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
@@ -16,11 +21,20 @@
     />
   </head>
   <body>
-    
+
+    <!-- <include src="./partials/headerPage1.html"></include> -->
+
+    <!-- <include src="./partials/HeaderLib.html"></include> -->
     <div id="header"></div>
     <div id="content"></div>
-    
+    <div id="movies"></div>
+    <div id="footer"></div>
 
+    <button type="button" id="button-modal">Click</button>
+
+    <svg class="logo-images" width="24" height="24">
+      <use href="images/symbol-defs.svg#film"></use>
+    </svg>
     <!-- Скрипт идёт последним в разметке. В нём уже подключен главный SASS-файл. -->
     <script src="./index.js"></script>
   </body>

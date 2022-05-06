@@ -4,8 +4,9 @@ export default function HeaderPage1() {
         <div class="header-top">
             <div class="logo">
                 <a href='#' class="logo-link">
-                    <svg class="logo-images" width="24px" height="24px">
-                        <use href="symbol-defs.6ffb85c9.svg#film"></use>
+
+                    <svg class="logo-images" width="24" height="24">
+                        <use href="./symbol-defs.4fba6ab5.svg#film"></use>
                     </svg>
                     <span class="logo-name">
                         Filmoteka
@@ -31,8 +32,9 @@ export default function HeaderPage1() {
         <form class="header-form">
             <input class='header-input' type="text" name="filmName" placeholder="Поиск фильмов" />
             <button class='header-button--submit' type="submit">
-                <svg width="12px" height="12px" class="input-images">
-                    <use href="symbol-defs.6ffb85c9.svg#search"></use>
+
+                <svg width="12" height="12" class="input-images">
+                    <use href="./symbol-defs.4fba6ab5.svg#search"></use>
                 </svg>
             </button>
         </form>
