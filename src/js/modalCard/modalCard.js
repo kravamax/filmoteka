@@ -1,4 +1,6 @@
 import modalCardMarkup from './funcModal/modalCardMarkup';
+import watchedButton from './funcModal/watchedButton';
+import queueButton from './funcModal/queueButton';
 import jBox from 'jbox';
 import 'jbox/dist/jBox.all.css';
 // ? npm install --save jbox
@@ -6,42 +8,33 @@ import 'jbox/dist/jBox.all.css';
 // ! куда то подцепить надо
 const buttonEl = document.querySelector("#button-modal");
 
-const modal = new jBox('Modal', {
+export const modal =  new jBox('Modal', {
   attach: '#button-modal',
   content: modalCardMarkup,
   closeButton: false,
   onOpen() {
     document.querySelector(".modal__button").addEventListener("click", modalButtonHandler);
-    document.querySelector("#watchedButton").addEventListener("click", watched);
-    document.querySelector("#queueButton").addEventListener("click", queue);
+    document.querySelector("#watchedButton").addEventListener("click", watchedButton);
+    document.querySelector("#queueButton").addEventListener("click", queueButton);
   },
   onClose() {
     document.querySelector(".modal__button").removeEventListener("click", modalButtonHandler);
-    document.querySelector("#watchedButton").removeEventListener("click", watched);
-    document.querySelector("#queueButton").removeEventListener("click", queue);
+    document.querySelector("#watchedButton").removeEventListener("click", watchedButton);
+    document.querySelector("#queueButton").removeEventListener("click", queueButton);
   }
 });
 
-const buttonHandler = e => {
+export const buttonHandler = e => {
   e.preventDefault();
-  console.log(document.querySelector(".modal__button"))
+  //console.log(e.target.src)
   modal.open();
-  console.log(document.querySelector(".modal__button"))
+  console.log("open")
 };
 
-const modalButtonHandler = e => {
+export const modalButtonHandler = e => {
   e.preventDefault();
   modal.close();
-  console.log(document.querySelector(".modal__button"))
-  
+  console.log("close")
 };
-
-const watched = e => {
-  console.log("watched")
-}
-
-const queue = e => {
-  console.log("queue")
-}
 
 buttonEl.addEventListener("click", buttonHandler);
