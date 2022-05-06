@@ -1,8 +1,5 @@
 export function getRefs() {
   return {
-    // buttonMyLibrary: document.querySelector(''),
-    // buttonWatched: document.querySelector(''),
-    // buttonQueue: document.querySelector(''),
     header: document.getElementById('header'),
     content: document.getElementById('content'),
     footer: document.getElementById('footer'),
