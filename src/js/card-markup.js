@@ -21,8 +21,7 @@ export default function createsFilmCardMarkup(data, pictureUrl) {
       <img src="${pictureUrl}${poster_path}" alt="${title}"/>
         <h2 class="film-title">${title}</h2>
       <div class="film-info">
-        <p class="film-info__genre">${movieGenres}</p>
-        <p class="film-info__release-date">${date}</p>
+        <p class="film-info__genre">${movieGenres} | ${date}</p>
         <p class="film-info__rating">${vote_average}</p>
       </div>
     </div>`;
