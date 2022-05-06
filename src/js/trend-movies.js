@@ -42,9 +42,13 @@ function insertList(moviesTrendList) {
 
 //  function getGenres() {
 //       return  fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${key}&language=en-US`).then(response => {
-//           return response.json();
+//           return response.json().then(console.dir);
 //       })
 //   }
+
+//  const movie = getGenres();
+  
+//   console.log(movie);
 
 
 //  function getPictureSize() {
