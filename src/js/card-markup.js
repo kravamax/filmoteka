@@ -1,18 +1,18 @@
 export default function createsFilmCardMarkup(data, pictureUrl) {
- 
+  console.log(data);
   return data.results
     .map(({ poster_path, title, genre_ids, release_date, vote_average }) => {
       let movieGenres = [];
-      function getGenre() {  
-        genre_ids.map( genre => {
-          allGenres.filter( oneGenre => {
-            if(oneGenre.id === genre) {
+      function getGenre() {
+        genre_ids.map(genre => {
+          allGenres.filter(oneGenre => {
+            if (oneGenre.id === genre) {
               movieGenres.push(` ${oneGenre.name}`);
             }
           });
-        })
+        });
       }
-      
+
       getGenre();
 
       const date = release_date.slice(0, 4);
@@ -31,25 +31,23 @@ export default function createsFilmCardMarkup(data, pictureUrl) {
 }
 
 const allGenres = [
-  {id: 28, name: "Action"},
-  {id: 12, name: "Adventure"},
-  {id: 16, name: "Animation"},
-  {id: 35, name: "Comedy"},
-  {id: 80, name: "Crime"},
-  {id: 99, name: "Documentary"},
-  {id: 18, name: "Drama"},
-  {id: 10751, name: "Family"},
-  {id: 14, name: "Fantasy"},
-  {id: 36, name: "History"},
-  {id: 27, name: "Horror"},
-  {id: 10402, name: "Music"},
-  {id: 9648, name: "Mystery"},
-  {id: 10749, name: "Romance"},
-  {id: 878, name: "Science Fiction"},
-  {id: 10770, name: "TV Movie"},
-  {id: 53, name: "Thriller"},
-  {id: 10752, name: "War"},
-  {id: 37, name: "Western"},
+  { id: 28, name: 'Action' },
+  { id: 12, name: 'Adventure' },
+  { id: 16, name: 'Animation' },
+  { id: 35, name: 'Comedy' },
+  { id: 80, name: 'Crime' },
+  { id: 99, name: 'Documentary' },
+  { id: 18, name: 'Drama' },
+  { id: 10751, name: 'Family' },
+  { id: 14, name: 'Fantasy' },
+  { id: 36, name: 'History' },
+  { id: 27, name: 'Horror' },
+  { id: 10402, name: 'Music' },
+  { id: 9648, name: 'Mystery' },
+  { id: 10749, name: 'Romance' },
+  { id: 878, name: 'Science Fiction' },
+  { id: 10770, name: 'TV Movie' },
+  { id: 53, name: 'Thriller' },
+  { id: 10752, name: 'War' },
+  { id: 37, name: 'Western' },
 ];
-
-

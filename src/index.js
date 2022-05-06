@@ -15,6 +15,7 @@ import * as modalCard from './js/modalCard/modalCard';
 // const content = document.getElementById('content');
 // const footer = document.getElementById('footer');
 onClickHome();
+
 renderFooter();
 // header.innerHTML = HeaderPage1();
 // getLogo();
