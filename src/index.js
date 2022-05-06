@@ -34,7 +34,7 @@ function onClickLibrary() {
   getHome();
 }
 
-loadTrendMovies();
+
 
 function getLibr() {
   const libr = document.querySelector('.library-link');
