@@ -4,9 +4,9 @@ export default function HeaderLib() {
         <div class="header-top">
             <div class="logo">
                 <a href='#' class="logo-link">
-                    <!-- <svg class="logo-images" width="24px" height="24px">
-                        <use href="./images/headerPage1/symbol-defs.svg#film"></use>
-                    </svg>-->
+                    <svg class="logo-images" width="24px" height="24px">
+                        <use href="symbol-defs.6ffb85c9.svg#film"></use>
+                    </svg>
                     <span class="logo-name">
                         Filmoteka
                 </a>

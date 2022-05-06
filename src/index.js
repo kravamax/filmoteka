@@ -5,9 +5,6 @@ import HeaderLib from './js/HeaderLib/HeaderLib';
 const header = document.getElementById('header');
 const content = document.getElementById('content');
 onClickHome();
-// header.innerHTML = HeaderPage1();
-// getLogo();
-// getLibr();
 
 function onClickHome() {
   header.innerHTML = HeaderPage1();
