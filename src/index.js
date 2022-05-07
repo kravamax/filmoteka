@@ -1,5 +1,6 @@
 import './sass/main.scss';
-
+import { initializeApp } from 'firebase/app';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getRefs } from './js/getRefs';
 const { header, content, footer, modalWindow } = getRefs();
 
@@ -13,7 +14,21 @@ import { fetchMovies } from './js/search-movies-name';
 import modalAuth from './js/FireBase/modalAuth';
 import getModalData from './js/FireBase/getModalData';
 // import './js/my-library-page';
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: 'AIzaSyA0Jg3owd7CYZ_lII5XL2NnspjHhLrMIPQ',
+  authDomain: 'filmoteka-it-people.firebaseapp.com',
+  projectId: 'filmoteka-it-people',
+  storageBucket: 'filmoteka-it-people.appspot.com',
+  messagingSenderId: '809306812153',
+  appId: '1:809306812153:web:98a43635dcd9e66607fc28',
+};
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase Authentication and get a reference to the service
+const auth = getAuth(app);
 // const header = document.getElementById('header');
 // const content = document.getElementById('content');
 // const footer = document.getElementById('footer');
@@ -28,8 +43,7 @@ function onClickHome() {
   getLogo();
   getLibr();
   loadTrendMovies();
-  getAuth();
- 
+  createNewUser();
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
@@ -81,14 +95,29 @@ function renderFooter() {
   footer.innerHTML = footerMarkup();
 }
 
-function getAuth() {
+function createNewUser() {
   const singIn = document.querySelector('.singIn');
   singIn.addEventListener('click', () => {
     modalWindow.innerHTML = modalAuth();
-     const form = document.querySelector(".login-form");
+    const form = document.querySelector('.login-form');
 
-    form.addEventListener("submit", getModalData);
-    
-  })
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const user = getModalData(e);
+      console.log(user);
+      createUserWithEmailAndPassword(auth, user.email, user.password)
+        .then(userCredential => {
+          // Signed in
+          const user = userCredential.user;
+          alert(`Register ${user.email} successful`);
+          modalWindow.innerHTML = '';
+          // ...
+        })
+        .catch(error => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+        });
+    });
+  });
 }
-
