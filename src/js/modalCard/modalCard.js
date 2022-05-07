@@ -27,9 +27,12 @@ export const buttonHandler = e => {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
-  movieById(e.target.id);
-  modal.setContent(modalCardMarkup(e.target.id))
-  modal.open();
+
+  movieById(e.target.id).then(response => {
+    modal.setContent(modalCardMarkup(response.data))
+    modal.open();
+
+  })
 };
 
 export const modalButtonHandler = e => {

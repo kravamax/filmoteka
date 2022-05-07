@@ -1,5 +1,6 @@
 export const modalCardMarkup = (data) => {
-    console.log(data)
+    console.log("РЕНДЕР МОДАЛКИ")
+    const { poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview } = data
     return `<div class="modal">
         <div class="modal__button-container">
             <button type="button" class="modal__button">
@@ -10,10 +11,10 @@ export const modalCardMarkup = (data) => {
         </div>
         <div class="modal__section">
         <div class="modal__poster">
-            <img class="modal__img" src=${"https://content.rozetka.com.ua/goods/images/big/177447689.jpg"} alt="movie_poster" />
+            <img class="modal__img" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="movie_poster" />
         </div>
         <div class="modal__container">
-            <h1 class="modal__title">Movie Name</h1>
+            <h1 class="modal__title">${title}</h1>
             <div class="modal__information">
                 <ul class="modal__item">
                     <li class="modal__into"><p>Vote/Votes:</p></li>
@@ -23,24 +24,15 @@ export const modalCardMarkup = (data) => {
                 </ul>
                 <ul>
                     <li class="modal__into modal__into--vote">
-                        <span class="modal__vote">7.3</span> / <span class="modal__votes">1260</span>
+                        <span class="modal__vote">${vote_average}</span>/<span class="modal__votes">${vote_count}</span>
                     </li class="modal__into">
-                    <li class="modal__into"><p>100.2</p></li>
-                    <li class="modal__into"><p class="modal__origin">A FISTFUL OF LEAD</p></li>
+                    <li class="modal__into"><p>${popularity}</p></li>
+                    <li class="modal__into"><p class="modal__origin">${original_title}</p></li>
                     <li class="modal__into"><p>Western</p></li>
                 </ul>
             </div>
             <h2 class="modal__subtitle">About</h2>
-            <p class="modal__text">
-                Four of the West’s most infamous outlaws assemble to steal a huge
-                stash of gold from the most corrupt settlement of the gold rush
-                towns. But not all goes to plan one is killed and the other three
-                escapes with bags of gold hide out in the abandoned gold mine where
-                they happen across another gang of three – who themselves were
-                planning to hit the very same bank! As tensions rise, things go from
-                bad to worse as they realise the bags of gold are filled with
-                lead... they’ve been double crossed – but by who and how?
-            </p>
+            <p class="modal__text">${overview}</p>
             <div class="modal__buttons">
                 <button class="button" id="watchedButton">Add to watched</button>
                 <button class="button" id="queueButton">Add to queue</button>
