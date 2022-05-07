@@ -7,6 +7,7 @@ export function getRefs() {
     libraryButtons: document.querySelector('.header__btn-cont'),
     buttonWatched: document.querySelector('.header__btn--watchet'),
     buttonQueue: document.querySelector('.header__btn--queue'),
+    modalWindow:document.querySelector('#modalWindow'),
   };
 }
 

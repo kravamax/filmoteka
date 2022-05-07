@@ -26,6 +26,16 @@ export default function HeaderPage1() {
                         My library
                         </a>
                     </li>
+                    <li class="item ">
+                        <a href="#" class="singIn">
+                            Sing In
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#" class="singUp">
+                        Sing Up
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>

@@ -1,7 +1,7 @@
 import './sass/main.scss';
 
 import { getRefs } from './js/getRefs';
-const { header, content, footer } = getRefs();
+const { header, content, footer, modalWindow } = getRefs();
 
 import HeaderPage1 from './js/headerPage1/HeaderPage1';
 import HeaderLib from './js/HeaderLib/HeaderLib';
@@ -9,6 +9,9 @@ import loadTrendMovies from './js/trend-movies';
 import footerMarkup from './js/footer';
 import * as modalCard from './js/modalCard/modalCard';
 import { fetchMovies } from './js/search-movies-name';
+
+import modalAuth from './js/FireBase/modalAuth';
+import getModalData from './js/FireBase/getModalData';
 // import './js/my-library-page';
 
 // const header = document.getElementById('header');
@@ -25,6 +28,8 @@ function onClickHome() {
   getLogo();
   getLibr();
   loadTrendMovies();
+  getAuth();
+ 
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
@@ -75,3 +80,15 @@ function getLogo() {
 function renderFooter() {
   footer.innerHTML = footerMarkup();
 }
+
+function getAuth() {
+  const singIn = document.querySelector('.singIn');
+  singIn.addEventListener('click', () => {
+    modalWindow.innerHTML = modalAuth();
+     const form = document.querySelector(".login-form");
+
+    form.addEventListener("submit", getModalData);
+    
+  })
+}
+
