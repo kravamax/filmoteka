@@ -6,7 +6,7 @@ export default function HeaderLib() {
                 <div class="logo">
                     <a href='#' class="logo-link">
                         <svg class="logo-images" width="24px" height="24px">
-                            <use href="./images/headerPage1/symbol-defs.svg#film"></use>
+                            <use href="./images/headerPage1/symbol-defs.b074ebde.svg#film"></use>
                         </svg>
                         <span class="logo-name">
                             Filmoteka
@@ -33,7 +33,7 @@ export default function HeaderLib() {
                 <input class='header-input' type="text" name="filmName" placeholder="Поиск фильмов" />
                 <button class='header-button--submit' type="submit">
                     <svg width="12px" height="12px" class="input-images">
-                        <use href="./images/headerPage1/symbol-defs.svg#search"></use>
+                        <use href="./images/headerPage1/symbol-defs.b074ebde.svg#search"></use>
                     </svg>
                 </button>
             </form>
