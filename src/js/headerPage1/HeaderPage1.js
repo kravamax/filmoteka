@@ -36,6 +36,16 @@ export default function HeaderPage1() {
                         Sing Up
                         </a>
                     </li>
+                    <li class="item">
+                        <a href="#" class="singOut">
+                        Sing Out
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#" class="stateUser">
+                        State User
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
