@@ -22,7 +22,7 @@ const auth = getAuth(app);
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const auth1 = getAuth();
-createUserWithEmailAndPassword(auth, 'email@gmail.com', 'password')
+createUserWithEmailAndPassword(auth, 'email', 'password')
   .then(userCredential => {
     // Signed in
     const user = userCredential.user;
