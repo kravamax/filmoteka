@@ -14,7 +14,7 @@ export const modalCardMarkup = data => {
         <div class="modal__button-container">
             <button type="button" class="modal__button">
                 <svg class="modal__cross">
-                    <use href="./symbol-defs.f05ec621.svg#icon-modal_cross"></use>
+                    <use href="./symbol-defs.b074ebde.svg#icon-modal_cross"></use>
                 </svg>
             </button>
         </div>
