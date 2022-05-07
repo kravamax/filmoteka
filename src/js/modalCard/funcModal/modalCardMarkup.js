@@ -1,4 +1,5 @@
-const modalCardMarkup = () => {
+export const modalCardMarkup = (data) => {
+    console.log(data)
     return `<div class="modal">
         <div class="modal__button-container">
             <button type="button" class="modal__button">
@@ -49,5 +50,11 @@ const modalCardMarkup = () => {
 </div>`};
 
 
-//const modalCardMarkup = () = {}
-export default modalCardMarkup;
+export const watchedButton = e => {
+    console.log(e.currentTarget)
+};
+
+export const queueButton = e => {
+    console.log(e.currentTarget)
+};
+
