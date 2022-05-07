@@ -6,7 +6,7 @@ export default function HeaderPage1() {
                 <a href='#' class="logo-link">
 
                     <svg class="logo-images" width="24" height="24">
-                        <use href="./symbol-defs.4fba6ab5.svg#film"></use>
+                        <use href="./symbol-defs.f05ec621.svg#film"></use>
                     </svg>
                     <span class="logo-name">
                         Filmoteka
@@ -34,7 +34,7 @@ export default function HeaderPage1() {
             <button class='header-button--submit' type="submit">
 
                 <svg width="12" height="12" class="input-images">
-                    <use href="./symbol-defs.4fba6ab5.svg#search"></use>
+                    <use href="./symbol-defs.f05ec621.svg#search"></use>
                 </svg>
             </button>
         </form>
