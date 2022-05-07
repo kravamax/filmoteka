@@ -8,7 +8,7 @@ import HeaderLib from './js/HeaderLib/HeaderLib';
 import loadTrendMovies from './js/trend-movies';
 import footerMarkup from './js/footer';
 import * as modalCard from './js/modalCard/modalCard';
-import {fetchMovies} from "./js/search-movies-name"
+import { fetchMovies } from './js/search-movies-name';
 // import './js/my-library-page';
 
 // const header = document.getElementById('header');
@@ -24,7 +24,7 @@ function onClickHome() {
   header.innerHTML = HeaderPage1();
   getLogo();
   getLibr();
-  content.innerHTML = '<h1>Home</h1>';
+  loadTrendMovies();
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
@@ -36,6 +36,7 @@ function onClickLibrary() {
 
 loadTrendMovies();
 fetchMovies();
+
 function getLibr() {
   const libr = document.querySelector('.library-link');
   libr.addEventListener('click', onClickLibrary);

@@ -1,4 +1,5 @@
-const modalCardMarkup = `<div class="modal">
+const modalCardMarkup = () => {
+    return `<div class="modal">
         <div class="modal__button-container">
             <button type="button" class="modal__button">
                 <svg class="modal__cross">
@@ -45,6 +46,8 @@ const modalCardMarkup = `<div class="modal">
             </div>
         </div>
     </div>
-</div>`;
+</div>`};
 
+
+//const modalCardMarkup = () = {}
 export default modalCardMarkup;
