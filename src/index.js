@@ -11,33 +11,21 @@ import footerMarkup from './js/footer';
 import * as modalCard from './js/modalCard/modalCard';
 // import searchMovies from './js/search-movies-name';
 
-import modalAuth from './js/FireBase/modalAuth';
-import getModalData from './js/FireBase/getModalData';
+
+
+import onClickSingUp from './js/FireBase/onClickSingUp';
+import onClickSingIn from './js/FireBase/onClickSingIn';
+import onClickLogOut from './js/FireBase/onClickLoqOut';
+import onClickStateUser from './js/FireBase/onClickStateUSer';
 // import './js/my-library-page';
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyA0Jg3owd7CYZ_lII5XL2NnspjHhLrMIPQ',
-  authDomain: 'filmoteka-it-people.firebaseapp.com',
-  projectId: 'filmoteka-it-people',
-  storageBucket: 'filmoteka-it-people.appspot.com',
-  messagingSenderId: '809306812153',
-  appId: '1:809306812153:web:98a43635dcd9e66607fc28',
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+  
 
-// Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
-// const header = document.getElementById('header');
-// const content = document.getElementById('content');
-// const footer = document.getElementById('footer');
+
 onClickHome();
 
 renderFooter();
-// header.innerHTML = HeaderPage1();
-// getLogo();
-// getLibr();
+
 function onClickHome() {
   header.innerHTML = HeaderPage1();
   getLogo();
@@ -96,28 +84,16 @@ function renderFooter() {
 }
 
 function createNewUser() {
-  const singIn = document.querySelector('.singIn');
-  singIn.addEventListener('click', () => {
-    modalWindow.innerHTML = modalAuth();
-    const form = document.querySelector('.login-form');
+  const singUp = document.querySelector('.singUp');
+  singUp.addEventListener('click', onClickSingUp);
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const user = getModalData(e);
-      console.log(user);
-      createUserWithEmailAndPassword(auth, user.email, user.password)
-        .then(userCredential => {
-          // Signed in
-          const user = userCredential.user;
-          alert(`Register ${user.email} successful`);
-          modalWindow.innerHTML = '';
-          // ...
-        })
-        .catch(error => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // ..
-        });
-    });
-  });
+  const singIn = document.querySelector('.singIn');
+  singIn.addEventListener('click', onClickSingIn);
+
+  const singOut = document.querySelector('.singOut');
+  singOut.addEventListener('click', onClickLogOut)
+
+  const stateUser = document.querySelector('.stateUser');
+  stateUser.addEventListener('click', onClickStateUser);
 }
+
