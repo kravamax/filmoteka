@@ -1,11 +1,20 @@
-export const modalCardMarkup = (data) => {
-    console.log("РЕНДЕР МОДАЛКИ")
-    const { poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview } = data
-    return `<div class="modal">
+export const modalCardMarkup = data => {
+  console.log('РЕНДЕР МОДАЛКИ');
+  const {
+    poster_path,
+    title,
+    vote_average,
+    vote_count,
+    popularity,
+    original_title,
+    genres,
+    overview,
+  } = data;
+  return `<div class="modal">
         <div class="modal__button-container">
             <button type="button" class="modal__button">
                 <svg class="modal__cross">
-                    <use href="../../images/modalCard/symbol-defs.svg#icon-modal_cross"></use>
+                    <use href="./symbol-defs.f05ec621.svg#icon-modal_cross"></use>
                 </svg>
             </button>
         </div>
@@ -39,14 +48,13 @@ export const modalCardMarkup = (data) => {
             </div>
         </div>
     </div>
-</div>`};
-
+</div>`;
+};
 
 export const watchedButton = e => {
-    console.log(e.currentTarget)
+  console.log(e.currentTarget);
 };
 
 export const queueButton = e => {
-    console.log(e.currentTarget)
+  console.log(e.currentTarget);
 };
-
