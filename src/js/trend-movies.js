@@ -1,4 +1,3 @@
-//import { buttonHandler}from './modalCard/modalCard'
 import createsFilmCardMarkup from './card-markup';
 
 import { buttonHandler } from './modalCard/modalCard';
@@ -24,7 +23,7 @@ function fetchTrendMoviesResponse(movies) {
   const moviesTrendList = createsFilmCardMarkup(movies, pictureUrl);
   insertList(moviesTrendList);
 
-  document.querySelector('#movies').addEventListener('click', buttonHandler);
+  document.querySelector('#content').addEventListener('click', buttonHandler);
 }
 
 function insertList(moviesTrendList) {

@@ -1,7 +1,7 @@
 import allGenres from "./genres";
 
 export default function createsFilmCardMarkup(data, pictureUrl) {
-  console.log(data);
+  console.log("!");
   return data.results
     .map(({ id, poster_path, title, genre_ids, release_date, vote_average }) => {
       let movieGenres = [];
