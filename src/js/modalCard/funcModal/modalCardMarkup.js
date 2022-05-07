@@ -1,11 +1,10 @@
 export const modalCardMarkup = (data) => {
-    console.log("РЕНДЕР МОДАЛКИ")
     const { poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview } = data
     return `<div class="modal">
         <div class="modal__button-container">
             <button type="button" class="modal__button">
                 <svg class="modal__cross">
-                    <use href="../../images/modalCard/symbol-defs.svg#icon-modal_cross"></use>
+                    <use  href="/math-multiplication.a4f41856.svg#Layer_1"></use>
                 </svg>
             </button>
         </div>
@@ -26,9 +25,9 @@ export const modalCardMarkup = (data) => {
                     <li class="modal__into modal__into--vote">
                         <span class="modal__vote">${vote_average}</span>/<span class="modal__votes">${vote_count}</span>
                     </li class="modal__into">
-                    <li class="modal__into"><p>${popularity}</p></li>
-                    <li class="modal__into"><p class="modal__origin">${original_title}</p></li>
-                    <li class="modal__into"><p>Western</p></li>
+                    <li class="modal__into info"><p>${popularity}</p></li>
+                    <li class="modal__into info"><p class="modal__origin">${original_title}</p></li>
+                    <li class="modal__into info"><span>${genres.map(({ name }) => " " + name)}</span></li>
                 </ul>
             </div>
             <h2 class="modal__subtitle">About</h2>
