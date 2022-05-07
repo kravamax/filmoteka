@@ -11,7 +11,7 @@
 }
 
 .modal__button {
-    background: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
     padding: 0;
     cursor: pointer;
     margin-left: auto;
@@ -49,16 +49,24 @@
 .modal__title {
     font-size: 30px;
     line-height: 1.3;
+    width: 220px;
+    text-align: left;
     text-transform: uppercase;
     margin-bottom: 20px;
 
     @media screen and (min-width: 320px) {
         font-size: 20px;
+        width: 240px;
+    }
+
+    @media screen and (min-width: 768px) {
+        width: 265px;
     }
 
     @media screen and (min-width: 1024px) {
         font-size: 30px;
         line-height: 1.2;
+        width: 400px;
     }
 }
 
@@ -88,6 +96,7 @@
 .modal__img {
     width: 100%;
     height: 100%;
+    border-radius: 5px;
 }
 
 
@@ -113,6 +122,22 @@
 
 .modal__into:not(:last-child) {
     margin-bottom: 8px;
+}
+
+.info {
+    width: 100px;
+
+    @media screen and (min-width: 320px) {
+        width: 130px;
+    }
+
+    @media screen and (min-width: 768px) {
+        width: 150px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        width: 230px;
+    }
 }
 
 .modal__vote,
@@ -142,6 +167,7 @@
 
 .modal__origin,
 .modal__subtitle {
+    text-align: left;
     text-transform: uppercase;
 }
 
