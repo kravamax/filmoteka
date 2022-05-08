@@ -11,16 +11,13 @@ import footerMarkup from './js/footer';
 import * as modalCard from './js/modalCard/modalCard';
 // import searchMovies from './js/search-movies-name';
 
-
-
 import onClickSingUp from './js/FireBase/onClickSingUp';
 import onClickSingIn from './js/FireBase/onClickSingIn';
 import onClickLogOut from './js/FireBase/onClickLoqOut';
 import onClickStateUser from './js/FireBase/onClickStateUSer';
 // import './js/my-library-page';
 
-  
-
+import scrollBtn from './js/scroll-btn';
 
 onClickHome();
 
@@ -91,9 +88,8 @@ function createNewUser() {
   singIn.addEventListener('click', onClickSingIn);
 
   const singOut = document.querySelector('.singOut');
-  singOut.addEventListener('click', onClickLogOut)
+  singOut.addEventListener('click', onClickLogOut);
 
   const stateUser = document.querySelector('.stateUser');
   stateUser.addEventListener('click', onClickStateUser);
 }
-
