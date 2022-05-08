@@ -19,6 +19,8 @@ import onClickStateUser from './js/FireBase/onClickStateUSer';
 
 import scrollBtn from './js/scroll-btn';
 
+import modalTeam from './js/modal-team';
+
 onClickHome();
 
 renderFooter();
@@ -98,3 +100,8 @@ function createNewUser() {
 // search - movies - name
 const formEl = document.querySelector('.header-form');
 formEl.addEventListener('submit', searchMovies);
+renderModalTeam();
+
+function renderModalTeam() {
+  modalWindowTeam.innerHTML = modalTeam();
+}

@@ -10,7 +10,7 @@ export default function footer() {
             fill="#FF6B08"
           />
           </svg>
-             by &nbsp; <a class="link data-modal-open" href=""> GoIT Students </a> 
+             by &nbsp; <a class="footer__link" href="#team"> GoIT Students </a> 
             </p>         
     </div>
     </footer>
