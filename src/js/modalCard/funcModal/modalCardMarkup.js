@@ -25,7 +25,7 @@ export const modalCardMarkup = (data, key) => {
         <div class="modal__button-container">
             <button type="button" class="modal__button">
                 <svg class="modal__cross">
-                    <use  href="/math-multiplication.cfd95509.svg#Layer_1"></use>
+                    <use  href="./math-multiplication.cfd95509.svg#Layer_1"></use>
                 </svg>
             </button>
         </div>
