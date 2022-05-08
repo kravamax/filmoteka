@@ -1,6 +1,5 @@
-
 export default function modalTeam() {
-    return (`
+  return `
      <div id="team" class="team">
      <a href="#footer" class="team__area"></a>
      <div class="team__body">
@@ -162,12 +161,19 @@ export default function modalTeam() {
            <span class="line">
                ___________________________________________________________________
            </span>
-         </p>
-       <div class='modal-team-close' aria-label='closed'>
-           <a href="#footer" class="team__button"><img src="cross.072826f9.svg" alt="GoIT" width="20"></a> 
-       </div>
+         </p>       
+         <button type="button" class="modal__button modal-team-close">
+            <svg class="modal__cross">
+                <use  href="./math-multiplication.cfd95509.svg#Layer_1"></use>
+            </svg>
+          </button>
        </div>
      </div>
-   </div>`
- )
- }
+   </div>`;
+}
+
+{
+  /* <div class='modal-team-close' aria-label='closed'>
+           <a href="#footer" class="team__button"><img src="cross.072826f9.svg" alt="GoIT" width="20"></a> 
+       </div> */
+}
