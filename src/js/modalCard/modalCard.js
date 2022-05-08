@@ -6,6 +6,7 @@ import 'jbox/dist/jBox.all.css';
 // ? npm install --save jbox
 
 const key = "KEY"
+let currentCard;
 
 export const modal = new jBox('Modal', {
   createOnInit: false,
@@ -21,9 +22,11 @@ export const modal = new jBox('Modal', {
   },
 });
 
+
+
 export const buttonHandler = e => {
   e.preventDefault();
-
+ 
   if (e.target.nodeName !== 'IMG') {
     return;
   }
@@ -31,12 +34,12 @@ export const buttonHandler = e => {
   movieById(e.target.id).then(response => {
     modal.setContent(modalCardMarkup(response.data))
     modal.open();
-
-  })
+    }); 
 };
+
+
 
 export const modalButtonHandler = e => {
   e.preventDefault();
   modal.close();
 };
-
