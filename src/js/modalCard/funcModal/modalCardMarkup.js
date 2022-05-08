@@ -1,4 +1,7 @@
+let ave = null;
+
 export const modalCardMarkup = (data) => {
+    ave = data
     const { poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview } = data
     return `<div class="modal">
         <div class="modal__button-container">
@@ -43,9 +46,11 @@ export const modalCardMarkup = (data) => {
 
 export const watchedButton = e => {
     console.log(e.currentTarget)
+    console.log(ave)
 };
 
 export const queueButton = e => {
     console.log(e.currentTarget)
+    console.log(ave)
 };
 
