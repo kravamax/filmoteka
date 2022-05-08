@@ -1,5 +1,11 @@
-export const modalCardMarkup = data => {
-  const {
+let keyL = null;
+let libraryData = null;
+let libraryMass = [];
+
+export const modalCardMarkup = (data, key) => {
+    keyL = key
+    const {
+      id,
     poster_path,
     title,
     vote_average,
@@ -8,7 +14,10 @@ export const modalCardMarkup = data => {
     original_title,
     genres,
     overview,
-  } = data;
+    } = data;
+
+    libraryData = data;
+
   return `<div class="modal">
         <div class="modal__button-container">
             <button type="button" class="modal__button">
@@ -52,10 +61,45 @@ export const modalCardMarkup = data => {
 </div>`;
 };
 
+
+
 export const watchedButton = e => {
-  console.log(e.currentTarget);
+    // import func
+    //console.log(JSON.parse(localStorage.getItem(keyL)) === null)
+
+    if (JSON.parse(localStorage.getItem(keyL))) {
+        console.log("First IF");
+        let finder = [...JSON.parse(localStorage.getItem(keyL))];
+        let OPS = finder.find(elem => elem.id === libraryData.id);
+        //console.log(OPS);
+
+        if (OPS) {
+            console.log("Second IF");
+            const position = finder.indexOf(OPS);
+            console.log("position: ", position);
+            finder.splice(position, 1);
+            libraryMass = [...finder];
+            localStorage.setItem(keyL, JSON.stringify(libraryMass));
+        }
+        else {
+            console.log("Second ELSE");
+            finder.push(libraryData);
+            libraryMass = [...finder];
+            localStorage.setItem(keyL, JSON.stringify(libraryMass));
+        }
+    }
+    else if(JSON.parse(localStorage.getItem(keyL)) === null) {
+        console.log("its in ELSE");
+        console.log(JSON.parse(localStorage.getItem(keyL)));
+        libraryMass.push(libraryData);
+        localStorage.setItem(keyL, JSON.stringify(libraryMass));
+    }
+
+  console.log(JSON.parse(localStorage.getItem(keyL)));
 };
 
 export const queueButton = e => {
-  console.log(e.currentTarget);
+    localStorage.removeItem(keyL);
+    console.log(JSON.parse(localStorage.getItem(keyL)));
+    
 };
