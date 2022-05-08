@@ -1,33 +1,43 @@
-const URL = 'https://api.themoviedb.org/3/search/movie';
+import axios from 'axios';
+// import { render } from 'sass';
+import createsFilmCardMarkup from './card-markup';
+import { buttonHandler } from './modalCard/modalCard';
+import posterSizes from './poster-sizes';
+import { getRefs } from './getRefs';
+const { content } = getRefs();
+
+axios.defaults.baseURL = 'https://api.themoviedb.org/3/search/movie';
+axios.defaults.headers.get['Content-Type'] = 'application/json; charset=utf-8';
+
 const KEY = '067f291d21ed1c6d30bd9ade17d843cc';
 
-export function fetchMovies(name) {
-  return fetch(`${URL}?api_key=${KEY}&query=${name}`).then(response => {
-    if (!response.ok) {
-      throw Error(`Error: ${response.status}`);
-    }
-   return response.json();
-  });
+const picturesUrl = `https://image.tmdb.org/t/p/${posterSizes.w342}`;
+let query = '';
+let page = 1;
+
+async function fetchMovies(query, page) {
+  const url = `?api_key=${KEY}&query=${query}&page=${page}`;
+  try {
+    const response = await axios.get(url);
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-// const picturesUrl = 'https://image.tmdb.org/t/p/w500';
-// const formEl = document.querySelector('.header-form');
-// const moviesEl = document.getElementById('movies');
-// let inputValue = '';
+export function searchMovies(event) {
+  event.preventDefault();
+  page = 1;
+  query = event.currentTarget.elements.filmName.value.trim();
+  // if (inputValue === '') {
+  //   return;
+  // }
+  content.innerHTML = '';
+  return fetchMovies(query, page).then(renderMarkup);
+}
 
-// function renderMarkup(movies) {
-//   const searchList = createsFilmCardMarkup(movies, picturesUrl);
-//   moviesEl.insertAdjacentHTML('beforeend', searchList);
-// }
-
-// formEl.addEventListener('submit', searchMovies);
-
-// function searchMovies(event) {
-//   event.preventDefault();
-
-//   inputValue = event.currentTarget.elements.filmName.value.trim();
-//   if (inputValue === '') {
-//     return;
-//   }
-//   fetchMovies(inputValue).then(renderMarkup);
-// }
+function renderMarkup(movies) {
+  const searchList = createsFilmCardMarkup(movies, picturesUrl);
+  content.insertAdjacentHTML('beforeend', searchList);
+}

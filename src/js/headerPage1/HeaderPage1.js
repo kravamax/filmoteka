@@ -36,11 +36,23 @@ export default function HeaderPage1() {
                         Sing Up
                         </a>
                     </li>
+                    <li class="item">
+                        <a href="#" class="singOut">
+                        Sing Out
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#" class="stateUser">
+                        State User
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
         <form class="header-form">
+        <label class='form-label'>
             <input class='header-input' type="text" name="filmName" placeholder="Поиск фильмов" />
+            </label>
             <button class='header-button--submit' type="submit">
 
                 <svg width="12" height="12" class="input-images">

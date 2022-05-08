@@ -32,7 +32,7 @@ export const buttonHandler = e => {
   }
 
   movieById(e.target.id).then(response => {
-    modal.setContent(modalCardMarkup(response.data))
+    modal.setContent(modalCardMarkup(response.data, "LIBRARY_KEY"))
     modal.open();
     }); 
 };
