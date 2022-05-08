@@ -1,11 +1,14 @@
+import { modal } from '../modalCard/';
+const content = document.querySelector('#content');
+
 let keyL = null;
 let libraryData = null;
 let libraryMass = [];
 
 export const modalCardMarkup = (data, key) => {
-    keyL = key
-    const {
-      id,
+  keyL = key;
+  const {
+    id,
     poster_path,
     title,
     vote_average,
@@ -14,9 +17,9 @@ export const modalCardMarkup = (data, key) => {
     original_title,
     genres,
     overview,
-    } = data;
+  } = data;
 
-    libraryData = data;
+  libraryData = data;
 
   return `<div class="modal">
         <div class="modal__button-container">
@@ -54,6 +57,7 @@ export const modalCardMarkup = (data, key) => {
             <p class="modal__text">${overview}</p>
             <div class="modal__buttons">
                 <button class="button" id="watchedButton">Add to watched</button>
+                <button class="button is-hidden" id="removeButton">Remove</button>
                 <button class="button" id="queueButton">Add to queue</button>
             </div>
         </div>
@@ -61,45 +65,82 @@ export const modalCardMarkup = (data, key) => {
 </div>`;
 };
 
-
-
 export const watchedButton = e => {
-    // import func
-    //console.log(JSON.parse(localStorage.getItem(keyL)) === null)
+  // import func
+  //console.log(JSON.parse(localStorage.getItem(keyL)) === null)
+  if (JSON.parse(localStorage.getItem(keyL))) {
+    console.log('First IF');
+    let finder = [...JSON.parse(localStorage.getItem(keyL))];
+    let OPS = finder.find(elem => elem.id === libraryData.id);
+    //console.log(OPS);
 
-    if (JSON.parse(localStorage.getItem(keyL))) {
-        console.log("First IF");
-        let finder = [...JSON.parse(localStorage.getItem(keyL))];
-        let OPS = finder.find(elem => elem.id === libraryData.id);
-        //console.log(OPS);
+    if (OPS) {
+      console.log('Second IF');
+      const position = finder.indexOf(OPS);
+      console.log('position: ', position);
+      finder.splice(position, 1);
+      libraryMass = [...finder];
+      localStorage.setItem(keyL, JSON.stringify(libraryMass));
+      modal.close();
 
-        if (OPS) {
-            console.log("Second IF");
-            const position = finder.indexOf(OPS);
-            console.log("position: ", position);
-            finder.splice(position, 1);
-            libraryMass = [...finder];
-            localStorage.setItem(keyL, JSON.stringify(libraryMass));
-        }
-        else {
-            console.log("Second ELSE");
-            finder.push(libraryData);
-            libraryMass = [...finder];
-            localStorage.setItem(keyL, JSON.stringify(libraryMass));
-        }
+      if (watchedPage.classList.contains('pressed')) {
+        handleWatchedPage();
+      }
+    } else {
+      console.log('Second ELSE');
+      finder.push(libraryData);
+      libraryMass = [...finder];
+      localStorage.setItem(keyL, JSON.stringify(libraryMass));
+      modal.close();
     }
-    else if(JSON.parse(localStorage.getItem(keyL)) === null) {
-        console.log("its in ELSE");
-        console.log(JSON.parse(localStorage.getItem(keyL)));
-        libraryMass.push(libraryData);
-        localStorage.setItem(keyL, JSON.stringify(libraryMass));
-    }
+  } else if (JSON.parse(localStorage.getItem(keyL)) === null) {
+    console.log('its in ELSE');
+    console.log(JSON.parse(localStorage.getItem(keyL)));
+    libraryMass.push(libraryData);
+    localStorage.setItem(keyL, JSON.stringify(libraryMass));
+    modal.close();
+  }
 
   console.log(JSON.parse(localStorage.getItem(keyL)));
 };
 
 export const queueButton = e => {
-    localStorage.removeItem(keyL);
-    console.log(JSON.parse(localStorage.getItem(keyL)));
-    
+  localStorage.removeItem(keyL);
+  console.log(JSON.parse(localStorage.getItem(keyL)));
 };
+
+const watchedPage = document.querySelector('#test');
+watchedPage.addEventListener('click', handleWatchedPage);
+
+function handleWatchedPage() {
+  watchedPage.classList.add('pressed');
+
+  console.log('!!!');
+  console.log(libraryMass);
+
+  content.innerHTML = '';
+
+  createMarkUp(libraryMass);
+  content.innerHTML = createMarkUp(libraryMass);
+}
+function createMarkUp(arg) {
+  return arg
+    .map(({ id, poster_path, genres, title, release_date, vote_average }) => {
+      const date = release_date.slice(0, 4);
+
+      if (genres.length >= 3) {
+        genres.splice(2, genres.length - 1, { name: ' other' });
+      }
+
+      return `
+    <div class="film-card">
+      <img id="${id}" src="https://image.tmdb.org/t/p/w342${poster_path}" alt="${title}"/>
+        <h2 class="film-title">${title}</h2>
+      <div class="film-info">
+        <p class="film-info__genre"> ${genres.map(({ name }) => ' ' + name)} | ${date}</p>
+        <p class="film-info__rating">${vote_average}</p>
+      </div>
+    </div>`;
+    })
+    .join('');
+}

@@ -26,6 +26,11 @@ onClickHome();
 renderFooter();
 
 function onClickHome() {
+  
+  if(document.querySelector('#test').classList.contains("pressed")) {
+    document.querySelector('#test').classList.remove("pressed");
+  }
+  
   header.innerHTML = HeaderPage1();
   getLogo();
   getLibr();
