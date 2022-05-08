@@ -9,7 +9,7 @@ import HeaderLib from './js/HeaderLib/HeaderLib';
 import loadTrendMovies from './js/trend-movies';
 import footerMarkup from './js/footer';
 import * as modalCard from './js/modalCard/modalCard';
-// import searchMovies from './js/search-movies-name';
+import { searchMovies } from './js/search-movies-name';
 
 import onClickSingUp from './js/FireBase/onClickSingUp';
 import onClickSingIn from './js/FireBase/onClickSingIn';
@@ -39,7 +39,6 @@ function onClickLibrary() {
 }
 
 loadTrendMovies();
-// searchMovies();
 
 function getLibr() {
   const libr = document.querySelector('.library-link');
@@ -93,3 +92,9 @@ function createNewUser() {
   const stateUser = document.querySelector('.stateUser');
   stateUser.addEventListener('click', onClickStateUser);
 }
+
+//=================================================================================================
+
+// search - movies - name
+const formEl = document.querySelector('.header-form');
+formEl.addEventListener('submit', searchMovies);
