@@ -35,7 +35,7 @@ export function searchMovies(event) {
   //   return;
   // }
   content.innerHTML = '';
-  return fetchMovies(query).then(renderMarkup);
+  return fetchMovies(query, page).then(renderMarkup);
 }
 
 function renderMarkup(movies) {
