@@ -5,7 +5,6 @@ import { buttonHandler } from './modalCard/modalCard';
 import posterSizes from './poster-sizes';
 import { getRefs } from './getRefs';
 const { content } = getRefs();
-// ``;
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/search/movie';
 axios.defaults.headers.get['Content-Type'] = 'application/json; charset=utf-8';
