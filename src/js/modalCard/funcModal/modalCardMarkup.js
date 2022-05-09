@@ -4,6 +4,7 @@ const content = document.querySelector('#content');
 let keyL = 0;
 let libraryData = null;
 let libraryMass = [];
+keyL = localStorage.getItem("Key");
 
 export const modalCardMarkup = (data) => {
 
@@ -70,9 +71,6 @@ export const watchedButton = e => {
         console.log("Зарегайся");
         return;
     }
-    
-    keyL = localStorage.getItem("Key");
-  
 
     if(keyL === null){
         console.log("ЗАРЕГАЙСЯ");
