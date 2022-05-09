@@ -21,8 +21,13 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 export default function onClickLogOut() {
+  // const userCont = document.querySelector('.user-cont');
+
+  // userCont.remove();
+
   localStorage.setItem('is-Signed-In', false);
   localStorage.setItem('state-user-Button', false);
   auth.signOut();
+
   alert('You are log out');
 }

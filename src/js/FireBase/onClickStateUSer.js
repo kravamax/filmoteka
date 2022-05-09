@@ -1,5 +1,3 @@
-//import modalAuth from './modalAuth';
-// import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -17,9 +15,7 @@ const firebaseConfig = {
 import renderNavList from './renderNavList';
 import renderNavListNoUser from './renderNavListNoUser';
 import { createNewUser } from '../../index';
-// import { firebaseConfig } from './firebaseConfig';
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 

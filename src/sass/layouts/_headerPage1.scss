@@ -24,8 +24,6 @@
     background-size: cover;
     background-position: center;
 
-  
-
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -53,11 +51,23 @@
 }
 
 .header-wrapper {
+  position: relative;
   padding: 45px 32px 0 32px;
 
   @media screen and (min-width: 320px) and (max-width: 767px) {
     padding: 45px 20px 0 20px;
   }
+}
+
+.user-cont {
+  position: absolute;
+
+  right: 120px;
+  top: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #ff6b01;
+  font-size: large;
 }
 
 .header-top {
@@ -136,25 +146,23 @@
 
   padding: 4px;
   //transition: all 0.3s ease;
-    //transform: translateX(-100%);
-          transition: all 0.2s cubic-bezier(.59, 0, .49, .99);
+  //transform: translateX(-100%);
+  transition: all 0.2s cubic-bezier(0.59, 0, 0.49, 0.99);
 
   &:hover,
   &:focus {
     outline: none;
     border-bottom: 1px solid $pageNumberBackgroundColor;
     color: $headerTextColor;
-      transition: all 0.1s cubic-bezier(.59, 0, .49, .99);
+    transition: all 0.1s cubic-bezier(0.59, 0, 0.49, 0.99);
 
-       // transform: translateX(0%);
+    // transform: translateX(0%);
   }
 
   &::placeholder {
     color: $headerTextColor;
   }
 }
-
-
 
 .header-button--submit {
   padding: 0;
