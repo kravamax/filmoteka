@@ -1,4 +1,3 @@
-import { modal } from '../modalCard/';
 const content = document.querySelector('#content');
 
 let keyL = null;
@@ -25,7 +24,7 @@ export const modalCardMarkup = (data, key) => {
         <div class="modal__button-container">
             <button type="button" class="modal__button">
                 <svg class="modal__cross">
-                    <use  href="./math-multiplication.cfd95509.svg#Layer_1"></use>
+                  <use  href="./math-multiplication.cfd95509.svg#Layer_1"></use>
                 </svg>
             </button>
         </div>
@@ -66,13 +65,11 @@ export const modalCardMarkup = (data, key) => {
 };
 
 export const watchedButton = e => {
-  // import func
   //console.log(JSON.parse(localStorage.getItem(keyL)) === null)
   if (JSON.parse(localStorage.getItem(keyL))) {
     console.log('First IF');
     let finder = [...JSON.parse(localStorage.getItem(keyL))];
     let OPS = finder.find(elem => elem.id === libraryData.id);
-    //console.log(OPS);
 
     if (OPS) {
       console.log('Second IF');
@@ -81,7 +78,6 @@ export const watchedButton = e => {
       finder.splice(position, 1);
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
-      modal.close();
 
       if (watchedPage.classList.contains('pressed')) {
         handleWatchedPage();
@@ -91,16 +87,14 @@ export const watchedButton = e => {
       finder.push(libraryData);
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
-      modal.close();
     }
+
   } else if (JSON.parse(localStorage.getItem(keyL)) === null) {
     console.log('its in ELSE');
     console.log(JSON.parse(localStorage.getItem(keyL)));
     libraryMass.push(libraryData);
     localStorage.setItem(keyL, JSON.stringify(libraryMass));
-    modal.close();
   }
-
   console.log(JSON.parse(localStorage.getItem(keyL)));
 };
 
@@ -109,13 +103,15 @@ export const queueButton = e => {
   console.log(JSON.parse(localStorage.getItem(keyL)));
 };
 
+
+// ! LIBRARY
+
 const watchedPage = document.querySelector('#test');
 watchedPage.addEventListener('click', handleWatchedPage);
 
 function handleWatchedPage() {
   watchedPage.classList.add('pressed');
 
-  console.log('!!!');
   console.log(libraryMass);
 
   content.innerHTML = '';
@@ -143,4 +139,4 @@ function createMarkUp(arg) {
     </div>`;
     })
     .join('');
-}
+};
