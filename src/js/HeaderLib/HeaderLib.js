@@ -1,3 +1,5 @@
+import icon from '../../images/symbol-defs.svg';
+
 export default function HeaderLib() {
   return `<header class="header-lib">
     <div class="header-wrapper header-wrapper--libr">
@@ -5,7 +7,7 @@ export default function HeaderLib() {
             <div class="logo">
                 <a href='#' class="logo-link">
                     <svg class="logo-images" width="24" height="24">
-                        <use href="/filmoteka/symbol-defs.4fba6ab5.svg#film"></use>
+                        <use href="${icon}#film"></use>
                     </svg>
                     <span class="logo-name">
                         Filmoteka
