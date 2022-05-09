@@ -5,7 +5,7 @@ export default function HeaderLib() {
             <div class="logo">
                 <a href='#' class="logo-link">
                     <svg class="logo-images" width="24" height="24">
-                        <use href="./symbol-defs.b074ebde.svg#film"></use>
+                        <use href="images/symbol-defs.4fba6ab5.svg#film"></use>
                     </svg>
                     <span class="logo-name">
                         Filmoteka
