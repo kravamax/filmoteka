@@ -18,7 +18,6 @@ export const modal = new jBox('Modal', {
   },
 });
 
-
 export const buttonHandler = e => {
   e.preventDefault();
  
@@ -27,11 +26,10 @@ export const buttonHandler = e => {
   };
 
   movieById(e.target.id).then(response => {
-    modal.setContent(modalCardMarkup(response.data, "LIBRARY_KEY"))
+    modal.setContent(modalCardMarkup(response.data))
     modal.open();
     }); 
 };
-
 
 export const modalButtonHandler = e => {
   e.preventDefault();

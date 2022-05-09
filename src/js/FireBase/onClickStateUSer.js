@@ -20,6 +20,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+let mainKey = 0;
+const key = "Key";
 
 
 // const firebaseConfig = {
@@ -41,8 +43,12 @@ export default function onClickStateUser() {
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/firebase.User
             const uid = user.uid;
-            console.log(uid);
+
             //console.log(auth.signOut());
+            mainKey = user.uid;
+            console.log(uid);
+            
+            putKeyToLocal();
             // ...
         } else {
             // User is signed out
@@ -50,4 +56,10 @@ export default function onClickStateUser() {
             // ...
         }
     });
+}
+
+function putKeyToLocal() {
+    localStorage.setItem("is-Signed-In", true);
+    localStorage.setItem(key, mainKey);
+    localStorage.setItem("state-user-Button", true);
 }
