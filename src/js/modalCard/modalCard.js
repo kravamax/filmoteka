@@ -5,9 +5,6 @@ import jBox from 'jbox';
 import 'jbox/dist/jBox.all.css';
 // ? npm install --save jbox
 
-const key = "KEY"
-let currentCard;
-
 export const modal = new jBox('Modal', {
   createOnInit: false,
   closeButton: false,
@@ -16,28 +13,23 @@ export const modal = new jBox('Modal', {
     forOpen();
   },
   onClose() {
-    localStorage.removeItem(key);
     document.querySelector('.modal__button').removeEventListener('click', modalButtonHandler);
     forClose();
   },
 });
 
-
-
 export const buttonHandler = e => {
   e.preventDefault();
  
-  if (e.target.nodeName !== 'IMG') {
+  if (e.target.id === 'content') {
     return;
-  }
+  };
 
   movieById(e.target.id).then(response => {
-    modal.setContent(modalCardMarkup(response.data, "LIBRARY_KEY"))
+    modal.setContent(modalCardMarkup(response.data))
     modal.open();
     }); 
 };
-
-
 
 export const modalButtonHandler = e => {
   e.preventDefault();
