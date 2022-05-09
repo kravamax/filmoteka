@@ -1,12 +1,12 @@
 import { modal } from '../modalCard/';
+import iconCross from '../../../images/modalCard/math-multiplication.svg';
 const content = document.querySelector('#content');
 
-let keyL = null;
+let keyL = 0;
 let libraryData = null;
 let libraryMass = [];
 
-export const modalCardMarkup = (data, key) => {
-  keyL = key;
+export const modalCardMarkup = data => {
   const {
     id,
     poster_path,
@@ -25,7 +25,7 @@ export const modalCardMarkup = (data, key) => {
         <div class="modal__button-container">
             <button type="button" class="modal__button">
                 <svg class="modal__cross">
-                    <use  href="./math-multiplication.cfd95509.svg#Layer_1"></use>
+                    <use href="${iconCross}#Layer_1"></use>
                 </svg>
             </button>
         </div>
@@ -66,6 +66,20 @@ export const modalCardMarkup = (data, key) => {
 };
 
 export const watchedButton = e => {
+  if (
+    localStorage.getItem('is-Signed-In') === 'false' ||
+    localStorage.getItem('state-user-Button' === 'false')
+  ) {
+    console.log('Зарегайся');
+    return;
+  }
+
+  keyL = localStorage.getItem('Key');
+
+  if (keyL === null) {
+    console.log('ЗАРЕГАЙСЯ');
+    return;
+  }
   // import func
   //console.log(JSON.parse(localStorage.getItem(keyL)) === null)
   if (JSON.parse(localStorage.getItem(keyL))) {
@@ -81,7 +95,7 @@ export const watchedButton = e => {
       finder.splice(position, 1);
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
-      modal.close();
+      //   modal.close();
 
       if (watchedPage.classList.contains('pressed')) {
         handleWatchedPage();
@@ -91,14 +105,14 @@ export const watchedButton = e => {
       finder.push(libraryData);
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
-      modal.close();
+      //   modal.close();
     }
   } else if (JSON.parse(localStorage.getItem(keyL)) === null) {
     console.log('its in ELSE');
     console.log(JSON.parse(localStorage.getItem(keyL)));
     libraryMass.push(libraryData);
     localStorage.setItem(keyL, JSON.stringify(libraryMass));
-    modal.close();
+    // modal.close();
   }
 
   console.log(JSON.parse(localStorage.getItem(keyL)));
@@ -115,14 +129,22 @@ watchedPage.addEventListener('click', handleWatchedPage);
 function handleWatchedPage() {
   watchedPage.classList.add('pressed');
 
+  const getArray = JSON.parse(localStorage.getItem(keyL));
+
   console.log('!!!');
   console.log(libraryMass);
 
   content.innerHTML = '';
 
-  createMarkUp(libraryMass);
-  content.innerHTML = createMarkUp(libraryMass);
+  if (localStorage.getItem('is-Signed-In') === 'false') {
+    content.innerHTML = `<h1>You're not signed in</h1>`;
+    return;
+  }
+
+  createMarkUp(getArray);
+  content.innerHTML = createMarkUp(getArray);
 }
+
 function createMarkUp(arg) {
   return arg
     .map(({ id, poster_path, genres, title, release_date, vote_average }) => {
