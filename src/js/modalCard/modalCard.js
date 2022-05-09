@@ -21,11 +21,10 @@ export const modal = new jBox('Modal', {
 
 export const buttonHandler = e => {
   e.preventDefault();
-  console.log(e.currentTarget.className)
  
-  if (e.target.nodeName !== 'IMG') {
+  if (e.target.id === 'content') {
     return;
-  }
+  };
 
   movieById(e.target.id).then(response => {
     modal.setContent(modalCardMarkup(response.data, "LIBRARY_KEY"))
