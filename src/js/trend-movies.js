@@ -5,6 +5,14 @@ import { buttonHandler } from './modalCard/modalCard';
 import posterSizes from './poster-sizes';
 
 export default function loadTrendMovies() {
+  let signedIn = false;
+  const isSignedIn = "is-Signed-In";
+  localStorage.setItem(isSignedIn, signedIn);
+  if(localStorage.getItem("state-user-Button") === "true") {
+    console.log("vibviodfvnfoinf");
+    localStorage.setItem(isSignedIn, "true");
+  }
+
   fetchTrendMovies().then(fetchTrendMoviesResponse);
 }
 
@@ -29,31 +37,3 @@ function fetchTrendMoviesResponse(movies) {
 function insertList(moviesTrendList) {
   content.innerHTML = moviesTrendList;
 }
-
-// function news() {
-//     const button = document.querySelector('#button-moda');
-// button.addEventListener('click', handleOpen);
-
-// function handleOpen() {
-//     console.log('kdfb');
-// }
-// }
-//  function getGenres() {
-//       return  fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${key}&language=en-US`).then(response => {
-//           return response.json().then(console.dir);
-//       })
-//   }
-
-//  const movie = getGenres();
-//   console.log(movie);
-
-//  function getPictureSize() {
-//       return  fetch(`https://api.themoviedb.org/3/configuration?api_key=${key}`).then(response => {
-//           return response.json();
-//       })
-//   }
-
-// if (!e.target.classList.contains('film-card')) {
-//     console.log("НЕ ТУДА");
-//     return;
-//   } modal.open(e.target.dataset.source);
