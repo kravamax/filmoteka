@@ -162,7 +162,7 @@ export default function modalTeam() {
                ___________________________________________________________________
            </span>
          </p>       
-         <button type="button" class="modal__button modal-team-close">
+         <button type="button" class="modal-team-close">
             <svg class="modal__cross">
                 <use  href="./math-multiplication.cfd95509.svg#Layer_1"></use>
             </svg>
