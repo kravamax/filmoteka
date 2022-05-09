@@ -1,6 +1,7 @@
-export default function renderNavList() {
+export default function renderNavList(user) {
   const navList = document.querySelector('.list-nav');
   navList.innerHTML = `<li class="item ">
+                        <div class="user-cont"><p>${user}</p></div>
                         <a href="#" class="item-current home-link">
                             Home
                         </a>

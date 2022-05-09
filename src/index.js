@@ -41,10 +41,10 @@ function onClickStateUser() {
   onAuthStateChanged(auth, user => {
     if (user) {
       const uid = user.uid;
-
-      renderNavList();
-
+      user = userName();
+      renderNavList(user);
       getLibr();
+
       logOut();
     } else {
       // User is signed out
@@ -57,7 +57,7 @@ function onClickStateUser() {
 }
 // ----------------------------------
 onClickHome();
-// onClickStateUser();
+
 renderFooter();
 
 function onClickHome() {
@@ -69,25 +69,27 @@ function onClickHome() {
   const status = onClickStateUser();
 
   getLogo();
-  // getLibr();
+
   loadTrendMovies();
-  // createNewUser();
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
   content.innerHTML = '<h1>Library</h1>';
+  const user = userName();
+  renderNavList(user);
   getLogo();
   getButtons();
   getHome();
   const logOutBtn = document.querySelector('.singOut');
   logOutBtn.addEventListener('click', () => {
+    // const userCont = document.querySelector('.user-cont');
+    // userCont.remove();
     onClickLogOut();
+
     onClickStateUser();
     onClickHome();
   });
 }
-
-// loadTrendMovies();
 
 function getLibr() {
   const libr = document.querySelector('.library-link');
@@ -101,6 +103,7 @@ function getHome() {
 
   home.addEventListener('click', onClickHome);
   home.classList.remove('item-current');
+  userName();
 }
 
 function getButtons() {
@@ -129,9 +132,25 @@ function getLogo() {
 function logOut() {
   const logOutBtn = document.querySelector('.singOut');
   logOutBtn.addEventListener('click', () => {
+    // const userCont = document.querySelector('.user-cont');
+    // userCont.remove();
     onClickLogOut();
+
     onClickStateUser();
   });
+}
+function userName() {
+  const user = auth.currentUser;
+  // const userCont = document.querySelector('.user-cont');
+  const to = user.email.search('@');
+  const userName = user.email.substring(0, to);
+  return userName;
+  // const userCont = document.createElement('div');
+  // userCont.classList.add('user-cont');
+  // userCont.innerHTML = `<p>${userName}</p>`;
+  // const headerTop = document.querySelector('.header-top');
+  // const parentDiv = headerTop.parentNode;
+  // parentDiv.insertBefore(userCont, headerTop);
 }
 
 function renderFooter() {

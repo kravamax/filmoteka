@@ -3,6 +3,7 @@ import icon from '../../images/symbol-defs.svg';
 export default function HeaderLib() {
   return `<header class="header-lib">
     <div class="header-wrapper header-wrapper--libr">
+    
         <div class="header-top">
             <div class="logo">
                 <a href='#' class="logo-link">

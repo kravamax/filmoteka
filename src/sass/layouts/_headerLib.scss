@@ -33,7 +33,6 @@
     background-size: cover;
     background-position: center;
     height: 237px;
-    
 
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -94,10 +93,10 @@
   }
 }
 
-.logo-name{
+.logo-name {
   @media screen and (min-width: 300px) and (max-width: 767px) {
-    display:none;
-}
+    display: none;
+  }
 }
 
 .nav-menu {
