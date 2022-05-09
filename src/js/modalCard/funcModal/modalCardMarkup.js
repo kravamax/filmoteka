@@ -5,6 +5,7 @@ const content = document.querySelector('#content');
 let keyL = 0;
 let libraryData = null;
 let libraryMass = [];
+keyL = localStorage.getItem("Key");
 
 export const modalCardMarkup = data => {
   const {
@@ -66,13 +67,10 @@ export const modalCardMarkup = data => {
 };
 
 export const watchedButton = e => {
-  if (
-    localStorage.getItem('is-Signed-In') === 'false' ||
-    localStorage.getItem('state-user-Button' === 'false')
-  ) {
-    console.log('Зарегайся');
-    return;
-  }
+    if(localStorage.getItem("is-Signed-In") === "false" || localStorage.getItem("state-user-Button" === "false")) {
+        console.log("Зарегайся");
+        return;
+    }
 
   keyL = localStorage.getItem('Key');
 
