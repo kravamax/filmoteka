@@ -39,7 +39,6 @@ export default function onClickSingUp() {
 
     createUserWithEmailAndPassword(auth, user.email, user.password)
       .then(userCredential => {
-        // Signed in
         const user = userCredential.user;
         alert(`Register ${user.email} successful`);
         modalWindow.innerHTML = '';
