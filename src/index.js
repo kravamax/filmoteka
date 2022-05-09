@@ -14,28 +14,64 @@ import { searchMovies } from './js/search-movies-name';
 import onClickSingUp from './js/FireBase/onClickSingUp';
 import onClickSingIn from './js/FireBase/onClickSingIn';
 import onClickLogOut from './js/FireBase/onClickLoqOut';
-import onClickStateUser from './js/FireBase/onClickStateUSer';
-// import './js/my-library-page';
 
 import scrollBtn from './js/scroll-btn';
 
 import modalTeam from './js/modal-team';
+// ----------------------------------
+import { onAuthStateChanged } from 'firebase/auth';
 
+import renderNavList from './js/FireBase/renderNavList';
+import renderNavListNoUser from './js/FireBase/renderNavListNoUser';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyA0Jg3owd7CYZ_lII5XL2NnspjHhLrMIPQ',
+  authDomain: 'filmoteka-it-people.firebaseapp.com',
+  projectId: 'filmoteka-it-people',
+  storageBucket: 'filmoteka-it-people.appspot.com',
+  messagingSenderId: '809306812153',
+  appId: '1:809306812153:web:98a43635dcd9e66607fc28',
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+function onClickStateUser() {
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      const uid = user.uid;
+
+      renderNavList();
+
+      getLibr();
+      logOut();
+    } else {
+      // User is signed out
+
+      renderNavListNoUser();
+      createNewUser();
+      // ...
+    }
+  });
+}
+// ----------------------------------
 onClickHome();
-
+// onClickStateUser();
 renderFooter();
 
 function onClickHome() {
-  
-  if(document.querySelector('#test').classList.contains("pressed")) {
-    document.querySelector('#test').classList.remove("pressed");
+  if (document.querySelector('#test').classList.contains('pressed')) {
+    document.querySelector('#test').classList.remove('pressed');
   }
-  
+
   header.innerHTML = HeaderPage1();
+  const status = onClickStateUser();
+
   getLogo();
-  getLibr();
+  // getLibr();
   loadTrendMovies();
-  createNewUser();
+  // createNewUser();
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
@@ -43,18 +79,26 @@ function onClickLibrary() {
   getLogo();
   getButtons();
   getHome();
+  const logOutBtn = document.querySelector('.singOut');
+  logOutBtn.addEventListener('click', () => {
+    onClickLogOut();
+    onClickStateUser();
+    onClickHome();
+  });
 }
 
-loadTrendMovies();
+// loadTrendMovies();
 
 function getLibr() {
   const libr = document.querySelector('.library-link');
+
   libr.addEventListener('click', onClickLibrary);
   libr.classList.remove('item-current');
 }
 
 function getHome() {
   const home = document.querySelector('.home-link');
+
   home.addEventListener('click', onClickHome);
   home.classList.remove('item-current');
 }
@@ -82,22 +126,30 @@ function getLogo() {
   logo.addEventListener('click', onClickHome);
 }
 
+function logOut() {
+  const logOutBtn = document.querySelector('.singOut');
+  logOutBtn.addEventListener('click', () => {
+    onClickLogOut();
+    onClickStateUser();
+  });
+}
+
 function renderFooter() {
   footer.innerHTML = footerMarkup();
 }
 
-function createNewUser() {
+export function createNewUser() {
   const singUp = document.querySelector('.singUp');
-  singUp.addEventListener('click', onClickSingUp);
+
+  singUp.addEventListener('click', () => {
+    onClickSingUp();
+  });
 
   const singIn = document.querySelector('.singIn');
-  singIn.addEventListener('click', onClickSingIn);
 
-  const singOut = document.querySelector('.singOut');
-  singOut.addEventListener('click', onClickLogOut);
-
-  const stateUser = document.querySelector('.stateUser');
-  stateUser.addEventListener('click', onClickStateUser);
+  singIn.addEventListener('click', () => {
+    onClickSingIn();
+  });
 }
 
 //=================================================================================================

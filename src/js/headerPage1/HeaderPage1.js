@@ -18,36 +18,8 @@ export default function HeaderPage1() {
             </div>
             <nav class="nav-menu">
                 <ul class="list-nav">
-                    <li class="item ">
-                        <a href="#" class="item-current home-link">
-                            Home
-                        </a>
-                    </li>
-                    <li class="item">
-                        <a href="#" class="library-link">
-                        My library
-                        </a>
-                    </li>
-                    <li class="item ">
-                        <a href="#" class="singIn">
-                            Sing In
-                        </a>
-                    </li>
-                    <li class="item">
-                        <a href="#" class="singUp">
-                        Sing Up
-                        </a>
-                    </li>
-                    <li class="item">
-                        <a href="#" class="singOut">
-                        Sing Out
-                        </a>
-                    </li>
-                    <li class="item">
-                        <a href="#" class="stateUser">
-                        State User
-                        </a>
-                    </li>
+                    
+                   
                 </ul>
             </nav>
         </div>
