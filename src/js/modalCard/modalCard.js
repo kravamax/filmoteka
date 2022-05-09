@@ -5,9 +5,6 @@ import jBox from 'jbox';
 import 'jbox/dist/jBox.all.css';
 // ? npm install --save jbox
 
-const key = "KEY"
-let currentCard;
-
 export const modal = new jBox('Modal', {
   createOnInit: false,
   closeButton: false,
@@ -16,16 +13,15 @@ export const modal = new jBox('Modal', {
     forOpen();
   },
   onClose() {
-    localStorage.removeItem(key);
     document.querySelector('.modal__button').removeEventListener('click', modalButtonHandler);
     forClose();
   },
 });
 
 
-
 export const buttonHandler = e => {
   e.preventDefault();
+  console.log(e.currentTarget.className)
  
   if (e.target.nodeName !== 'IMG') {
     return;
@@ -36,7 +32,6 @@ export const buttonHandler = e => {
     modal.open();
     }); 
 };
-
 
 
 export const modalButtonHandler = e => {
