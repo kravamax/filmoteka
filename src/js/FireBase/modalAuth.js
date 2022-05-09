@@ -1,49 +1,16 @@
-export default function modalAuth() {
-    return (
-        
-    `<style>
-    .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1200;
-}
-
-.modal {
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
-  width: 500px;
-        height:200px;
-        padding:30px;
-
-}
-      .login-form {
-        
-        display: flex;
-        flex-direction: column;
-        justify-content:center;
-      }
-
-      .login-form label {
-        margin-bottom: 16px;
-      }
-
-      .login-form input,
-      .login-form button {
-        width: 300px;
-        padding: 4px;
-        font: inherit;
-      }
-
-    </style>
+export default function modalAuth(btn) {
+  return `
+    
     <div class='overlay' >
-      <div class='modal'>
+  
+      <div class='modal modal__reg'>
+        <div class="modal__button-container">
+            <button type="button" class="modal__button modal__button-auth">
+                <svg class="modal__cross modal__cross--reg">
+                    <use  href="./math-multiplication.cfd95509.svg#Layer_1"></use>
+                </svg>
+            </button>
+        </div>
     <form class="login-form" >
       <label>
         
@@ -53,8 +20,7 @@ export default function modalAuth() {
         
         <input type="password" name="password" placeholder='Password'/>
       </label>
-      <button type="submit">Login</button>
+      <button class="header__btn login__subm" type="submit">${btn}</button>
     </form>
-    </div>`
-    )
+    </div>`;
 }

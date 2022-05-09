@@ -1,12 +1,13 @@
 import { initializeApp } from 'firebase/app';
 import modalAuth from './modalAuth';
+
 //import getModalData from './FireBase/getModalData';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
-import {onAuthStateChanged } from "firebase/auth";
-import getModalData from './getModalData'
+import { onAuthStateChanged } from 'firebase/auth';
+import getModalData from './getModalData';
 import closeModalAuth from './closeModalAuth';
-
+import onClickStateUser from './onClickStateUSer';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA0Jg3owd7CYZ_lII5XL2NnspjHhLrMIPQ',
@@ -22,35 +23,35 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 export default function onClickSingUp() {
-    
-    modalWindow.innerHTML = modalAuth();
-        
+  modalWindow.innerHTML = modalAuth('Register');
+  const login__cls = document.querySelector('.modal__cross--reg');
 
-    const form = document.querySelector('.login-form');
-    
-    closeModalAuth();
+  login__cls.addEventListener('click', () => {
+    modalWindow.innerHTML = '';
+  });
+  const form = document.querySelector('.login-form');
 
-    
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        const user = getModalData(e);
-        
-        
-        createUserWithEmailAndPassword(auth, user.email, user.password)
-            .then(userCredential => {
-                // Signed in
-                const user = userCredential.user;
-                alert(`Register ${user.email} successful`);
-                modalWindow.innerHTML = '';
-                console.log(user);
+  closeModalAuth();
 
-                // ...
-            })
-            .catch(error => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
-            });
-        
-    });
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const user = getModalData(e);
+
+    createUserWithEmailAndPassword(auth, user.email, user.password)
+      .then(userCredential => {
+        // Signed in
+        const user = userCredential.user;
+        alert(`Register ${user.email} successful`);
+        modalWindow.innerHTML = '';
+        // console.log(user);
+        onClickStateUser();
+        // ...
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+    //   .finally(console.log(onClickStateUser()));
+  });
 }
