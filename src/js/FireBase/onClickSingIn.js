@@ -1,13 +1,13 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
-import {onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from 'firebase/auth';
 import modalAuth from './modalAuth';
 import closeModalAuth from './closeModalAuth';
 //import getModalData from './FireBase/getModalData';
 
-import getModalData from './getModalData'
-
+import getModalData from './getModalData';
+import onClickStateUser from './onClickStateUSer';
 let uid = '';
 
 const firebaseConfig = {
@@ -23,49 +23,50 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
 export default function onClickSingIn() {
-    modalWindow.innerHTML = modalAuth();
-    const form = document.querySelector('.login-form');
+  modalWindow.innerHTML = modalAuth('Login');
+  const form = document.querySelector('.login-form');
+  const login__cls = document.querySelector('.modal__cross--reg');
 
-      closeModalAuth();
-  
-  
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        const user = getModalData(e);
-        console.log(user);
-        
-    //const form = document.querySelector('.login-form');
-    
- 
-        
-
-signInWithEmailAndPassword(auth, user.email, user.password)
-  .then((userCredential) => {
-    // Signed in 
-      const user = userCredential.user;
-      alert(`Enter ${user.email} successful`);
+  login__cls.addEventListener('click', () => {
     modalWindow.innerHTML = '';
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        uid = user.uid;
-      
-        //console.log(auth.signOut());
-        // ...
-      } else {
-        // User is signed out
-        // ...
-      }
-    });
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
   });
-    
-});
+  closeModalAuth();
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const user = getModalData(e);
+
+    if (!user) {
+      return;
+    }
+    //const form = document.querySelector('.login-form');
+
+    signInWithEmailAndPassword(auth, user.email, user.password)
+      .then(userCredential => {
+        // Signed in
+        const user = userCredential.user;
+        alert(`Enter ${user.email} successful`);
+        modalWindow.innerHTML = '';
+
+        onAuthStateChanged(auth, user => {
+          if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/firebase.User
+            uid = user.uid;
+            onClickStateUser();
+            //console.log(auth.signOut());
+            // ...
+          } else {
+            // User is signed out
+            // ...
+          }
+        });
+        // ...
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  });
 }

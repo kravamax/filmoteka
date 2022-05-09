@@ -27,6 +27,11 @@ export default function HeaderLib() {
                             My library
                         </a>
                     </li>
+                    <li class="item">
+                        <a href="#" class="singOut">
+                        Sing Out
+                        </a>
+                    </li>
                 </ul>
             </nav>
             
