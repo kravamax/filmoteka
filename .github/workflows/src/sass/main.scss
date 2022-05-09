@@ -1,0 +1,22 @@
+@import './utils/variables';
+@import './base/reset';
+@import './base/container';
+@import './base/section';
+
+//Header
+@import './layouts/headerPage1';
+@import './layouts/headerLib';
+@import './layouts/modal-loginForm';
+//Card markup
+@import './components/card-markup';
+
+//Footer
+@import './layouts/footer';
+//Modal card
+@import './layouts/modalCard';
+
+//Scroll button
+@import './components/scroll-btn';
+
+//Modal Team
+@import './layouts/modal-team';
