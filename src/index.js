@@ -157,8 +157,28 @@ export function createNewUser() {
 // search - movies - name
 const formEl = document.querySelector('.header-form');
 formEl.addEventListener('submit', searchMovies);
-renderModalTeam();
+
+// modalTeam
+const openTeam=document.querySelector('.footer__link');
+
+openTeam.addEventListener('click', renderModalTeam);
 
 function renderModalTeam() {
   modalWindowTeam.innerHTML = modalTeam();
+  
+  const closeTeam=document.querySelector('.modal-team-close');
+  closeTeam.addEventListener('click', closeModalTeam);
+  function closeModalTeam(e) {
+  modalWindowTeam.innerHTML ="";
+  }
+  window.addEventListener('keydown', closeModalHandler);
+
+  function closeModalHandler(e) {
+    if (e.code === 'Escape') {
+      modalWindowTeam.innerHTML ="";
+      window.removeEventListener('keydown', closeModalHandler);
+    }
+  }
+
 }
+
