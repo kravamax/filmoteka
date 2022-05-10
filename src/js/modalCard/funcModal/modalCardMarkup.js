@@ -1,6 +1,5 @@
-import { modal } from '../modalCard/';
 import iconCross from '../../../images/modalCard/math-multiplication.svg';
-const content = document.querySelector('#content');
+import handleWatchedPage from "./handleWatchedPage/handleWatchedPage";
 
 let keyL = 0;
 let libraryData = null;
@@ -67,50 +66,45 @@ export const modalCardMarkup = data => {
 };
 
 export const watchedButton = e => {
-    if(localStorage.getItem("is-Signed-In") === "false" || localStorage.getItem("state-user-Button" === "false")) {
-        console.log("Зарегайся");
-        return;
-    }
+  if (localStorage.getItem("is-Signed-In") === "false" || localStorage.getItem("state-user-Button" === "false")) {
+    console.log("Please register or login to your profile");
+    return;
+  }
 
   keyL = localStorage.getItem('Key');
 
   if (keyL === null) {
-    console.log('ЗАРЕГАЙСЯ');
+    console.log("Please register or login to your profile");
     return;
-  }
-  // import func
-  //console.log(JSON.parse(localStorage.getItem(keyL)) === null)
+  };
+
   if (JSON.parse(localStorage.getItem(keyL))) {
     console.log('First IF');
     let finder = [...JSON.parse(localStorage.getItem(keyL))];
-    let OPS = finder.find(elem => elem.id === libraryData.id);
-    //console.log(OPS);
+    let libraryFilter = finder.find(elem => elem.id === libraryData.id);
 
-    if (OPS) {
+    if (libraryFilter) {
       console.log('Second IF');
-      const position = finder.indexOf(OPS);
-      console.log('position: ', position);
+      const position = finder.indexOf(libraryFilter);
       finder.splice(position, 1);
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
-      //   modal.close();
 
-      if (watchedPage.classList.contains('pressed')) {
-        handleWatchedPage();
-      }
-    } else {
+      if (document.querySelector('#test').classList.contains('pressed')) {
+        handleWatchedPage(e, keyL);
+      };
+    }
+    else {
       console.log('Second ELSE');
       finder.push(libraryData);
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
-      //   modal.close();
-    }
-  } else if (JSON.parse(localStorage.getItem(keyL)) === null) {
+    };
+  }
+  else if (JSON.parse(localStorage.getItem(keyL)) === null) {
     console.log('its in ELSE');
-    console.log(JSON.parse(localStorage.getItem(keyL)));
     libraryMass.push(libraryData);
     localStorage.setItem(keyL, JSON.stringify(libraryMass));
-    // modal.close();
   }
 
   console.log(JSON.parse(localStorage.getItem(keyL)));
@@ -121,46 +115,4 @@ export const queueButton = e => {
   console.log(JSON.parse(localStorage.getItem(keyL)));
 };
 
-const watchedPage = document.querySelector('#test');
-watchedPage.addEventListener('click', handleWatchedPage);
-
-function handleWatchedPage() {
-  watchedPage.classList.add('pressed');
-
-  const getArray = JSON.parse(localStorage.getItem(keyL));
-
-  console.log('!!!');
-  console.log(libraryMass);
-
-  content.innerHTML = '';
-
-  if (localStorage.getItem('is-Signed-In') === 'false') {
-    content.innerHTML = `<h1>You're not signed in</h1>`;
-    return;
-  }
-
-  createMarkUp(getArray);
-  content.innerHTML = createMarkUp(getArray);
-}
-
-function createMarkUp(arg) {
-  return arg
-    .map(({ id, poster_path, genres, title, release_date, vote_average }) => {
-      const date = release_date.slice(0, 4);
-
-      if (genres.length >= 3) {
-        genres.splice(2, genres.length - 1, { name: ' other' });
-      }
-
-      return `
-    <div class="film-card">
-      <img id="${id}" src="https://image.tmdb.org/t/p/w342${poster_path}" alt="${title}"/>
-        <h2 class="film-title">${title}</h2>
-      <div class="film-info">
-        <p class="film-info__genre"> ${genres.map(({ name }) => ' ' + name)} | ${date}</p>
-        <p class="film-info__rating">${vote_average}</p>
-      </div>
-    </div>`;
-    })
-    .join('');
-}
+document.querySelector('#test').addEventListener('click', (e) =>  handleWatchedPage(e, keyL));
