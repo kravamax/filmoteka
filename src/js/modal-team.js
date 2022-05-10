@@ -9,7 +9,7 @@ import photoRoman from '../images/team/Roman.jpg';
 import photoVlad from '../images/team/Vlad.jpg';
 import photoValeriia from '../images/team/Valeriia.jpg';
 import photoOlekciy from '../images/team/Olekciy.jpg';
-import photoPerson from '../images/team/person.jpg';
+// import photoPerson from '../images/team/person.jpg';
 
 export default function modalTeam() {
   return `
@@ -155,18 +155,18 @@ export default function modalTeam() {
                <img class="git-logo" src="${iconGithub}" alt="GoIT" width="25" />
              </a>
            </li>
-           <li class="team-card-list-item">
-             <img class="team__img" src="${photoPerson}" width="150" alt="team-member" />
-             <h2 class="team__name"><span class="under">-</span> Tetyna <span class="under">-</span></h2>
-             <p class="team__discription">Developer</p>
-             <a
-               href=""
-               target="_blank"
-               aria-label="Our Github"
-             >
-               <img class="git-logo" src="${iconGithub}" alt="GoIT" width="25" />
-             </a>
-           </li>
+          //  <li class="team-card-list-item">
+          //    <img class="team__img" src="${photoPerson}" width="150" alt="team-member" />
+          //    <h2 class="team__name"><span class="under">-</span> Tetyna <span class="under">-</span></h2>
+          //    <p class="team__discription">Developer</p>
+          //    <a
+          //      href=""
+          //      target="_blank"
+          //      aria-label="Our Github"
+          //    >
+          //      <img class="git-logo" src="${iconGithub}" alt="GoIT" width="25" />
+          //    </a>
+          //  </li>
    
          </ul>
    
