@@ -39,6 +39,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+let keyL = 0;
+
 
 function onClickStateUser() {
   onAuthStateChanged(auth, user => {
@@ -73,13 +75,19 @@ function onClickHome() {
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
-  const keyL = localStorage.getItem('Key');
-  const getArray = JSON.parse(localStorage.getItem(keyL));
+  
+  keyL = localStorage.getItem('Key');
+      const getArray = JSON.parse(localStorage.getItem(keyL));
+
+  if (getArray) {
+    
   if (getArray.length === 0) {
     ifEmptyLib();
   } else {
     onClickWatched();
   }
+  }
+  
 
   const user = userName();
   renderNavList(user);
