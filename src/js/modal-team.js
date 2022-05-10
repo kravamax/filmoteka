@@ -154,22 +154,8 @@ export default function modalTeam() {
              >
                <img class="git-logo" src="${iconGithub}" alt="GoIT" width="25" />
              </a>
-           </li>
-           <li class="team-card-list-item">
-             <img class="team__img" src="${photoPerson}" width="150" alt="team-member" />
-             <h2 class="team__name"><span class="under">-</span> Tetyna <span class="under">-</span></h2>
-             <p class="team__discription">Developer</p>
-             <a
-               href=""
-               target="_blank"
-               aria-label="Our Github"
-             >
-               <img class="git-logo" src="${iconGithub}" alt="GoIT" width="25" />
-             </a>
-           </li>
-   
-         </ul>
-   
+           </li>   
+         </ul>   
          <p class="team__line">
            <span class="line">
                ___________________________________________________________________
