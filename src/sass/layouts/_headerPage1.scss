@@ -138,6 +138,9 @@
 }
 
 .header-input {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    width: 250px;
+  }
   border: none;
   width: 336px;
   border-bottom: 0.5px solid $headerTextColor;
