@@ -1,5 +1,6 @@
 import iconCross from '../../../images/modalCard/math-multiplication.svg';
 import handleWatchedPage from "./handleWatchedPage/handleWatchedPage";
+import changingButtonStyles from "./changingButtonStyles/changingButtonStyles";
 
 let keyL = 0;
 let libraryData = null;
@@ -56,7 +57,7 @@ export const modalCardMarkup = data => {
             <h2 class="modal__subtitle">About</h2>
             <p class="modal__text">${overview}</p>
             <div class="modal__buttons">
-                <button class="button" id="watchedButton">Add to watched</button>
+                <button class="button" id="watchedButton">${changingButtonStyles(keyL, libraryData)}</button>
                 <button class="button is-hidden" id="removeButton">Remove</button>
                 <button class="button" id="queueButton">Add to queue</button>
             </div>
@@ -89,6 +90,7 @@ export const watchedButton = e => {
       finder.splice(position, 1);
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
+      document.querySelector("#watchedButton").textContent = "Add";
 
       if (document.querySelector('#test').classList.contains('pressed')) {
         handleWatchedPage(e, keyL);
@@ -99,12 +101,14 @@ export const watchedButton = e => {
       finder.push(libraryData);
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
+      document.querySelector("#watchedButton").textContent = "Remove";
     };
   }
   else if (JSON.parse(localStorage.getItem(keyL)) === null) {
     console.log('its in ELSE');
     libraryMass.push(libraryData);
     localStorage.setItem(keyL, JSON.stringify(libraryMass));
+    document.querySelector("#watchedButton").textContent = "Remove";
   }
 
   console.log(JSON.parse(localStorage.getItem(keyL)));
