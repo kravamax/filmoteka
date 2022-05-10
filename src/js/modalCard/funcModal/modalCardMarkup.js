@@ -1,6 +1,6 @@
-import { modal } from '../modalCard/';
 import iconCross from '../../../images/modalCard/math-multiplication.svg';
-const content = document.querySelector('#content');
+import handleWatchedPage from './handleWatchedPage/handleWatchedPage';
+import changingButtonStyles from './changingButtonStyles/changingButtonStyles';
 
 let keyL = 0;
 let libraryData = null;
@@ -57,7 +57,10 @@ export const modalCardMarkup = data => {
             <h2 class="modal__subtitle">About</h2>
             <p class="modal__text">${overview}</p>
             <div class="modal__buttons">
-                <button class="button" id="watchedButton">Add to watched</button>
+                <button class="button" id="watchedButton">${changingButtonStyles(
+                  keyL,
+                  libraryData,
+                )}</button>
                 <button class="button is-hidden" id="removeButton">Remove</button>
                 <button class="button" id="queueButton">Add to queue</button>
             </div>
@@ -71,33 +74,29 @@ export const watchedButton = e => {
     localStorage.getItem('is-Signed-In') === 'false' ||
     localStorage.getItem('state-user-Button' === 'false')
   ) {
-    console.log('Зарегайся');
+    console.log('Please register or login to your profile');
     return;
   }
 
   keyL = localStorage.getItem('Key');
 
   if (keyL === null) {
-    console.log('ЗАРЕГАЙСЯ');
+    console.log('Please register or login to your profile');
     return;
   }
-  // import func
-  //console.log(JSON.parse(localStorage.getItem(keyL)) === null)
+
   if (JSON.parse(localStorage.getItem(keyL))) {
     console.log('First IF');
     let finder = [...JSON.parse(localStorage.getItem(keyL))];
-    let OPS = finder.find(elem => elem.id === libraryData.id);
-    //console.log(OPS);
+    let libraryFilter = finder.find(elem => elem.id === libraryData.id);
 
-    if (OPS) {
+    if (libraryFilter) {
       console.log('Second IF');
-      const position = finder.indexOf(OPS);
-      console.log('position: ', position);
+      const position = finder.indexOf(libraryFilter);
       finder.splice(position, 1);
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
-      //   modal.close();
-
+      document.querySelector('#watchedButton').textContent = 'Add';
       // if (watchedPage.classList.contains('pressed')) {
       //   handleWatchedPage();
       // }
@@ -106,14 +105,13 @@ export const watchedButton = e => {
       finder.push(libraryData);
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
-      //   modal.close();
+      document.querySelector('#watchedButton').textContent = 'Remove';
     }
   } else if (JSON.parse(localStorage.getItem(keyL)) === null) {
     console.log('its in ELSE');
-    console.log(JSON.parse(localStorage.getItem(keyL)));
     libraryMass.push(libraryData);
     localStorage.setItem(keyL, JSON.stringify(libraryMass));
-    // modal.close();
+    document.querySelector('#watchedButton').textContent = 'Remove';
   }
 
   console.log(JSON.parse(localStorage.getItem(keyL)));
