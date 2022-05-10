@@ -144,6 +144,7 @@ function onClickWatched() {
   const getArray = JSON.parse(localStorage.getItem(keyL));
   const watchet = document.querySelector('.header__btn--watchet');
   const queue = document.querySelector('.header__btn--queue');
+
   watchet.classList.add('btn-active');
   queue.classList.remove('btn-active');
   if (getArray.length === 0) {
@@ -161,8 +162,6 @@ function getLogo() {
 function logOut() {
   const logOutBtn = document.querySelector('.singOut');
   logOutBtn.addEventListener('click', () => {
-    // const userCont = document.querySelector('.user-cont');
-    // userCont.remove();
     onClickLogOut();
 
     onClickStateUser();
@@ -170,16 +169,10 @@ function logOut() {
 }
 function userName() {
   const user = auth.currentUser;
-  // const userCont = document.querySelector('.user-cont');
+
   const to = user.email.search('@');
   const userName = user.email.substring(0, to);
   return userName;
-  // const userCont = document.createElement('div');
-  // userCont.classList.add('user-cont');
-  // userCont.innerHTML = `<p>${userName}</p>`;
-  // const headerTop = document.querySelector('.header-top');
-  // const parentDiv = headerTop.parentNode;
-  // parentDiv.insertBefore(userCont, headerTop);
 }
 
 function renderFooter() {

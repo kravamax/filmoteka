@@ -97,7 +97,19 @@ export const watchedButton = e => {
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
       //   modal.close();
-
+      // -----------------
+      const watchet = document.querySelector('.header__btn--watchet');
+      if (watchet) {
+        if (watchet.classList.contains('btn-active')) {
+          const getArray = JSON.parse(localStorage.getItem(keyL));
+          if (getArray.length === 0) {
+            content.innerHTML = `<div class="empty-lib"><h1>Empty</h1></div>`;
+            return;
+          }
+          handleWatchedPage(getArray);
+        }
+      }
+      // -------------------
       // if (watchedPage.classList.contains('pressed')) {
       //   handleWatchedPage();
       // }
