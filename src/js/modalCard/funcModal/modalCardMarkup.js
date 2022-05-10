@@ -5,7 +5,7 @@ const content = document.querySelector('#content');
 let keyL = 0;
 let libraryData = null;
 let libraryMass = [];
-keyL = localStorage.getItem("Key");
+keyL = localStorage.getItem('Key');
 
 export const modalCardMarkup = data => {
   const {
@@ -67,10 +67,13 @@ export const modalCardMarkup = data => {
 };
 
 export const watchedButton = e => {
-    if(localStorage.getItem("is-Signed-In") === "false" || localStorage.getItem("state-user-Button" === "false")) {
-        console.log("Зарегайся");
-        return;
-    }
+  if (
+    localStorage.getItem('is-Signed-In') === 'false' ||
+    localStorage.getItem('state-user-Button' === 'false')
+  ) {
+    console.log('Зарегайся');
+    return;
+  }
 
   keyL = localStorage.getItem('Key');
 
@@ -95,9 +98,9 @@ export const watchedButton = e => {
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
       //   modal.close();
 
-      if (watchedPage.classList.contains('pressed')) {
-        handleWatchedPage();
-      }
+      // if (watchedPage.classList.contains('pressed')) {
+      //   handleWatchedPage();
+      // }
     } else {
       console.log('Second ELSE');
       finder.push(libraryData);
@@ -121,14 +124,15 @@ export const queueButton = e => {
   console.log(JSON.parse(localStorage.getItem(keyL)));
 };
 
-const watchedPage = document.querySelector('#test');
-watchedPage.addEventListener('click', handleWatchedPage);
+// const watchedPage = document.querySelector('#test');
+// watchedPage.addEventListener('click', handleWatchedPage);
 
-function handleWatchedPage() {
-  watchedPage.classList.add('pressed');
+export function handleWatchedPage(getArray) {
+  // watchedPage.classList.add('pressed');
 
-  const getArray = JSON.parse(localStorage.getItem(keyL));
-
+  // const getArray = JSON.parse(localStorage.getItem(keyL));
+  // console.log(keyL);
+  // console.log(getArray);
   console.log('!!!');
   console.log(libraryMass);
 
