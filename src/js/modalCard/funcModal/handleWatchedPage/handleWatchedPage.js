@@ -1,8 +1,6 @@
 const content = document.querySelector('#content');
 
-const handleWatchedPage = (e, key) => {
-    document.querySelector('#test').classList.add('pressed');
-    const getArray = JSON.parse(localStorage.getItem(key));
+const handleWatchedPage = (array) => {
     content.innerHTML = '';
 
     if (localStorage.getItem('is-Signed-In') === 'false') {
@@ -10,13 +8,12 @@ const handleWatchedPage = (e, key) => {
         return;
     };
 
-    createMarkUp(getArray);
-    content.innerHTML = createMarkUp(getArray);
+    createMarkUp(array);
+    content.innerHTML = createMarkUp(array);
 };
 
 
 const createMarkUp = arg => {
-    console.log("MarkUp: ", arg)
     return arg
         .map(({ id, poster_path, genres, title, release_date, vote_average }) => {
             const date = release_date.slice(0, 4);
