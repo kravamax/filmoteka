@@ -1,11 +1,11 @@
 import iconCross from '../../../images/modalCard/math-multiplication.svg';
-import handleWatchedPage from "./handleWatchedPage/handleWatchedPage";
-import changingButtonStyles from "./changingButtonStyles/changingButtonStyles";
+import handleWatchedPage from './handleWatchedPage/handleWatchedPage';
+import changingButtonStyles from './changingButtonStyles/changingButtonStyles';
 
 let keyL = 0;
 let libraryData = null;
 let libraryMass = [];
-keyL = localStorage.getItem("Key");
+keyL = localStorage.getItem('Key');
 
 export const modalCardMarkup = data => {
   const {
@@ -57,9 +57,13 @@ export const modalCardMarkup = data => {
             <h2 class="modal__subtitle">About</h2>
             <p class="modal__text">${overview}</p>
             <div class="modal__buttons">
-                <button class="button" id="watchedButton">${changingButtonStyles(keyL, libraryData)}</button>
+                <button class="button" id="watchedButton">${changingButtonStyles(
+                  keyL,
+                  libraryData,
+                )}</button>
                 <button class="button is-hidden" id="removeButton">Remove</button>
                 <button class="button" id="queueButton">Add to queue</button>
+                <button class="button" id="trailerButton">Trailer</button>
             </div>
         </div>
     </div>
@@ -67,17 +71,20 @@ export const modalCardMarkup = data => {
 };
 
 export const watchedButton = e => {
-  if (localStorage.getItem("is-Signed-In") === "false" || localStorage.getItem("state-user-Button" === "false")) {
-    console.log("Please register or login to your profile");
+  if (
+    localStorage.getItem('is-Signed-In') === 'false' ||
+    localStorage.getItem('state-user-Button' === 'false')
+  ) {
+    console.log('Please register or login to your profile');
     return;
   }
 
   keyL = localStorage.getItem('Key');
 
   if (keyL === null) {
-    console.log("Please register or login to your profile");
+    console.log('Please register or login to your profile');
     return;
-  };
+  }
 
   if (JSON.parse(localStorage.getItem(keyL))) {
     console.log('First IF');
@@ -90,9 +97,9 @@ export const watchedButton = e => {
       finder.splice(position, 1);
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
-      document.querySelector("#watchedButton").textContent = "Add";
+      document.querySelector('#watchedButton').textContent = 'Add';
 
-       const watchet = document.querySelector('.header__btn--watchet');
+      const watchet = document.querySelector('.header__btn--watchet');
       if (watchet) {
         if (watchet.classList.contains('btn-active')) {
           const getArray = JSON.parse(localStorage.getItem(keyL));
@@ -102,21 +109,19 @@ export const watchedButton = e => {
           }
           handleWatchedPage(getArray);
         }
-      };
-    }
-    else {
+      }
+    } else {
       console.log('Second ELSE');
       finder.push(libraryData);
       libraryMass = [...finder];
       localStorage.setItem(keyL, JSON.stringify(libraryMass));
-      document.querySelector("#watchedButton").textContent = "Remove";
-    };
-  }
-  else if (JSON.parse(localStorage.getItem(keyL)) === null) {
+      document.querySelector('#watchedButton').textContent = 'Remove';
+    }
+  } else if (JSON.parse(localStorage.getItem(keyL)) === null) {
     console.log('its in ELSE');
     libraryMass.push(libraryData);
     localStorage.setItem(keyL, JSON.stringify(libraryMass));
-    document.querySelector("#watchedButton").textContent = "Remove";
+    document.querySelector('#watchedButton').textContent = 'Remove';
   }
 
   console.log(JSON.parse(localStorage.getItem(keyL)));
@@ -126,3 +131,5 @@ export const queueButton = e => {
   localStorage.removeItem(keyL);
   console.log(JSON.parse(localStorage.getItem(keyL)));
 };
+
+export { libraryData };
