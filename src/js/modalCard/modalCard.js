@@ -21,10 +21,7 @@ export const modal = new jBox('Modal', {
 export const buttonHandler = e => {
   e.preventDefault();
 
-  if (
-    e.target.id === 'content' ||
-    e.target.className === 'header__btn header__btn--empty btn-active'
-  ) {
+  if (e.target.id === 'content' || e.target.className === 'empty-lib') {
     return;
   }
 
