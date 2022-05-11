@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import { render } from 'sass';
+import Notiflix from 'notiflix';
 import createsFilmCardMarkup from './card-markup';
 import { buttonHandler } from './modalCard/modalCard';
 import posterSizes from './poster-sizes';
@@ -31,18 +31,18 @@ export function searchMovies(event) {
 
   query = event.currentTarget.elements.filmName.value.trim();
   if (query === '') {
-    // Notiflix.Notify.warning(
-    //   'Please, enter  the movie name and try again',
-    // );
+    Notiflix.Notify.warning(
+      'Please, enter  the movie name and try again',
+    );
     console.log('Please, enter  the movie name and try again');
     return;
   }
 
   fetchMovies(query, page).then(({ results }) => {
     if (results.length === 0) {
-      // Notiflix.Notify.failure(
-      //   'Search result not successful. Enter the correct movie name and try again',
-      // );
+      Notiflix.Notify.failure(
+        'Search result not successful. Enter the correct movie name and try again',
+      );
       console.log('Search result not successful. Enter the correct movie name and try again');
       return;
     }
