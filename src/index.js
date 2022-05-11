@@ -19,8 +19,8 @@ import onClickLogOut from './js/FireBase/onClickLoqOut';
 import scrollBtn from './js/scroll-btn';
 
 import modalTeam from './js/modal-team';
-import { handleWatchedPage } from './js/modalCard/funcModal/modalCardMarkup';
-// console.log(handleWatchedPage);
+import handleWatchedPage from './js/modalCard/funcModal/handleWatchedPage/handleWatchedPage';
+
 // ----------------------------------
 import { onAuthStateChanged } from 'firebase/auth';
 
