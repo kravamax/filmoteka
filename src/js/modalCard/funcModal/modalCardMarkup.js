@@ -2,7 +2,7 @@ import iconCross from '../../../images/modalCard/math-multiplication.svg';
 import handleButtonPage from './handleButtonPage/handleButtonPage';
 import changingButtonStyles from './changingButtonStyles/changingButtonStyles';
 import axios from 'axios';
-// import jBox from 'jbox';
+import jBox from 'jbox';
 
 let libraryData = null;
 let keyW = localStorage.getItem('Key');
@@ -68,7 +68,7 @@ export const modalCardMarkup = data => {
                   keyQ,
                   libraryData,
                 )}</button>
-                <button class="button" id="trailerButton">Trailer</button>
+                <button class="button" id="trailerModal">Trailer</button>
             </div>
         </div>
     </div>
@@ -186,12 +186,7 @@ export const queueButton = e => {
   console.log(JSON.parse(localStorage.getItem(keyQ)));
 };
 
-// TODO TRAILER BUTTON
-
-// export function getClickedFilmId() {
-//   return libraryData;
-//   // return 11111;
-// }
+// Trailer button
 
 async function getTrailerKey() {
   const KEY = '067f291d21ed1c6d30bd9ade17d843cc';
@@ -199,7 +194,6 @@ async function getTrailerKey() {
   const url = `https://api.themoviedb.org/3/movie/${libraryData.id}/videos?api_key=${KEY}&append_to_response=videos`;
   try {
     const response = await axios.get(url);
-    // console.log(response.data.results[0].key);
     return await response.data.results[0].key;
   } catch (error) {
     console.error(error);
@@ -209,23 +203,22 @@ async function getTrailerKey() {
 export async function onTrailerButtonClick() {
   const youTubeKey = await getTrailerKey();
 
-  //   document.querySelector('.modal__section').innerHTML = `<iframe
-  //   width="900"
-  //   height="506"
-  //   src="https://www.youtube.com/embed/${youTubeKey}"
-  //   title="YouTube video player"
-  //   frameborder="0"
-  //   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  //   allowfullscreen
-  // ></iframe>`;
-
-  document.querySelector('.modal__section').innerHTML = `<iframe class="noiframe"
-  width="900"
-  height="506"
+  new jBox('Modal', {
+    closeButton: true,
+    overlay: true,
+    attach: '#trailerModal',
+    onOpen() {
+      document.querySelector('#jBox1').style.opacity = 0;
+    },
+    onClose() {
+      document.querySelector('#jBox1').style.opacity = 1;
+    },
+    content: `<iframe class="modal-trailer__container"
   src="https://www.youtube.com/embed/${youTubeKey}"
   title="YouTube video player"
   frameborder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
   allowfullscreen
-></iframe>`;
+  ></iframe>`,
+  });
 }
