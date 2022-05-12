@@ -19,6 +19,7 @@ import onClickLogOut from './js/FireBase/onClickLoqOut';
 import scrollBtn from './js/scroll-btn';
 
 import modalTeam from './js/modal-team';
+// *
 import handleWatchedPage from './js/modalCard/funcModal/handleWatchedPage/handleWatchedPage';
 
 // ----------------------------------
@@ -140,16 +141,12 @@ function getButtons() {
   const watchet = document.querySelector('.header__btn--watchet');
   const queue = document.querySelector('.header__btn--queue');
   watchet.addEventListener('click', onClickWatched);
-  queue.addEventListener('click', () => {
-    queue.classList.add('btn-active');
-    watchet.classList.remove('btn-active');
-    content.innerHTML = '<h1>queue</h1>';
-  });
+  queue.addEventListener('click', onClickQueue);
 }
 
 function onClickWatched() {
-  const keyL = localStorage.getItem('Key');
-  const getArray = JSON.parse(localStorage.getItem(keyL));
+  const keyW = localStorage.getItem('Key');
+  const getArray = JSON.parse(localStorage.getItem(keyW));
   const watchet = document.querySelector('.header__btn--watchet');
   const queue = document.querySelector('.header__btn--queue');
 
@@ -161,6 +158,24 @@ function onClickWatched() {
   }
   handleWatchedPage(getArray);
 }
+
+
+function onClickQueue() {
+  const keyQ = localStorage.getItem('Key!');
+  const getArray = JSON.parse(localStorage.getItem(keyQ));
+  const watchet = document.querySelector('.header__btn--watchet');
+  const queue = document.querySelector('.header__btn--queue');
+
+  queue.classList.add('btn-active');
+  watchet.classList.remove('btn-active');
+  if (getArray.length === 0) {
+    ifEmptyLib();
+    return;
+  }
+  handleWatchedPage(getArray);
+};
+
+// ******************************************************
 
 function getLogo() {
   const logo = document.querySelector('.logo');
