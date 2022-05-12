@@ -1,11 +1,13 @@
 import iconCross from '../../../images/modalCard/math-multiplication.svg';
 import handleWatchedPage from "./handleWatchedPage/handleWatchedPage";
+//handleQueuePage
 import changingButtonStyles from "./changingButtonStyles/changingButtonStyles";
 
-let keyL = 0;
 let libraryData = null;
-let libraryMass = [];
-keyL = localStorage.getItem("Key");
+let keyW = localStorage.getItem("Key");
+let keyQ = localStorage.getItem("Key!");
+let watchedArr = [];
+let queueArr = [];
 
 export const modalCardMarkup = data => {
   const {
@@ -57,47 +59,44 @@ export const modalCardMarkup = data => {
             <h2 class="modal__subtitle">About</h2>
             <p class="modal__text">${overview}</p>
             <div class="modal__buttons">
-                <button class="button" id="watchedButton">${changingButtonStyles(keyL, libraryData)}</button>
-                <button class="button is-hidden" id="removeButton">Remove</button>
-                <button class="button" id="queueButton">Add to queue</button>
+                <button class="button" id="watchedButton">${changingButtonStyles(keyW, libraryData)}</button>
+                <button class="button" id="queueButton">Add to queue!</button>
             </div>
         </div>
     </div>
 </div>`;
 };
 
+
+// todo WATCHED BUTTON
+
 export const watchedButton = e => {
-  if (localStorage.getItem("is-Signed-In") === "false" || localStorage.getItem("state-user-Button" === "false")) {
-    console.log("Please register or login to your profile");
-    return;
-  }
+  keyW = localStorage.getItem("Key");
 
-  keyL = localStorage.getItem('Key');
-
-  if (keyL === null) {
-    console.log("Please register or login to your profile");
-    return;
+  if (localStorage.getItem("is-Signed-In") === "false" ||
+    localStorage.getItem("state-user-Button") === "false" || keyW === null) {
+    return console.log("Please register or login to your profile");
   };
 
-  if (JSON.parse(localStorage.getItem(keyL))) {
+
+  if (JSON.parse(localStorage.getItem(keyW))) {
     console.log('First IF');
-    let finder = [...JSON.parse(localStorage.getItem(keyL))];
+    let finder = [...JSON.parse(localStorage.getItem(keyW))];
     let libraryFilter = finder.find(elem => elem.id === libraryData.id);
 
     if (libraryFilter) {
       console.log('Second IF');
-      const position = finder.indexOf(libraryFilter);
-      finder.splice(position, 1);
-      libraryMass = [...finder];
-      localStorage.setItem(keyL, JSON.stringify(libraryMass));
+      finder.splice(finder.indexOf(libraryFilter), 1);
+      watchedArr = [...finder];
+      localStorage.setItem(keyW, JSON.stringify(watchedArr));
       document.querySelector("#watchedButton").textContent = "Add";
 
-       const watchet = document.querySelector('.header__btn--watchet');
-      if (watchet) {
-        if (watchet.classList.contains('btn-active')) {
-          const getArray = JSON.parse(localStorage.getItem(keyL));
+      const watched = document.querySelector('.header__btn--watchet');
+      if (watched) {
+        if (watched.classList.contains('btn-active')) {
+          const getArray = JSON.parse(localStorage.getItem(keyW));
           if (getArray.length === 0) {
-            content.innerHTML = `<div class="empty-lib"><h1>Empty</h1></div>`;
+            document.querySelector('#content').innerHTML = `<div class="empty-lib"><h1>Empty</h1></div>`;
             return;
           }
           handleWatchedPage(getArray);
@@ -107,19 +106,18 @@ export const watchedButton = e => {
     else {
       console.log('Second ELSE');
       finder.push(libraryData);
-      libraryMass = [...finder];
-      localStorage.setItem(keyL, JSON.stringify(libraryMass));
+      watchedArr = [...finder];
+      localStorage.setItem(keyW, JSON.stringify(watchedArr));
       document.querySelector("#watchedButton").textContent = "Remove";
     };
   }
-  else if (JSON.parse(localStorage.getItem(keyL)) === null) {
+  else if (JSON.parse(localStorage.getItem(keyW)) === null) {
     console.log('its in ELSE');
-    libraryMass.push(libraryData);
-    localStorage.setItem(keyL, JSON.stringify(libraryMass));
+    watchedArr.push(libraryData);
+    localStorage.setItem(keyW, JSON.stringify(watchedArr));
     document.querySelector("#watchedButton").textContent = "Remove";
   }
-
-  console.log(JSON.parse(localStorage.getItem(keyL)));
+  console.log(JSON.parse(localStorage.getItem(keyW)));
 };
 
 export const queueButton = e => {
