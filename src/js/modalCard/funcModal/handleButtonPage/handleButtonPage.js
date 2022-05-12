@@ -1,6 +1,6 @@
 const content = document.querySelector('#content');
 
-const handleWatchedPage = (array) => {
+const handleButtonPage = (array) => {
     content.innerHTML = '';
 
     if (localStorage.getItem('is-Signed-In') === 'false') {
@@ -33,4 +33,4 @@ const createMarkUp = arg => {
         }).join("");
 };
 
-export default handleWatchedPage;
+export default handleButtonPage;

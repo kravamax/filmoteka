@@ -20,7 +20,7 @@ import scrollBtn from './js/scroll-btn';
 
 import modalTeam from './js/modal-team';
 // *
-import handleWatchedPage from './js/modalCard/funcModal/handleWatchedPage/handleWatchedPage';
+import handleButtonPage from './js/modalCard/funcModal/handleButtonPage/handleButtonPage';
 
 // ----------------------------------
 import { onAuthStateChanged } from 'firebase/auth';
@@ -156,7 +156,7 @@ function onClickWatched() {
     ifEmptyLib();
     return;
   }
-  handleWatchedPage(getArray);
+  handleButtonPage(getArray);
 }
 
 
@@ -172,7 +172,7 @@ function onClickQueue() {
     ifEmptyLib();
     return;
   }
-  handleWatchedPage(getArray);
+  handleButtonPage(getArray);
 };
 
 // ******************************************************

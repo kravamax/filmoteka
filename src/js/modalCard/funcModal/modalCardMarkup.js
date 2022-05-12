@@ -1,6 +1,5 @@
 import iconCross from '../../../images/modalCard/math-multiplication.svg';
-import handleWatchedPage from "./handleWatchedPage/handleWatchedPage";
-//handleQueuePage
+import handleButtonPage from "./handleButtonPage/handleButtonPage";
 import changingButtonStyles from "./changingButtonStyles/changingButtonStyles";
 
 let libraryData = null;
@@ -99,7 +98,7 @@ export const watchedButton = e => {
             document.querySelector('#content').innerHTML = `<div class="empty-lib"><h1>Empty</h1></div>`;
             return;
           }
-          handleWatchedPage(getArray);
+          handleButtonPage(getArray);
         }
       };
     }
@@ -157,7 +156,7 @@ export const queueButton = e => {
             document.querySelector('#content').innerHTML = `<div class="empty-lib"><h1>Empty</h1></div>`;
             return;
           }
-          handleWatchedPage(getArray);
+          handleButtonPage(getArray);
         }
       };
     }
