@@ -1,4 +1,26 @@
+#content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.film-card {
+    margin: 16px;
+    cursor: pointer;
+}
+
+.film-card img {
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+
+.film-card img:hover {
+    opacity: 0.9;
+    box-shadow: 7px 7px 5px 2px rgba(0, 0, 0, 0.3);
+}
+
 .film-title {
+    text-align: left;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
@@ -7,9 +29,24 @@
 }
 
 .film-info {
-    display: inline-flex;
+    display: flex;
+    align-items: center;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
     color: #FF6B08;
+}
+
+.film-info__rating {   
+    line-height: 1.16;
+    width: 36px;
+    padding: 1px 0;
+    margin-left: 8px;
+    
+    align-items: center;
+    text-align: center;
+    
+    color: #ffffff;
+    background-color: #FF6B01;
+    border-radius: 5px;
 }

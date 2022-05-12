@@ -32,8 +32,8 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-
-    max-width: 768px;
+    height: 237px;
+    
 
     @media screen and (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -43,13 +43,13 @@
     }
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1024px) {
     background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
       url('../images/headerLibrary/desktopx1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-
+    height: 237px;
     max-width: 1600px;
 
     @media screen and (min-device-pixel-ratio: 2),
@@ -90,8 +90,14 @@
   margin-right: 10px;
 
   @media screen and (min-width: 300px) and (max-width: 767px) {
-    display: none;
+    margin-right: 0;
   }
+}
+
+.logo-name{
+  @media screen and (min-width: 300px) and (max-width: 767px) {
+    display:none;
+}
 }
 
 .nav-menu {

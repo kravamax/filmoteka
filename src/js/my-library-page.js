@@ -1,13 +1,15 @@
-import refs from './getRefs';
+import { getRefs } from './getRefs';
+const { libraryButtons, buttonWatched, buttonQueue } = getRefs();
 
-refs.buttonMyLibrary.addEventListener('click', myLibraryPage);
+buttonMyLibrary.addEventListener('click', myLibraryPage);
 
-refs.buttonWatched.addEventListener('click', (event) => {
-  getLibraryFilms(event, "watched");
-  refs.buttonQueue.classList.remove('library-button-current');
-  refs.buttonWatched.classList.add('library-button-current');
+buttonWatched.addEventListener('click', event => {
+  getLibraryFilms(event, 'watched');
+  buttonQueue.classList.remove('library-button-current');
+  buttonWatched.classList.add('library-button-current');
 });
 
+///// HEAD
 
 refs.buttonQueue.addEventListener('click', (event) => {
   getLibraryFilms(event, "queue");
@@ -118,3 +120,10 @@ const buttonAddToWatched = document.querySelector('.watchedButton');
       event.currentTarget.textContent = 'Delete from queue';
       Notiflix.Notify.success(`Added ${movieForRendering.title} to queue`, notiflixOverride);
     } 
+////
+buttonQueue.addEventListener('click', event => {
+  getLibraryFilms(event, 'queue');
+  buttonWatched.classList.remove('library-button-current');
+  buttonQueue.classList.add('library-button-current');
+});
+//// dev
