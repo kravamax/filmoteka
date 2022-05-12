@@ -42,7 +42,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 let keyL = 0;
 
-
 function onClickStateUser() {
   onAuthStateChanged(auth, user => {
     if (user) {
@@ -76,19 +75,23 @@ function onClickHome() {
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
-  
+
   keyL = localStorage.getItem('Key');
-      const getArray = JSON.parse(localStorage.getItem(keyL));
+  const getArray = JSON.parse(localStorage.getItem(keyL));
 
   if (getArray) {
-    
-  if (getArray.length === 0) {
-    ifEmptyLib();
-  } else {
-    onClickWatched();
+    if (getArray.length === 0) {
+      const keyQ = localStorage.getItem('Key!');
+      const getArrayQ = JSON.parse(localStorage.getItem(keyQ));
+      if (getArrayQ.length === 0) {
+        ifEmptyLib();
+      } else {
+        onClickQueue();
+      }
+    } else {
+      onClickWatched();
+    }
   }
-  }
-  
 
   const user = userName();
   renderNavList(user);
@@ -159,7 +162,6 @@ function onClickWatched() {
   handleButtonPage(getArray);
 }
 
-
 function onClickQueue() {
   const keyQ = localStorage.getItem('Key!');
   const getArray = JSON.parse(localStorage.getItem(keyQ));
@@ -173,7 +175,7 @@ function onClickQueue() {
     return;
   }
   handleButtonPage(getArray);
-};
+}
 
 // ******************************************************
 
