@@ -20,7 +20,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 let mainKey = 0;
-const key = 'Key';
+const keyW = "Key";
+const keyQ = "Key!"
 export default function onClickStateUser() {
   onAuthStateChanged(auth, user => {
     if (user) {
@@ -36,6 +37,7 @@ export default function onClickStateUser() {
 
 function putKeyToLocal() {
   localStorage.setItem('is-Signed-In', true);
-  localStorage.setItem(key, mainKey);
+  localStorage.setItem(keyW, mainKey);
+  localStorage.setItem(keyQ, mainKey + "!");
   localStorage.setItem('state-user-Button', true);
 }

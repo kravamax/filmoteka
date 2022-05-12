@@ -60,7 +60,7 @@ export const modalCardMarkup = data => {
             <p class="modal__text">${overview}</p>
             <div class="modal__buttons">
                 <button class="button" id="watchedButton">${changingButtonStyles(keyW, libraryData)}</button>
-                <button class="button" id="queueButton">Add to queue!</button>
+                <button class="button" id="queueButton">${changingButtonStyles(keyQ, libraryData)}</button>
             </div>
         </div>
     </div>
@@ -120,7 +120,60 @@ export const watchedButton = e => {
   console.log(JSON.parse(localStorage.getItem(keyW)));
 };
 
+
+
+
+// todo QUEUE BUTTON
+//export const queueButton = e => { 
+//  console.log("QUEUE")
+//}queueArr
+
 export const queueButton = e => {
-  localStorage.removeItem(keyL);
-  console.log(JSON.parse(localStorage.getItem(keyL)));
+  keyQ = localStorage.getItem("Key!");
+
+  if (localStorage.getItem("is-Signed-In") === "false" ||
+    localStorage.getItem("state-user-Button") === "false" || keyQ === null) {
+    return console.log("Please register or login to your profile");
+  };
+
+  if (JSON.parse(localStorage.getItem(keyQ))) {
+    console.log('First IF Q');
+    let finder = [...JSON.parse(localStorage.getItem(keyQ))];
+    let libraryFilter = finder.find(elem => elem.id === libraryData.id);
+
+    if (libraryFilter) {
+      console.log('Second IF Q');
+      finder.splice(finder.indexOf(libraryFilter), 1);
+      queueArr = [...finder];
+      localStorage.setItem(keyQ, JSON.stringify(queueArr));
+      document.querySelector("#queueButton").textContent = "Add";
+
+
+      const queue = document.querySelector('.header__btn--queue');
+      if (queue) {
+        if (queue.classList.contains('btn-active')) {
+          const getArray = JSON.parse(localStorage.getItem(keyQ));
+          if (getArray.length === 0) {
+            document.querySelector('#content').innerHTML = `<div class="empty-lib"><h1>Empty</h1></div>`;
+            return;
+          }
+          handleWatchedPage(getArray);
+        }
+      };
+    }
+    else {
+      console.log('Second ELSE Q');
+      finder.push(libraryData);
+      queueArr = [...finder];
+      localStorage.setItem(keyQ, JSON.stringify(queueArr));
+      document.querySelector("#queueButton").textContent = "Remove";
+    };
+  }
+  else if (JSON.parse(localStorage.getItem(keyQ)) === null) {
+    console.log('its in ELSE Q');
+    queueArr.push(libraryData);
+    localStorage.setItem(keyQ, JSON.stringify(queueArr));
+    document.querySelector("#queueButton").textContent = "Remove";
+  }
+  console.log(JSON.parse(localStorage.getItem(keyQ)));
 };
