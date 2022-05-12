@@ -2,6 +2,7 @@ import iconCross from '../../../images/modalCard/math-multiplication.svg';
 import handleButtonPage from './handleButtonPage/handleButtonPage';
 import changingButtonStyles from './changingButtonStyles/changingButtonStyles';
 import axios from 'axios';
+// import jBox from 'jbox';
 
 let libraryData = null;
 let keyW = localStorage.getItem('Key');
@@ -208,8 +209,23 @@ async function getTrailerKey() {
 export async function onTrailerButtonClick() {
   const youTubeKey = await getTrailerKey();
 
-  // console.log('key: ', await getTrailerKey());
-  console.log(youTubeKey);
+  //   document.querySelector('.modal__section').innerHTML = `<iframe
+  //   width="900"
+  //   height="506"
+  //   src="https://www.youtube.com/embed/${youTubeKey}"
+  //   title="YouTube video player"
+  //   frameborder="0"
+  //   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  //   allowfullscreen
+  // ></iframe>`;
 
-  await console.log('Button trailer click');
+  document.querySelector('.modal__section').innerHTML = `<iframe class="noiframe"
+  width="900"
+  height="506"
+  src="https://www.youtube.com/embed/${youTubeKey}"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>`;
 }
