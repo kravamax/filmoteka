@@ -3,10 +3,38 @@ import handleButtonPage from "./handleButtonPage/handleButtonPage";
 import changingButtonStyles from "./changingButtonStyles/changingButtonStyles";
 
 let libraryData = null;
-let keyW = localStorage.getItem("Key");
-let keyQ = localStorage.getItem("Key!");
+let keyW = localStorage.getItem("currentUserWatched");
+let keyQ = localStorage.getItem("currentUserQueue");
 let watchedArr = [];
 let queueArr = [];
+let currentWatchedArr = [];
+let currentQueueArr = [];
+
+////////////////////////////////////////////
+const allKeysWatchedArray = JSON.parse(localStorage.getItem("allKeysWatched"));
+const allKeysQueueArray = JSON.parse(localStorage.getItem("allKeysQueue"));
+
+
+if(!allKeysWatchedArray === null) {
+  for (let i = 0; i <= allKeysWatchedArray.length; i += 1) {
+    if(allKeysWatchedArray[i] === keyW) {
+      currentWatchedArr = JSON.parse(localStorage.getItem(keyW));
+      console.log(localStorage.getItem(keyW));
+    }
+}
+}
+
+if(!allKeysQueueArray === null) {
+  for (let i = 0; i <= allKeysQueueArray.length; i += 1) {
+    if(allKeysQueueArray[i] === keyQ) {
+        // queueArr = currentQueueArr;
+        currentQueueArr = JSON.parse(localStorage.getItem(keyQ));
+      console.log(localStorage.getItem(keyQ));
+    }
+}
+}
+
+/////////////////////////////////////////////////////////////
 
 export const modalCardMarkup = data => {
   const {
@@ -70,7 +98,7 @@ export const modalCardMarkup = data => {
 // todo WATCHED BUTTON
 
 export const watchedButton = e => {
-  keyW = localStorage.getItem("Key");
+  keyW = localStorage.getItem("currentUserWatched");
 
   if (localStorage.getItem("is-Signed-In") === "false" ||
     localStorage.getItem("state-user-Button") === "false" || keyW === null) {
@@ -86,8 +114,8 @@ export const watchedButton = e => {
     if (libraryFilter) {
       console.log('Second IF');
       finder.splice(finder.indexOf(libraryFilter), 1);
-      watchedArr = [...finder];
-      localStorage.setItem(keyW, JSON.stringify(watchedArr));
+      currentWatchedArr = [...finder];
+      localStorage.setItem(keyW, JSON.stringify(currentWatchedArr));
       document.querySelector("#watchedButton").textContent = "Add";
 
       const watched = document.querySelector('.header__btn--watchet');
@@ -105,15 +133,16 @@ export const watchedButton = e => {
     else {
       console.log('Second ELSE');
       finder.push(libraryData);
-      watchedArr = [...finder];
-      localStorage.setItem(keyW, JSON.stringify(watchedArr));
+      currentWatchedArr = [...finder];
+      localStorage.setItem(keyW, JSON.stringify(currentWatchedArr));
       document.querySelector("#watchedButton").textContent = "Remove";
     };
   }
   else if (JSON.parse(localStorage.getItem(keyW)) === null) {
     console.log('its in ELSE');
-    watchedArr.push(libraryData);
-    localStorage.setItem(keyW, JSON.stringify(watchedArr));
+    currentWatchedArr = [];
+    currentWatchedArr.push(libraryData);
+    localStorage.setItem(keyW, JSON.stringify(currentWatchedArr));
     document.querySelector("#watchedButton").textContent = "Remove";
   }
   console.log(JSON.parse(localStorage.getItem(keyW)));
@@ -128,7 +157,7 @@ export const watchedButton = e => {
 //}queueArr
 
 export const queueButton = e => {
-  keyQ = localStorage.getItem("Key!");
+  keyQ = localStorage.getItem("currentUserQueue");
 
   if (localStorage.getItem("is-Signed-In") === "false" ||
     localStorage.getItem("state-user-Button") === "false" || keyQ === null) {
@@ -143,8 +172,8 @@ export const queueButton = e => {
     if (libraryFilter) {
       console.log('Second IF Q');
       finder.splice(finder.indexOf(libraryFilter), 1);
-      queueArr = [...finder];
-      localStorage.setItem(keyQ, JSON.stringify(queueArr));
+      currentQueueArr = [...finder];
+      localStorage.setItem(keyQ, JSON.stringify(currentQueueArr));
       document.querySelector("#queueButton").textContent = "Add";
 
 
@@ -163,15 +192,16 @@ export const queueButton = e => {
     else {
       console.log('Second ELSE Q');
       finder.push(libraryData);
-      queueArr = [...finder];
-      localStorage.setItem(keyQ, JSON.stringify(queueArr));
+      currentQueueArr = [...finder];
+      localStorage.setItem(keyQ, JSON.stringify(currentQueueArr));
       document.querySelector("#queueButton").textContent = "Remove";
     };
   }
   else if (JSON.parse(localStorage.getItem(keyQ)) === null) {
     console.log('its in ELSE Q');
-    queueArr.push(libraryData);
-    localStorage.setItem(keyQ, JSON.stringify(queueArr));
+    currentQueueArr = [];
+    currentQueueArr.push(libraryData);
+    localStorage.setItem(keyQ, JSON.stringify(currentQueueArr));
     document.querySelector("#queueButton").textContent = "Remove";
   }
   console.log(JSON.parse(localStorage.getItem(keyQ)));
