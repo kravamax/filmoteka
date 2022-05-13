@@ -1,7 +1,7 @@
 import axios from 'axios';
-// import { render } from 'sass';
+import Notiflix from 'notiflix';
 import createsFilmCardMarkup from './card-markup';
-// import { buttonHandler } from './modalCard/modalCard';
+import { buttonHandler } from './modalCard/modalCard';
 import posterSizes from './poster-sizes';
 import { getRefs } from './getRefs';
 const { content } = getRefs();
@@ -11,9 +11,9 @@ axios.defaults.headers.get['Content-Type'] = 'application/json; charset=utf-8';
 
 const KEY = '067f291d21ed1c6d30bd9ade17d843cc';
 const picturesUrl = `https://image.tmdb.org/t/p/${posterSizes.w342}`;
-// const form = document.querySelector('.header-form');
+
 let query = '';
-let page = 1;
+let page;
 
 async function fetchMovies(query, page) {
   const url = `?api_key=${KEY}&query=${query}&page=${page}`;
@@ -28,32 +28,54 @@ async function fetchMovies(query, page) {
 
 export function searchMovies(event) {
   event.preventDefault();
-  page = 1;
+
   query = event.currentTarget.elements.filmName.value.trim();
   if (query === '') {
-    // Notiflix.Notify.warning(
-    //   'Please, enter a title for the movie.',
-    // );
-    console.log('no query');
+    Notiflix.Notify.warning(
+      'Please, enter  the movie name and try again',
+    );
+    console.log('Please, enter  the movie name and try again');
     return;
   }
-  fetchMovies(query, page).then(renderMarkup);
+
+  fetchMovies(query, page).then(({ results }) => {
+    page = 1;
+    console.log(page);
+    if (results.length === 0) {
+      Notiflix.Notify.failure(
+        'Search result not successful. Enter the correct movie name and try again',
+      );
+      console.log('Search result not successful. Enter the correct movie name and try again');
+      return;
+    }
+    renderMarkup({ results });
+  })
   content.innerHTML = '';
-  // form.reset();????????
-  }
- 
-function renderMarkup(movies) {
-  if (movies.total_results === 0) {
-    // Notiflix.Notify.failure(
-    //   'Sorry, there are no movies matching your search query. Please try again.',
-    // );
-    console.log("no film")
-    return;
-  }  
-   const searchList = createsFilmCardMarkup(movies, picturesUrl);
-  content.insertAdjacentHTML('beforeend', searchList); 
+  event.currentTarget.reset();
 }
 
-// function onLoadMore(page) {
-//   page += 1;
-// }
+function renderMarkup(movies) {
+  const searchList = createsFilmCardMarkup(movies, picturesUrl);
+  content.insertAdjacentHTML('beforeend', searchList);
+
+  document.querySelector('#content').addEventListener('click', buttonHandler);
+}
+
+// const scroll = document.querySelector('.scroll');
+
+// const loadMoreScroll = entries => {
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting && query !== '') {
+//       fetchMovies(query, page).then(({ results }) => {
+//         page += 1;
+//         renderMarkup({ results });
+        
+//         console.log("scroll", page)
+//       })
+//     }
+//   });
+// };
+
+// const observer = new IntersectionObserver(loadMoreScroll);
+
+// observer.observe(scroll);
