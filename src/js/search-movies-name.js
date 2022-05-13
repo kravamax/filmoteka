@@ -32,44 +32,39 @@ export function searchMovies(event) {
   query = event.currentTarget.elements.filmName.value.trim();
   if (query === '') {
     Notiflix.Notify.warning('Please, enter  the movie name and try again');
-    console.log('Please, enter  the movie name and try again');
     return;
   }
 
   fetchMovies(query, page).then(({ results }) => {
-    page = 1;
-
-    if (results.length === 0) {
+  if (results.length === 0) {
       Notiflix.Notify.failure(
-        'Search result not successful. Enter the correct movie name and try again',
-      );
-      console.log('Search result not successful. Enter the correct movie name and try again');
+        'Search result not successful. Enter the correct movie name and try again');
       return;
     }
-
-    scroll();
+    renderMarkup();
   });
-  // page += 1;
+
   content.innerHTML = '';
   event.currentTarget.reset();
-  page += 1;
 }
 
-function scroll() {
+function renderMarkup() {
   const scroll = document.querySelector('.scroll');
 
   const loadMoreScroll = entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting && query !== '') {
         fetchMovies(query, page).then(results => {
-          console.log(page);
+          if (page > results.total_pages) {
+            Notiflix.Notify.info("SWe're sorry, but you've reached the end of search results.");
+            return;
+          }
           page += 1;
-
           const searchList = createsFilmCardMarkup(results, picturesUrl);
           content.insertAdjacentHTML('beforeend', searchList);
 
           document.querySelector('#content').addEventListener('click', buttonHandler);
-        });
+        })
       }
     });
   };
