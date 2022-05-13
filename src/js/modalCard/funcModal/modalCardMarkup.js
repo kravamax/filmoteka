@@ -221,12 +221,24 @@ export const queueButton = e => {
 };
 
 // Trailer button
+const trailerModal = new jBox('Modal', {
+  closeButton: true,
+  overlay: true,
+  fade: 350,
+  attach: '#trailerModal',
+  content: `<div class="modal-trailer__container"></div>`,
+  onOpen() {
+    document.querySelector('#jBox2').style.opacity = 0;
+  },
+  onClose() {
+    document.querySelector('#jBox2').style.opacity = 1;
+  },
+});
 
 export function onTrailerButtonClick() {
   const KEY = '067f291d21ed1c6d30bd9ade17d843cc';
-
   const url = `https://api.themoviedb.org/3/movie/${libraryData.id}/videos?api_key=${KEY}`;
-  return fetch(url)
+  fetch(url)
     .then(res => res.json())
     .then(data => {
       return data.results[0].key;
@@ -236,24 +248,15 @@ export function onTrailerButtonClick() {
 }
 
 function openTrailerModal(youTubeKey) {
-  new jBox('Modal', {
-    closeButton: true,
-    overlay: true,
-    attach: '#trailerModal',
-    onOpen() {
-      document.querySelector('#jBox1').style.opacity = 0;
-    },
-    onClose() {
-      document.querySelector('#jBox1').style.opacity = 1;
-    },
-    content: `<div>
-    <iframe class="modal-trailer__container"
+  trailerModal.open();
+
+  document.querySelector(
+    '.modal-trailer__container',
+  ).innerHTML = `<iframe class="modal-trailer__container"
     src="https://www.youtube.com/embed/${youTubeKey}"
     title="YouTube video player"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen
-    ></iframe>
-    </div>`,
-  });
+    ></iframe>`;
 }
