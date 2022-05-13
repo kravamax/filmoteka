@@ -1,7 +1,39 @@
+import Notiflix from 'notiflix';
 import iconCross from '../../../images/modalCard/math-multiplication.svg';
 import handleButtonPage from './handleButtonPage/handleButtonPage';
 import changingButtonStyles from './changingButtonStyles/changingButtonStyles';
 import jBox from 'jbox';
+
+Notiflix.Notify.init({
+
+  
+});
+Notiflix.Notify.merge({
+  width: '320px',
+  fontSize: '18px',
+  zindex: 10002,
+  timeout: 1500,
+  pauseOnHover: false,
+  clickToClose: true,
+  backOverlay: true,
+
+  warning: {
+    background: 'rgba(0,0,0,0.8)',
+    textColor: '#FF6B08',
+    notiflixIconColor: '#FF6B08',
+    backOverlayColor: 'rgba(0,0,0,0.4)',
+  },
+});
+
+Notiflix.Notify.merge({
+  success: {
+    background: 'rgba(0,0,0,0)',
+    textColor: '#fcff37',
+    childClassName: 'notiflix-notify-success',
+    notiflixIconColor: '#fcff37',
+    backOverlayColor: 'rgba(0,0,0,0.0)',
+  },
+});
 
 let libraryData = null;
 let keyW;
@@ -113,7 +145,8 @@ export const watchedButton = e => {
     localStorage.getItem('state-user-Button') === 'false' ||
     keyW === null
   ) {
-    return console.log('Please register or login to your profile');
+    Notiflix.Notify.warning('Please sign in or register to your profile');
+    return;
   }
 
   if (JSON.parse(localStorage.getItem(keyW))) {
@@ -123,6 +156,7 @@ export const watchedButton = e => {
 
     if (libraryFilter) {
       console.log('Second IF');
+      Notiflix.Notify.success(`Movie removed successfully!`);
       finder.splice(finder.indexOf(libraryFilter), 1);
 
       currentWatchedArr = [...finder];
@@ -143,6 +177,7 @@ export const watchedButton = e => {
         }
       }
     } else {
+      Notiflix.Notify.success(`You've just added movie to watched library!`);
       console.log('Second ELSE');
       finder.push(libraryData);
 
@@ -156,6 +191,7 @@ export const watchedButton = e => {
     currentWatchedArr.push(libraryData);
     localStorage.setItem(keyW, JSON.stringify(currentWatchedArr));
     document.querySelector('#watchedButton').textContent = `Remove from watched`;
+    Notiflix.Notify.success(`You've just added your first movie to watched library!`);
   }
   console.log(JSON.parse(localStorage.getItem(keyW)));
 };
@@ -173,7 +209,8 @@ export const queueButton = e => {
     localStorage.getItem('state-user-Button') === 'false' ||
     keyQ === null
   ) {
-    return console.log('Please register or login to your profile');
+    Notiflix.Notify.warning('Please sign in or register to your profile');
+    return;
   }
 
   if (JSON.parse(localStorage.getItem(keyQ))) {
@@ -182,6 +219,7 @@ export const queueButton = e => {
     let libraryFilter = finder.find(elem => elem.id === libraryData.id);
 
     if (libraryFilter) {
+      Notiflix.Notify.success(`Movie removed successfully!`);
       console.log('Second IF Q');
       finder.splice(finder.indexOf(libraryFilter), 1);
 
@@ -203,6 +241,7 @@ export const queueButton = e => {
         }
       }
     } else {
+      Notiflix.Notify.success(`You've just added movie to queue!`);
       console.log('Second ELSE Q');
       finder.push(libraryData);
 
@@ -216,6 +255,7 @@ export const queueButton = e => {
     currentQueueArr.push(libraryData);
     localStorage.setItem(keyQ, JSON.stringify(currentQueueArr));
     document.querySelector('#queueButton').textContent = `Remove from queue`;
+    Notiflix.Notify.success(`You've just added your first movie to queue!`);
   }
   console.log(JSON.parse(localStorage.getItem(keyQ)));
 };
