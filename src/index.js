@@ -74,18 +74,40 @@ function onClickHome() {
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
-  let keyW = 0;
-  let keyQ = 0;
+  let keyW = '';
+  let keyQ = '';
   keyW = localStorage.getItem('currentUserWatched');
   const getArrayW = JSON.parse(localStorage.getItem(keyW));
 
   keyQ = localStorage.getItem('currentUserQueue');
   const getArrayQ = JSON.parse(localStorage.getItem(keyQ));
-  console.log(getArrayQ);
-  if (getArrayQ && getArrayQ.length !== 0) {
-    onClickQueue();
-  } else if (getArrayW && getArrayW.length !== 0) {
-    onClickWatched();
+
+  // if (getArrayQ && getArrayQ.length !== 0) {
+  //   onClickQueue();
+  // } else if (getArrayW && getArrayW.length !== 0) {
+  //   onClickWatched();
+  // } else {
+  //   ifEmptyLib();
+  // }
+
+  if (getArrayQ) {
+    if (getArrayQ.length !== 0) {
+      onClickQueue();
+    } else if (getArrayW) {
+      if (getArrayW.length !== 0) {
+        onClickWatched();
+      } else {
+        ifEmptyLib();
+      }
+    } else {
+      ifEmptyLib();
+    }
+  } else if (getArrayW) {
+    if (getArrayW.length !== 0) {
+      onClickWatched;
+    } else {
+      ifEmptyLib();
+    }
   } else {
     ifEmptyLib();
   }
@@ -145,32 +167,42 @@ function getButtons() {
 
 function onClickWatched() {
   const keyW = localStorage.getItem('currentUserWatched');
-  const getArray = JSON.parse(localStorage.getItem(keyW));
+  const getArrayW = JSON.parse(localStorage.getItem(keyW));
   const watchet = document.querySelector('.header__btn--watchet');
   const queue = document.querySelector('.header__btn--queue');
 
   watchet.classList.add('btn-active');
   queue.classList.remove('btn-active');
-  if (getArray.length === 0) {
+  if (getArrayW) {
+    if (getArrayW.length === 0) {
+      ifEmptyLib();
+      return;
+    } else {
+      handleButtonPage(getArrayW);
+    }
+  } else {
     ifEmptyLib();
-    return;
   }
-  handleButtonPage(getArray);
 }
 
 function onClickQueue() {
   const keyQ = localStorage.getItem('currentUserQueue');
-  const getArray = JSON.parse(localStorage.getItem(keyQ));
+  const getArrayQ = JSON.parse(localStorage.getItem(keyQ));
   const watchet = document.querySelector('.header__btn--watchet');
   const queue = document.querySelector('.header__btn--queue');
 
   queue.classList.add('btn-active');
   watchet.classList.remove('btn-active');
-  if (getArray.length === 0) {
+  if (getArrayQ) {
+    if (getArrayQ.length === 0) {
+      ifEmptyLib();
+      return;
+    } else {
+      handleButtonPage(getArrayQ);
+    }
+  } else {
     ifEmptyLib();
-    return;
   }
-  handleButtonPage(getArray);
 }
 
 // ******************************************************
