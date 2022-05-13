@@ -1,7 +1,6 @@
 import iconCross from '../../../images/modalCard/math-multiplication.svg';
 import handleButtonPage from './handleButtonPage/handleButtonPage';
 import changingButtonStyles from './changingButtonStyles/changingButtonStyles';
-import axios from 'axios';
 import jBox from 'jbox';
 
 let libraryData = null;
@@ -9,7 +8,6 @@ let keyW;
 let keyQ;
 let currentWatchedArr = [];
 let currentQueueArr = [];
-
 
 ////////////////////////////////////////////
 const allKeysWatchedArray = JSON.parse(localStorage.getItem('allKeysWatched'));
@@ -50,9 +48,8 @@ export const modalCardMarkup = data => {
   } = data;
 
   libraryData = data;
- keyW = localStorage.getItem("currentUserWatched");
- keyQ = localStorage.getItem("currentUserQueue");
-
+  keyW = localStorage.getItem('currentUserWatched');
+  keyQ = localStorage.getItem('currentUserQueue');
 
   return `<div class="modal">
         <div class="modal__button-container">
@@ -89,8 +86,16 @@ export const modalCardMarkup = data => {
             <h2 class="modal__subtitle">About</h2>
             <p class="modal__text">${overview}</p>
             <div class="modal__buttons">
-                <button class="button" id="watchedButton">${changingButtonStyles(keyW, libraryData, "watched")}</button>
-                <button class="button" id="queueButton">${changingButtonStyles(keyQ, libraryData, "queue")} </button>
+                <button class="button" id="watchedButton">${changingButtonStyles(
+                  keyW,
+                  libraryData,
+                  'watched',
+                )}</button>
+                <button class="button" id="queueButton">${changingButtonStyles(
+                  keyQ,
+                  libraryData,
+                  'queue',
+                )} </button>
                 <button class="button" id="trailerModal">Trailer</button>
             </div>
         </div>
@@ -122,7 +127,7 @@ export const watchedButton = e => {
 
       currentWatchedArr = [...finder];
       localStorage.setItem(keyW, JSON.stringify(currentWatchedArr));
-      document.querySelector("#watchedButton").textContent = `Add to watched`;
+      document.querySelector('#watchedButton').textContent = `Add to watched`;
 
       const watched = document.querySelector('.header__btn--watchet');
       if (watched) {
@@ -143,15 +148,14 @@ export const watchedButton = e => {
 
       currentWatchedArr = [...finder];
       localStorage.setItem(keyW, JSON.stringify(currentWatchedArr));
-      document.querySelector("#watchedButton").textContent = `Remove from watched`;
-    };
-  }
-  else if (JSON.parse(localStorage.getItem(keyW)) === null) {
+      document.querySelector('#watchedButton').textContent = `Remove from watched`;
+    }
+  } else if (JSON.parse(localStorage.getItem(keyW)) === null) {
     console.log('its in ELSE');
     currentWatchedArr = [];
     currentWatchedArr.push(libraryData);
     localStorage.setItem(keyW, JSON.stringify(currentWatchedArr));
-    document.querySelector("#watchedButton").textContent = `Remove from watched`;
+    document.querySelector('#watchedButton').textContent = `Remove from watched`;
   }
   console.log(JSON.parse(localStorage.getItem(keyW)));
 };
@@ -183,8 +187,7 @@ export const queueButton = e => {
 
       currentQueueArr = [...finder];
       localStorage.setItem(keyQ, JSON.stringify(currentQueueArr));
-      document.querySelector("#queueButton").textContent = `Add to queue`;
-
+      document.querySelector('#queueButton').textContent = `Add to queue`;
 
       const queue = document.querySelector('.header__btn--queue');
       if (queue) {
@@ -205,39 +208,34 @@ export const queueButton = e => {
 
       currentQueueArr = [...finder];
       localStorage.setItem(keyQ, JSON.stringify(currentQueueArr));
-      document.querySelector("#queueButton").textContent = `Remove from queue`;
-    };
-  }
-  else if (JSON.parse(localStorage.getItem(keyQ)) === null) {
+      document.querySelector('#queueButton').textContent = `Remove from queue`;
+    }
+  } else if (JSON.parse(localStorage.getItem(keyQ)) === null) {
     console.log('its in ELSE Q');
     currentQueueArr = [];
     currentQueueArr.push(libraryData);
     localStorage.setItem(keyQ, JSON.stringify(currentQueueArr));
-    document.querySelector("#queueButton").textContent = `Remove from queue`;
+    document.querySelector('#queueButton').textContent = `Remove from queue`;
   }
   console.log(JSON.parse(localStorage.getItem(keyQ)));
 };
 
 // Trailer button
 
-async function getTrailerKey() {
+export function onTrailerButtonClick() {
   const KEY = '067f291d21ed1c6d30bd9ade17d843cc';
 
-  const url = `https://api.themoviedb.org/3/movie/${libraryData.id}/videos?api_key=${KEY}&append_to_response=videos`;
-  try {
-    const response = await axios.get(url);
-    return await response.data.results[0].key;
-  } catch (error) {
-    console.error(error);
-  }
+  const url = `https://api.themoviedb.org/3/movie/${libraryData.id}/videos?api_key=${KEY}`;
+  return fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      return data.results[0].key;
+    })
+    .then(openTrailerModal)
+    .catch(console.log);
 }
 
-export async function onTrailerButtonClick() {
-  const youTubeKey = getTrailerKey();
-
-  // console.log(youTubeKey);
-  // openModal(youTubeKey);
-
+function openTrailerModal(youTubeKey) {
   new jBox('Modal', {
     closeButton: true,
     overlay: true,
@@ -248,33 +246,14 @@ export async function onTrailerButtonClick() {
     onClose() {
       document.querySelector('#jBox1').style.opacity = 1;
     },
-    content: `<iframe class="modal-trailer__container"
-  src="https://www.youtube.com/embed/${youTubeKey}"
-  title="YouTube video player"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-  ></iframe>`,
+    content: `<div>
+    <iframe class="modal-trailer__container"
+    src="https://www.youtube.com/embed/${youTubeKey}"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    ></iframe>
+    </div>`,
   });
 }
-
-// function openModal(youTubeKey) {
-//   new jBox('Modal', {
-//     closeButton: true,
-//     overlay: true,
-//     attach: '#trailerModal',
-//     onOpen() {
-//       document.querySelector('#jBox1').style.opacity = 0;
-//     },
-//     onClose() {
-//       document.querySelector('#jBox1').style.opacity = 1;
-//     },
-//     content: `<iframe class="modal-trailer__container"
-//   src="https://www.youtube.com/embed/${youTubeKey}"
-//   title="YouTube video player"
-//   frameborder="0"
-//   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-//   allowfullscreen
-//   ></iframe>`,
-//   });
-// }
