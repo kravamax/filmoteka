@@ -7,6 +7,7 @@ let keyW = localStorage.getItem("Key");
 let keyQ = localStorage.getItem("Key!");
 let watchedArr = [];
 let queueArr = [];
+console.log(keyQ)
 
 export const modalCardMarkup = data => {
   const {
