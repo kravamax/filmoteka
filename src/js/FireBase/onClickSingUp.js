@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import modalAuth from './modalAuth';
-
+import Notiflix from 'notiflix';
 //import getModalData from './FireBase/getModalData';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -40,13 +40,14 @@ export default function onClickSingUp() {
     createUserWithEmailAndPassword(auth, user.email, user.password)
       .then(userCredential => {
         const user = userCredential.user;
-        alert(`Register ${user.email} successful`);
+
         modalWindow.innerHTML = '';
         // console.log(user);
         onClickStateUser();
         // ...
       })
       .catch(error => {
+        Notiflix.Notify.failure('Something is wrong. Please try again');
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
