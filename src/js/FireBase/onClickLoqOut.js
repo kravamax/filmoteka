@@ -29,5 +29,7 @@ export default function onClickLogOut() {
   localStorage.setItem('state-user-Button', false);
   auth.signOut();
   loadTrendMovies();
-  headerForm.reset();
+  if (headerForm) {
+    headerForm.reset();
+  }
 }
