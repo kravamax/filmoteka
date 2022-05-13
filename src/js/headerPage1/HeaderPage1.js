@@ -17,10 +17,14 @@ export default function HeaderPage1() {
                 </span>
                 </a>
             </div>
+            <div>
+                <label class="switch">
+                    <input class="switch__checkbox" type="checkbox" />
+                    <span class="switch__slider"></span>
+                </label>
+            </div>
             <nav class="nav-menu">
-                <ul class="list-nav">
-                    
-                   
+                <ul class="list-nav"> 
                 </ul>
             </nav>
         </div>

@@ -16,6 +16,9 @@ import onClickSingUp from './js/FireBase/onClickSingUp';
 import onClickSingIn from './js/FireBase/onClickSingIn';
 import onClickLogOut from './js/FireBase/onClickLoqOut';
 
+//*
+import switcher from './js/blackTheme/blackTheme';
+
 import scrollBtn from './js/scroll-btn';
 
 import modalTeam from './js/modal-team';
@@ -59,11 +62,11 @@ function onClickStateUser() {
     }
   });
 }
+
 // ----------------------------------
 onClickHome();
 
 renderFooter();
-
 function onClickHome() {
   header.innerHTML = HeaderPage1();
   const status = onClickStateUser();
@@ -118,6 +121,7 @@ function onClickLibrary() {
     onClickHome();
   });
 }
+
 
 function getLibr() {
   const libr = document.querySelector('.library-link');
@@ -222,6 +226,9 @@ function userName() {
 
 function renderFooter() {
   footer.innerHTML = footerMarkup();
+  // ! --------------------------------
+  document.querySelector(".switch__checkbox").addEventListener("change", switcher);
+  // ! --------------------------------
 }
 
 export function createNewUser() {
