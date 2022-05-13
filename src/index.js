@@ -42,6 +42,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 let keyL = 0;
 
+
 function onClickStateUser() {
   onAuthStateChanged(auth, user => {
     if (user) {
@@ -75,23 +76,19 @@ function onClickHome() {
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
-
-  keyL = localStorage.getItem('Key');
-  const getArray = JSON.parse(localStorage.getItem(keyL));
+  
+  keyL = localStorage.getItem('currentUserWatched');
+      const getArray = JSON.parse(localStorage.getItem(keyL));
 
   if (getArray) {
-    if (getArray.length === 0) {
-      const keyQ = localStorage.getItem('Key!');
-      const getArrayQ = JSON.parse(localStorage.getItem(keyQ));
-      if (getArrayQ.length === 0) {
-        ifEmptyLib();
-      } else {
-        onClickQueue();
-      }
-    } else {
-      onClickWatched();
-    }
+    
+  if (getArray.length === 0) {
+    ifEmptyLib();
+  } else {
+    onClickWatched();
   }
+  }
+  
 
   const user = userName();
   renderNavList(user);
@@ -148,7 +145,7 @@ function getButtons() {
 }
 
 function onClickWatched() {
-  const keyW = localStorage.getItem('Key');
+  const keyW = localStorage.getItem('currentUserWatched');
   const getArray = JSON.parse(localStorage.getItem(keyW));
   const watchet = document.querySelector('.header__btn--watchet');
   const queue = document.querySelector('.header__btn--queue');
@@ -162,8 +159,9 @@ function onClickWatched() {
   handleButtonPage(getArray);
 }
 
+
 function onClickQueue() {
-  const keyQ = localStorage.getItem('Key!');
+  const keyQ = localStorage.getItem('currentUserQueue');
   const getArray = JSON.parse(localStorage.getItem(keyQ));
   const watchet = document.querySelector('.header__btn--watchet');
   const queue = document.querySelector('.header__btn--queue');
@@ -175,7 +173,7 @@ function onClickQueue() {
     return;
   }
   handleButtonPage(getArray);
-}
+};
 
 // ******************************************************
 

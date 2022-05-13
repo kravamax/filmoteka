@@ -1,6 +1,8 @@
 const changingButtonStyles = (key, data) => {
     if (key === null) {
         return "Add";
+    } else if(JSON.parse(localStorage.getItem(key)) === null) {
+        return "Add";
     }
     else {
         let finder = [...JSON.parse(localStorage.getItem(key))];
