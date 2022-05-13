@@ -77,20 +77,17 @@ function onClickLibrary() {
   let keyW = 0;
   let keyQ = 0;
   keyW = localStorage.getItem('currentUserWatched');
-  const getArray = JSON.parse(localStorage.getItem(keyW));
+  const getArrayW = JSON.parse(localStorage.getItem(keyW));
 
   keyQ = localStorage.getItem('currentUserQueue');
   const getArrayQ = JSON.parse(localStorage.getItem(keyQ));
-  if (getArrayQ) {
-    if (getArrayQ.length !== 0) {
-      onClickQueue();
-    } else {
-      if (getArray.length !== 0) {
-        onClickWatched();
-      } else {
-        ifEmptyLib();
-      }
-    }
+  console.log(getArrayQ);
+  if (getArrayQ && getArrayQ.length !== 0) {
+    onClickQueue();
+  } else if (getArrayW && getArrayW.length !== 0) {
+    onClickWatched();
+  } else {
+    ifEmptyLib();
   }
 
   const user = userName();
@@ -110,7 +107,6 @@ function onClickLibrary() {
 
 function getLibr() {
   const libr = document.querySelector('.library-link');
-
   libr.addEventListener('click', onClickLibrary);
   libr.classList.remove('item-current');
 }
