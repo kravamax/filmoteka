@@ -13,7 +13,7 @@ const KEY = '067f291d21ed1c6d30bd9ade17d843cc';
 const picturesUrl = `https://image.tmdb.org/t/p/${posterSizes.w342}`;
 
 let query = '';
-let page;
+let page = 1;
 
 async function fetchMovies(query, page) {
   const url = `?api_key=${KEY}&query=${query}&page=${page}`;
@@ -31,16 +31,14 @@ export function searchMovies(event) {
 
   query = event.currentTarget.elements.filmName.value.trim();
   if (query === '') {
-    Notiflix.Notify.warning(
-      'Please, enter  the movie name and try again',
-    );
+    Notiflix.Notify.warning('Please, enter  the movie name and try again');
     console.log('Please, enter  the movie name and try again');
     return;
   }
 
   fetchMovies(query, page).then(({ results }) => {
     page = 1;
-    console.log(page);
+
     if (results.length === 0) {
       Notiflix.Notify.failure(
         'Search result not successful. Enter the correct movie name and try again',
@@ -48,34 +46,35 @@ export function searchMovies(event) {
       console.log('Search result not successful. Enter the correct movie name and try again');
       return;
     }
-    renderMarkup({ results });
-  })
+
+    scroll();
+  });
+  // page += 1;
   content.innerHTML = '';
   event.currentTarget.reset();
+  page += 1;
 }
 
-function renderMarkup(movies) {
-  const searchList = createsFilmCardMarkup(movies, picturesUrl);
-  content.insertAdjacentHTML('beforeend', searchList);
+function scroll() {
+  const scroll = document.querySelector('.scroll');
 
-  document.querySelector('#content').addEventListener('click', buttonHandler);
+  const loadMoreScroll = entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && query !== '') {
+        fetchMovies(query, page).then(results => {
+          console.log(page);
+          page += 1;
+
+          const searchList = createsFilmCardMarkup(results, picturesUrl);
+          content.insertAdjacentHTML('beforeend', searchList);
+
+          document.querySelector('#content').addEventListener('click', buttonHandler);
+        });
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(loadMoreScroll);
+
+  observer.observe(scroll);
 }
-
-// const scroll = document.querySelector('.scroll');
-
-// const loadMoreScroll = entries => {
-//   entries.forEach(entry => {
-//     if (entry.isIntersecting && query !== '') {
-//       fetchMovies(query, page).then(({ results }) => {
-//         page += 1;
-//         renderMarkup({ results });
-        
-//         console.log("scroll", page)
-//       })
-//     }
-//   });
-// };
-
-// const observer = new IntersectionObserver(loadMoreScroll);
-
-// observer.observe(scroll);
