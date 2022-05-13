@@ -13,7 +13,7 @@ const KEY = '067f291d21ed1c6d30bd9ade17d843cc';
 const picturesUrl = `https://image.tmdb.org/t/p/${posterSizes.w342}`;
 
 let query = '';
-let page;
+let page = 1;
 
 async function fetchMovies(query, page) {
   const url = `?api_key=${KEY}&query=${query}&page=${page}`;
@@ -31,9 +31,7 @@ export function searchMovies(event) {
 
   query = event.currentTarget.elements.filmName.value.trim();
   if (query === '') {
-    Notiflix.Notify.warning(
-      'Please, enter  the movie name and try again',
-    );
+    Notiflix.Notify.warning('Please, enter  the movie name and try again');
     console.log('Please, enter  the movie name and try again');
     return;
   }
@@ -49,7 +47,7 @@ export function searchMovies(event) {
       return;
     }
     renderMarkup({ results });
-  })
+  });
   content.innerHTML = '';
   event.currentTarget.reset();
 }
@@ -60,22 +58,25 @@ function renderMarkup(movies) {
 
   document.querySelector('#content').addEventListener('click', buttonHandler);
 }
+function scroll() {
+  const scroll = document.querySelector('.scroll');
 
-// const scroll = document.querySelector('.scroll');
+  const loadMoreScroll = entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && query !== '') {
+        fetchMovies(query, page).then(({ results }) => {
+          page += 1;
+          renderMarkup({ results });
 
-// const loadMoreScroll = entries => {
-//   entries.forEach(entry => {
-//     if (entry.isIntersecting && query !== '') {
-//       fetchMovies(query, page).then(({ results }) => {
-//         page += 1;
-//         renderMarkup({ results });
-        
-//         console.log("scroll", page)
-//       })
-//     }
-//   });
-// };
+          console.log('scroll', page);
+        });
+      }
+    });
+  };
 
-// const observer = new IntersectionObserver(loadMoreScroll);
+  const observer = new IntersectionObserver(loadMoreScroll);
 
-// observer.observe(scroll);
+  observer.observe(scroll);
+}
+
+scroll();

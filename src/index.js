@@ -82,14 +82,6 @@ function onClickLibrary() {
   keyQ = localStorage.getItem('currentUserQueue');
   const getArrayQ = JSON.parse(localStorage.getItem(keyQ));
 
-  // if (getArrayQ && getArrayQ.length !== 0) {
-  //   onClickQueue();
-  // } else if (getArrayW && getArrayW.length !== 0) {
-  //   onClickWatched();
-  // } else {
-  //   ifEmptyLib();
-  // }
-
   if (getArrayQ) {
     if (getArrayQ.length !== 0) {
       onClickQueue();
