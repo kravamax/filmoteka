@@ -1,4 +1,7 @@
+localStorage.setItem("toggle", false);
+
 const switcher = e => {
+    localStorage.setItem("toggle", e.currentTarget.checked)
     const textBlack = [...document.querySelectorAll(".film-title")]
     if (e.currentTarget.checked) {
         document.body.classList.add('black--body');
