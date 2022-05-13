@@ -38,7 +38,7 @@ export function searchMovies(event) {
 
   fetchMovies(query, page).then(({ results }) => {
     page = 1;
-    console.log(page);
+
     if (results.length === 0) {
       Notiflix.Notify.failure(
         'Search result not successful. Enter the correct movie name and try again',
@@ -46,29 +46,29 @@ export function searchMovies(event) {
       console.log('Search result not successful. Enter the correct movie name and try again');
       return;
     }
-    renderMarkup({ results });
+
+    scroll();
   });
+  // page += 1;
   content.innerHTML = '';
   event.currentTarget.reset();
+  page += 1;
 }
 
-function renderMarkup(movies) {
-  const searchList = createsFilmCardMarkup(movies, picturesUrl);
-  content.insertAdjacentHTML('beforeend', searchList);
-
-  document.querySelector('#content').addEventListener('click', buttonHandler);
-}
 function scroll() {
   const scroll = document.querySelector('.scroll');
 
   const loadMoreScroll = entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting && query !== '') {
-        fetchMovies(query, page).then(({ results }) => {
+        fetchMovies(query, page).then(results => {
+          console.log(page);
           page += 1;
-          renderMarkup({ results });
 
-          console.log('scroll', page);
+          const searchList = createsFilmCardMarkup(results, picturesUrl);
+          content.insertAdjacentHTML('beforeend', searchList);
+
+          document.querySelector('#content').addEventListener('click', buttonHandler);
         });
       }
     });
@@ -78,5 +78,3 @@ function scroll() {
 
   observer.observe(scroll);
 }
-
-scroll();
