@@ -1,18 +1,20 @@
-const changingButtonStyles = (key, data) => {
+const changingButtonStyles = (key, data, info) => {
+    
     if (key === null) {
-        return "Add";
+        return `Add to ${info}`;
     } else if(JSON.parse(localStorage.getItem(key)) === null) {
-        return "Add";
+        return `Add to ${info}`;
     }
     else {
         let finder = [...JSON.parse(localStorage.getItem(key))];
         let filter = finder.find(elem => elem.id === data.id);
 
+
         if (filter) {
-            return "Remove";
+            return `Remove from ${info}`;
         }
         else {
-            return "Add";
+            return `Add to ${info}`;
         };
     };
 };
