@@ -1,7 +1,7 @@
 export default function footer() {
   return `
-  <footer>
-    <div class="footer container">
+  <footer class="footer">
+    <div class="footer__contain">
             <p class="footer__list"> &copy; 2022 | All Rights Reserved |&nbsp;</p>  
             <p class="footer__developers" >Developed with 
             <svg class="footer__img" width="14" height="13" viewbox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg"">
