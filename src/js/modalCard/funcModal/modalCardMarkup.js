@@ -236,7 +236,10 @@ async function getTrailerKey() {
 }
 
 export async function onTrailerButtonClick() {
-  const youTubeKey = await getTrailerKey();
+  const youTubeKey = getTrailerKey();
+
+  // console.log(youTubeKey);
+  // openModal(youTubeKey);
 
   new jBox('Modal', {
     closeButton: true,
@@ -257,3 +260,24 @@ export async function onTrailerButtonClick() {
   ></iframe>`,
   });
 }
+
+// function openModal(youTubeKey) {
+//   new jBox('Modal', {
+//     closeButton: true,
+//     overlay: true,
+//     attach: '#trailerModal',
+//     onOpen() {
+//       document.querySelector('#jBox1').style.opacity = 0;
+//     },
+//     onClose() {
+//       document.querySelector('#jBox1').style.opacity = 1;
+//     },
+//     content: `<iframe class="modal-trailer__container"
+//   src="https://www.youtube.com/embed/${youTubeKey}"
+//   title="YouTube video player"
+//   frameborder="0"
+//   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+//   allowfullscreen
+//   ></iframe>`,
+//   });
+// }
