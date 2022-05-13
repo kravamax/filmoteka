@@ -91,6 +91,7 @@ export const modalCardMarkup = data => {
             <div class="modal__buttons">
                 <button class="button" id="watchedButton">${changingButtonStyles(keyW, libraryData, "watched")}</button>
                 <button class="button" id="queueButton">${changingButtonStyles(keyQ, libraryData, "queue")} </button>
+                <button class="button" id="trailerModal">Trailer</button>
             </div>
         </div>
     </div>
