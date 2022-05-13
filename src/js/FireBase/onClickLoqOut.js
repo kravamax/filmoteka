@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import modalAuth from './modalAuth';
 //import getModalData from './FireBase/getModalData';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-
+import loadTrendMovies from '../trend-movies';
 import { onAuthStateChanged } from 'firebase/auth';
 import getModalData from './getModalData';
 import closeModalAuth from './closeModalAuth';
@@ -24,10 +24,10 @@ export default function onClickLogOut() {
   // const userCont = document.querySelector('.user-cont');
 
   // userCont.remove();
-
+  const headerForm = document.querySelector('.header-form');
   localStorage.setItem('is-Signed-In', false);
   localStorage.setItem('state-user-Button', false);
   auth.signOut();
-
-  alert('You are log out');
+  loadTrendMovies();
+  headerForm.reset();
 }

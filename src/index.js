@@ -40,8 +40,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-let keyL = 0;
-
 
 function onClickStateUser() {
   onAuthStateChanged(auth, user => {
@@ -76,19 +74,24 @@ function onClickHome() {
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
-  
-  keyL = localStorage.getItem('currentUserWatched');
-      const getArray = JSON.parse(localStorage.getItem(keyL));
+  let keyW = 0;
+  let keyQ = 0;
+  keyW = localStorage.getItem('currentUserWatched');
+  const getArray = JSON.parse(localStorage.getItem(keyW));
 
-  if (getArray) {
-    
-  if (getArray.length === 0) {
-    ifEmptyLib();
-  } else {
-    onClickWatched();
+  keyQ = localStorage.getItem('currentUserQueue');
+  const getArrayQ = JSON.parse(localStorage.getItem(keyQ));
+  if (getArrayQ) {
+    if (getArrayQ.length !== 0) {
+      onClickQueue();
+    } else {
+      if (getArray.length !== 0) {
+        onClickWatched();
+      } else {
+        ifEmptyLib();
+      }
+    }
   }
-  }
-  
 
   const user = userName();
   renderNavList(user);
@@ -159,7 +162,6 @@ function onClickWatched() {
   handleButtonPage(getArray);
 }
 
-
 function onClickQueue() {
   const keyQ = localStorage.getItem('currentUserQueue');
   const getArray = JSON.parse(localStorage.getItem(keyQ));
@@ -173,7 +175,7 @@ function onClickQueue() {
     return;
   }
   handleButtonPage(getArray);
-};
+}
 
 // ******************************************************
 

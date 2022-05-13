@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-
+import Notiflix from 'notiflix';
 import { onAuthStateChanged } from 'firebase/auth';
 import modalAuth from './modalAuth';
 import closeModalAuth from './closeModalAuth';
@@ -46,7 +46,7 @@ export default function onClickSingIn() {
       .then(userCredential => {
         // Signed in
         const user = userCredential.user;
-        alert(`Enter ${user.email} successful`);
+
         modalWindow.innerHTML = '';
 
         onAuthStateChanged(auth, user => {
@@ -65,6 +65,7 @@ export default function onClickSingIn() {
         // ...
       })
       .catch(error => {
+        Notiflix.Notify.failure('Something is wrong. Please try again');
         const errorCode = error.code;
         const errorMessage = error.message;
       });
