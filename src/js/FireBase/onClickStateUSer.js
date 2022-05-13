@@ -47,6 +47,7 @@ export default function onClickStateUser() {
         allKeysQueue.push(mainKey + "!");
       }
 ///////////////////////////////////////////
+
       putKeyToLocal();
     }
   });
@@ -68,5 +69,8 @@ function putKeyToLocal() {
    localStorage.setItem('allKeysQueue', JSON.stringify(allKeysQueue));
    localStorage.setItem('currentUserWatched', currentUser);
    localStorage.setItem('currentUserQueue', currentUser + "!")
+   console.log("KEY2");
+  // 
+
    //////////////////////////////////////////////////////
 }
