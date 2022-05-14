@@ -1,4 +1,6 @@
 import './sass/main.scss';
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getRefs } from './js/getRefs';
@@ -66,34 +68,56 @@ function onClickStateUser() {
   });
 }
 
+// -----Pagination
+const options = {
+  totalItems: 500,
+  itemsPerPage: 10,
+  visiblePages: 5,
+};
+const containerP = document.getElementById('pagination');
+const pagination = new Pagination(containerP, options);
+
+pagination.on('afterMove', ({ page }) => {
+  loadTrendMovies(page);
+});
+
 // ----------------------------------
 onClickHome();
-
-
-
-
+let page = 1;
 function onClickHome() {
   header.innerHTML = HeaderPage1();
   renderFooter();
   const status = onClickStateUser();
 
-  document.querySelector(".switch__checkbox").checked = JSON.parse(localStorage.getItem("toggle"));
+  document.querySelector('.switch__checkbox').checked = JSON.parse(localStorage.getItem('toggle'));
   blackThemeBody();
-  
 
   getLogo();
+  loadTrendMovies(1);
+  containerP.classList.remove('invisible');
+  // pagination.on('beforeMove', evt => {
+  //   console.log(containerP);
+  //   // const result = ajax.call({ page });
 
   loadTrendMovies();
-};
+}
 
+//   // if (result) {
+//   //   pagination.movePageTo(page);
+//   // } else {
+//   //   return false;
+//   // }
+// });
+// }
 
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
+  containerP.classList.add('invisible');
   renderFooter();
 
-  document.querySelector(".switch__checkbox").checked = JSON.parse(localStorage.getItem("toggle"));
+  document.querySelector('.switch__checkbox').checked = JSON.parse(localStorage.getItem('toggle'));
   blackThemeBody();
-  
+
   let keyW = '';
   let keyQ = '';
   keyW = localStorage.getItem('currentUserWatched');
@@ -133,7 +157,6 @@ function onClickLibrary() {
   getButtons();
   getHome();
 
-
   const logOutBtn = document.querySelector('.singOut');
   logOutBtn.addEventListener('click', () => {
     onClickLogOut();
@@ -142,7 +165,6 @@ function onClickLibrary() {
     onClickHome();
   });
 }
-
 
 function getLibr() {
   const libr = document.querySelector('.library-link');
@@ -248,7 +270,7 @@ function userName() {
 function renderFooter() {
   footer.innerHTML = footerMarkup();
   // ! --------------------------------
-  document.querySelector(".switch__checkbox").addEventListener("change", switcher);
+  document.querySelector('.switch__checkbox').addEventListener('change', switcher);
   // ! --------------------------------
   document.querySelector('.footer__link').addEventListener('click', renderModalTeam);
   // ! --------------------------------
