@@ -16,6 +16,12 @@ export default function HeaderLib() {
                 </span>
                 </a>
             </div>
+            <div>
+                <label class="switch">
+                    <input class="switch__checkbox" type="checkbox" />
+                    <span class="switch__slider"></span>
+                </label>
+            </div>
             <nav class="nav-menu">
                 <ul class="list-nav">
                     <li class="item ">

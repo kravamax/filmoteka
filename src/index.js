@@ -16,7 +16,7 @@ import onClickSingIn from './js/FireBase/onClickSingIn';
 import onClickLogOut from './js/FireBase/onClickLoqOut';
 
 // ? Black Theme
-import switcher from './js/blackTheme/blackTheme';
+import switcher, { checkedTrue, checkedFalse } from './js/blackTheme/blackTheme';
 import blackThemeTeam from './js/blackTheme/blackThemeTeam';
 // ?
 
@@ -67,10 +67,15 @@ function onClickStateUser() {
 // ----------------------------------
 onClickHome();
 
-renderFooter();
+
+
+
 function onClickHome() {
   header.innerHTML = HeaderPage1();
+  renderFooter();
   const status = onClickStateUser();
+
+  document.querySelector(".switch__checkbox").checked = JSON.parse(localStorage.getItem("toggle"));
 
   getLogo();
 
@@ -78,6 +83,14 @@ function onClickHome() {
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
+  renderFooter();
+  document.querySelector(".switch__checkbox").checked = JSON.parse(localStorage.getItem("toggle"));
+
+ 
+
+
+
+
   let keyW = '';
   let keyQ = '';
   keyW = localStorage.getItem('currentUserWatched');
@@ -230,6 +243,8 @@ function renderFooter() {
   // ! --------------------------------
   document.querySelector(".switch__checkbox").addEventListener("change", switcher);
   // ! --------------------------------
+  document.querySelector('.footer__link').addEventListener('click', renderModalTeam);
+  // ! --------------------------------
 }
 
 export function createNewUser() {
@@ -253,9 +268,8 @@ const formEl = document.querySelector('.header-form');
 formEl.addEventListener('submit', searchMovies);
 
 // modalTeam
-const openTeam = document.querySelector('.footer__link');
-
-openTeam.addEventListener('click', renderModalTeam);
+//const openTeam = document.querySelector('.footer__link');
+//openTeam.addEventListener('click', renderModalTeam);
 
 function renderModalTeam() {
   modalWindowTeam.innerHTML = modalTeam();
