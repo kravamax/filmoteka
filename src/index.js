@@ -84,10 +84,15 @@ function onClickHome() {
   getLogo();
   loadTrendMovies(1);
   containerP.classList.remove('invisible');
+
+  // search - movies - name
+  const formEl = document.querySelector('.header-form');
+  formEl.addEventListener('submit', searchMovies);
 }
 
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
+
   containerP.classList.add('invisible');
   containerF.classList.add('invisible');
   renderFooter();
@@ -268,10 +273,6 @@ export function createNewUser() {
 }
 
 //=================================================================================================
-
-// search - movies - name
-const formEl = document.querySelector('.header-form');
-formEl.addEventListener('submit', searchMovies);
 
 // modalTeam
 //const openTeam = document.querySelector('.footer__link');
