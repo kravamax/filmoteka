@@ -1,41 +1,41 @@
 .scroll-up {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 1000;
-    width: 35px;
-    height: 35px;
-    color: #FF6B01;
-    cursor: pointer;
-    visibility: hidden;
-    border-radius: 10px;
-    box-shadow: inset 0 0 0 2px #FF6B01;
-    opacity: 0;
-    transition: .2s;
-    transform: translateY(25px);
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
+  width: 35px;
+  height: 35px;
+  color: #ff6b01;
+  cursor: pointer;
+  visibility: hidden;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 2px #ff6b01;
+  opacity: 0;
+  transition: 0.2s;
+  transform: translateY(25px);
 }
 
 .scroll-up::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    font-size: 20px;
-    font-weight: 900;
-    content: '↑'
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  font-weight: 900;
+  content: '↑';
 }
 
 .scroll-up:hover {
-    color: #ffffff;
-    background-color: #FF6B01;
+  color: #ffffff;
+  background-color: #ff6b01;
 }
 
 .scroll-up--active {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }

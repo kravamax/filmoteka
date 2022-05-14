@@ -28,6 +28,7 @@ async function fetchMovies(query, page) {
 
 export function searchMovies(event) {
   event.preventDefault();
+  content.innerHTML = '';
 
   query = event.currentTarget.elements.filmName.value.trim();
   if (query === '') {
@@ -35,16 +36,18 @@ export function searchMovies(event) {
     return;
   }
 
-  fetchMovies(query, page).then(({ results }) => {
-  if (results.length === 0) {
-      Notiflix.Notify.failure(
-        'Search result not successful. Enter the correct movie name and try again');
-      return;
-    }
-    renderMarkup();
-  });
+  fetchMovies(query, page)
+    .then(({ results }) => {
+      if (results.length === 0) {
+        Notiflix.Notify.failure(
+          'Search result not successful. Enter the correct movie name and try again',
+        );
+        return;
+      }
+      return results;
+    })
+    .then(renderMarkup);
 
-  content.innerHTML = '';
   event.currentTarget.reset();
 }
 
@@ -64,7 +67,7 @@ function renderMarkup() {
           content.insertAdjacentHTML('beforeend', searchList);
 
           document.querySelector('#content').addEventListener('click', buttonHandler);
-        })
+        });
       }
     });
   };
