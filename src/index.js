@@ -18,8 +18,10 @@ import onClickSingIn from './js/FireBase/onClickSingIn';
 import onClickLogOut from './js/FireBase/onClickLoqOut';
 
 // ? Black Theme
-import switcher, { checkedTrue, checkedFalse } from './js/blackTheme/blackTheme';
+import switcher from './js/blackTheme/blackTheme';
 import blackThemeTeam from './js/blackTheme/blackThemeTeam';
+import blackThemeBody from './js/blackTheme/blackThemeBody';
+import blackThemeText from './js/blackTheme/blackThemeText';
 // ?
 
 import scrollBtn from './js/scroll-btn';
@@ -88,6 +90,7 @@ function onClickHome() {
   const status = onClickStateUser();
 
   document.querySelector('.switch__checkbox').checked = JSON.parse(localStorage.getItem('toggle'));
+  blackThemeBody();
 
   getLogo();
   loadTrendMovies(1);
@@ -96,18 +99,24 @@ function onClickHome() {
   //   console.log(containerP);
   //   // const result = ajax.call({ page });
 
-  //   // if (result) {
-  //   //   pagination.movePageTo(page);
-  //   // } else {
-  //   //   return false;
-  //   // }
-  // });
+  loadTrendMovies();
 }
+
+//   // if (result) {
+//   //   pagination.movePageTo(page);
+//   // } else {
+//   //   return false;
+//   // }
+// });
+// }
+
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
   containerP.classList.add('invisible');
   renderFooter();
+
   document.querySelector('.switch__checkbox').checked = JSON.parse(localStorage.getItem('toggle'));
+  blackThemeBody();
 
   let keyW = '';
   let keyQ = '';
@@ -138,6 +147,9 @@ function onClickLibrary() {
   } else {
     ifEmptyLib();
   }
+
+  ////?
+  blackThemeText();
 
   const user = userName();
   renderNavList(user);

@@ -1,4 +1,5 @@
 import createsFilmCardMarkup from './card-markup';
+import blackThemeText from './blackTheme/blackThemeText';
 
 import { buttonHandler } from './modalCard/modalCard';
 
@@ -9,7 +10,6 @@ export default function loadTrendMovies(page) {
   const isSignedIn = 'is-Signed-In';
   localStorage.setItem(isSignedIn, signedIn);
   if (localStorage.getItem('state-user-Button') === 'true') {
-    console.log('vibviodfvnfoinf');
     localStorage.setItem(isSignedIn, 'true');
   }
   // scroll();
@@ -37,6 +37,7 @@ function fetchTrendMoviesResponse(movies) {
   // page += 1;
   // console.log(page);
   document.querySelector('#content').addEventListener('click', buttonHandler);
+  blackThemeText();
 }
 
 function insertList(moviesTrendList) {
