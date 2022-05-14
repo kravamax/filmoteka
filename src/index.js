@@ -243,6 +243,8 @@ function renderFooter() {
   // ! --------------------------------
   document.querySelector(".switch__checkbox").addEventListener("change", switcher);
   // ! --------------------------------
+  document.querySelector('.footer__link').addEventListener('click', renderModalTeam);
+  // ! --------------------------------
 }
 
 export function createNewUser() {
@@ -266,9 +268,8 @@ const formEl = document.querySelector('.header-form');
 formEl.addEventListener('submit', searchMovies);
 
 // modalTeam
-const openTeam = document.querySelector('.footer__link');
-
-openTeam.addEventListener('click', renderModalTeam);
+//const openTeam = document.querySelector('.footer__link');
+//openTeam.addEventListener('click', renderModalTeam);
 
 function renderModalTeam() {
   modalWindowTeam.innerHTML = modalTeam();
