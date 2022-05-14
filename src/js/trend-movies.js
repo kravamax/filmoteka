@@ -4,7 +4,7 @@ import { buttonHandler } from './modalCard/modalCard';
 
 import posterSizes from './poster-sizes';
 let page = 1;
-export default function loadTrendMovies() {
+export default function loadTrendMovies(page) {
   let signedIn = false;
   const isSignedIn = 'is-Signed-In';
   localStorage.setItem(isSignedIn, signedIn);
@@ -12,9 +12,9 @@ export default function loadTrendMovies() {
     console.log('vibviodfvnfoinf');
     localStorage.setItem(isSignedIn, 'true');
   }
-  scroll();
+  // scroll();
 
-  // fetchTrendMovies().then(fetchTrendMoviesResponse);
+  fetchTrendMovies(page).then(fetchTrendMoviesResponse);
 }
 
 let trendMovies = [];
@@ -30,11 +30,11 @@ function fetchTrendMovies(page) {
 }
 
 function fetchTrendMoviesResponse(movies) {
-  trendMovies = [...trendMovies, ...movies.results];
+  // trendMovies = [...trendMovies, ...movies.results];
 
-  const moviesTrendList = createsFilmCardMarkup(trendMovies, pictureUrl);
+  const moviesTrendList = createsFilmCardMarkup(movies.results, pictureUrl);
   insertList(moviesTrendList);
-  page += 1;
+  // page += 1;
   // console.log(page);
   document.querySelector('#content').addEventListener('click', buttonHandler);
 }
@@ -43,23 +43,23 @@ function insertList(moviesTrendList) {
   content.innerHTML = moviesTrendList;
 }
 
-function scroll() {
-  const scroll = document.querySelector('.scroll');
+// function scroll() {
+//   const scroll = document.querySelector('.scroll');
 
-  const loadMoreScroll = entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        fetchTrendMovies(page).then(fetchTrendMoviesResponse);
-      }
-    });
-  };
+//   const loadMoreScroll = entries => {
+//     entries.forEach(entry => {
+//       if (entry.isIntersecting) {
+//         fetchTrendMovies(page).then(fetchTrendMoviesResponse);
+//       }
+//     });
+//   };
 
-  const observer = new IntersectionObserver(movies => {
-    loadMoreScroll(movies);
-  });
+//   const observer = new IntersectionObserver(movies => {
+//     loadMoreScroll(movies);
+//   });
 
-  observer.observe(scroll);
-}
+//   observer.observe(scroll);
+// }
 
 // function scroll() {
 //   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
