@@ -1,5 +1,4 @@
-//localStorage.setItem("toggle", false);
-console.log(document.querySelector(".switch__checkbox"))
+localStorage.setItem("toggle", false);
 
 const switcher = e => {
     console.log(666)
