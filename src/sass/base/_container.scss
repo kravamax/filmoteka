@@ -34,23 +34,6 @@
   width: 1px;
 }
 
-.container {
-  margin: 0 auto;
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-
-  @media screen and (min-width: 480px) {
-    max-width: 480px;
-  }
-  @media screen and (min-width: 768px) {
-    max-width: 768px;
-  }
-  @media screen and (min-width: 1024px) {
-    max-width: 1024px;
-  }
-}
-
 .is-hidden {
   position: absolute;
   white-space: nowrap;
