@@ -16,8 +16,10 @@ import onClickSingIn from './js/FireBase/onClickSingIn';
 import onClickLogOut from './js/FireBase/onClickLoqOut';
 
 // ? Black Theme
-import switcher, { checkedTrue, checkedFalse } from './js/blackTheme/blackTheme';
+import switcher from './js/blackTheme/blackTheme';
 import blackThemeTeam from './js/blackTheme/blackThemeTeam';
+import blackThemeBody from './js/blackTheme/blackThemeBody';
+import blackThemeText from './js/blackTheme/blackThemeText';
 // ?
 
 import scrollBtn from './js/scroll-btn';
@@ -76,21 +78,23 @@ function onClickHome() {
   const status = onClickStateUser();
 
   document.querySelector(".switch__checkbox").checked = JSON.parse(localStorage.getItem("toggle"));
+  blackThemeBody();
+  
 
   getLogo();
 
   loadTrendMovies();
-}
+  blackThemeText();
+};
+
+
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
   renderFooter();
+
   document.querySelector(".switch__checkbox").checked = JSON.parse(localStorage.getItem("toggle"));
-
- 
-
-
-
-
+  blackThemeBody();
+  
   let keyW = '';
   let keyQ = '';
   keyW = localStorage.getItem('currentUserWatched');
@@ -121,11 +125,15 @@ function onClickLibrary() {
     ifEmptyLib();
   }
 
+  ////?
+  blackThemeText();
+
   const user = userName();
   renderNavList(user);
   getLogo();
   getButtons();
   getHome();
+
 
   const logOutBtn = document.querySelector('.singOut');
   logOutBtn.addEventListener('click', () => {

@@ -9,7 +9,6 @@ export default function loadTrendMovies() {
   const isSignedIn = "is-Signed-In";
   localStorage.setItem(isSignedIn, signedIn);
   if(localStorage.getItem("state-user-Button") === "true") {
-    console.log("vibviodfvnfoinf");
     localStorage.setItem(isSignedIn, "true");
   }
 
