@@ -75,6 +75,7 @@ containerF.classList.add('invisible');
 function onClickHome() {
   header.innerHTML = HeaderPage1();
   renderFooter();
+  const status = onClickStateUser();
 
   document.querySelector('.switch__checkbox').checked = JSON.parse(localStorage.getItem('toggle'));
   blackThemeBody();
