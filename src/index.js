@@ -16,7 +16,7 @@ import onClickSingIn from './js/FireBase/onClickSingIn';
 import onClickLogOut from './js/FireBase/onClickLoqOut';
 
 // ? Black Theme
-import switcher from './js/blackTheme/blackTheme';
+import switcher, { checkedTrue, checkedFalse } from './js/blackTheme/blackTheme';
 import blackThemeTeam from './js/blackTheme/blackThemeTeam';
 // ?
 
@@ -67,10 +67,15 @@ function onClickStateUser() {
 // ----------------------------------
 onClickHome();
 
-renderFooter();
+
+
+
 function onClickHome() {
   header.innerHTML = HeaderPage1();
+  renderFooter();
   const status = onClickStateUser();
+
+  document.querySelector(".switch__checkbox").checked = JSON.parse(localStorage.getItem("toggle"));
 
   getLogo();
 
@@ -78,6 +83,14 @@ function onClickHome() {
 }
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
+  renderFooter();
+  document.querySelector(".switch__checkbox").checked = JSON.parse(localStorage.getItem("toggle"));
+
+ 
+
+
+
+
   let keyW = '';
   let keyQ = '';
   keyW = localStorage.getItem('currentUserWatched');
