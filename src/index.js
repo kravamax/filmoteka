@@ -71,8 +71,9 @@ const containerP = document.getElementById('pagination');
 const containerF = document.getElementById('pagination-find');
 
 onClickHome();
-containerF.classList.add('invisible');
+
 function onClickHome() {
+  containerF.classList.add('invisible');
   header.innerHTML = HeaderPage1();
   renderFooter();
   const status = onClickStateUser();
