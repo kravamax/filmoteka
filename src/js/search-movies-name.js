@@ -29,50 +29,55 @@ async function fetchMovies(query, page) {
 export function searchMovies(event) {
   event.preventDefault();
   content.innerHTML = '';
-
+  
   query = event.currentTarget.elements.filmName.value.trim();
   if (query === '') {
     Notiflix.Notify.warning('Please, enter  the movie name and try again');
     return;
   }
 
-  fetchMovies(query, page)
-    .then(({ results }) => {
-      if (results.length === 0) {
-        Notiflix.Notify.failure(
-          'Search result not successful. Enter the correct movie name and try again',
-        );
-        return;
-      }
-      return results;
-    })
-    .then(renderMarkup);
-
+  fetchMovies(query, page).then(({ results }) => {
+    if (results.length === 0) {
+      Notiflix.Notify.warning(
+        'Search result not successful. Enter the correct movie name and try again',
+      );
+      return;
+    }
+    renderMarkup(results);
+  });
+  content.innerHTML = '';
   event.currentTarget.reset();
 }
 
-function renderMarkup() {
-  const scroll = document.querySelector('.scroll');
+function renderMarkup(movies) {
+  const searchList = createsFilmCardMarkup(movies, picturesUrl);
+  content.insertAdjacentHTML('beforeend', searchList);
 
-  const loadMoreScroll = entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && query !== '') {
-        fetchMovies(query, page).then(results => {
-          if (page > results.total_pages) {
-            Notiflix.Notify.info("SWe're sorry, but you've reached the end of search results.");
-            return;
-          }
-          page += 1;
-          const searchList = createsFilmCardMarkup(results, picturesUrl);
-          content.insertAdjacentHTML('beforeend', searchList);
-
-          document.querySelector('#content').addEventListener('click', buttonHandler);
-        });
-      }
-    });
-  };
-
-  const observer = new IntersectionObserver(loadMoreScroll);
-
-  observer.observe(scroll);
+  content.addEventListener('click', buttonHandler);
 }
+
+// function renderMarkup() {
+//   const scroll = document.querySelector('.scroll');
+
+//   const loadMoreScroll = entries => {
+//     entries.forEach(entry => {
+//       if (entry.isIntersecting && query !== '') {
+//         fetchMovies(query, page).then(results => {
+//           if (page > results.total_pages) {
+//             Notiflix.Notify.info("SWe're sorry, but you've reached the end of search results.");
+//             return;
+//           }
+//           page += 1;
+//           const searchList = createsFilmCardMarkup(results, picturesUrl);
+//           content.insertAdjacentHTML('beforeend', searchList);
+
+//           document.querySelector('#content').addEventListener('click', buttonHandler);
+//         });
+//       }
+//     });
+//   };
+
+//   const observer = new IntersectionObserver(loadMoreScroll);
+
+//   observer.observe(scroll);
+// }
