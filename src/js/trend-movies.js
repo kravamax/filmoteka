@@ -1,4 +1,5 @@
 import createsFilmCardMarkup from './card-markup';
+import blackThemeText from './blackTheme/blackThemeText';
 
 import { buttonHandler } from './modalCard/modalCard';
 
@@ -31,6 +32,7 @@ function fetchTrendMoviesResponse(movies) {
   insertList(moviesTrendList);
 
   document.querySelector('#content').addEventListener('click', buttonHandler);
+  blackThemeText();
 }
 
 function insertList(moviesTrendList) {

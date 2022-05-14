@@ -84,7 +84,6 @@ function onClickHome() {
   getLogo();
 
   loadTrendMovies();
-  blackThemeText();
 };
 
 
