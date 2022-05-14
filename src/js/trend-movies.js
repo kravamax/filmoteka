@@ -1,6 +1,7 @@
 import createsFilmCardMarkup from './card-markup';
 import blackThemeText from './blackTheme/blackThemeText';
-
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
 import { buttonHandler } from './modalCard/modalCard';
 
 import posterSizes from './poster-sizes';
@@ -75,3 +76,15 @@ function insertList(moviesTrendList) {
 //     // fetchTrendMovies(page).then(console.log);
 //   }
 // }
+// -----Pagination
+const options = {
+  totalItems: 500,
+  itemsPerPage: 10,
+  visiblePages: 5,
+};
+const containerP = document.getElementById('pagination');
+const pagination = new Pagination(containerP, options);
+
+pagination.on('afterMove', ({ page }) => {
+  loadTrendMovies(page);
+});

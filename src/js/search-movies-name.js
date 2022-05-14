@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
+import Pagination from 'tui-pagination';
 import createsFilmCardMarkup from './card-markup';
 import { buttonHandler } from './modalCard/modalCard';
 import posterSizes from './poster-sizes';
@@ -11,7 +12,8 @@ axios.defaults.headers.get['Content-Type'] = 'application/json; charset=utf-8';
 
 const KEY = '067f291d21ed1c6d30bd9ade17d843cc';
 const picturesUrl = `https://image.tmdb.org/t/p/${posterSizes.w342}`;
-
+const containerP = document.getElementById('pagination');
+const containerF = document.getElementById('pagination-find');
 let query = '';
 let page = 1;
 
@@ -28,8 +30,10 @@ async function fetchMovies(query, page) {
 
 export function searchMovies(event) {
   event.preventDefault();
+  containerP.classList.add('invisible');
+  containerF.classList.remove('invisible');
   content.innerHTML = '';
-  
+
   query = event.currentTarget.elements.filmName.value.trim();
   if (query === '') {
     Notiflix.Notify.warning('Please, enter  the movie name and try again');
@@ -51,33 +55,19 @@ export function searchMovies(event) {
 
 function renderMarkup(movies) {
   const searchList = createsFilmCardMarkup(movies, picturesUrl);
-  content.insertAdjacentHTML('beforeend', searchList);
+  content.innerHTML = searchList;
 
   content.addEventListener('click', buttonHandler);
 }
 
-// function renderMarkup() {
-//   const scroll = document.querySelector('.scroll');
+const options = {
+  totalItems: 500,
+  itemsPerPage: 10,
+  visiblePages: 5,
+};
 
-//   const loadMoreScroll = entries => {
-//     entries.forEach(entry => {
-//       if (entry.isIntersecting && query !== '') {
-//         fetchMovies(query, page).then(results => {
-//           if (page > results.total_pages) {
-//             Notiflix.Notify.info("SWe're sorry, but you've reached the end of search results.");
-//             return;
-//           }
-//           page += 1;
-//           const searchList = createsFilmCardMarkup(results, picturesUrl);
-//           content.insertAdjacentHTML('beforeend', searchList);
+const paginationF = new Pagination(containerF, options);
 
-//           document.querySelector('#content').addEventListener('click', buttonHandler);
-//         });
-//       }
-//     });
-//   };
-
-//   const observer = new IntersectionObserver(loadMoreScroll);
-
-//   observer.observe(scroll);
-// }
+paginationF.on('afterMove', ({ page }) => {
+  fetchMovies(query, page).then(({ results }) => renderMarkup(results));
+});
