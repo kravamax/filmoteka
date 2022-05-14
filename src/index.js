@@ -9,12 +9,16 @@ import HeaderLib from './js/HeaderLib/HeaderLib';
 import loadTrendMovies from './js/trend-movies';
 import emptyLib from './js/emptyLib';
 import footerMarkup from './js/footer';
-import * as modalCard from './js/modalCard/modalCard';
 import { searchMovies } from './js/search-movies-name';
 
 import onClickSingUp from './js/FireBase/onClickSingUp';
 import onClickSingIn from './js/FireBase/onClickSingIn';
 import onClickLogOut from './js/FireBase/onClickLoqOut';
+
+// ? Black Theme
+import switcher from './js/blackTheme/blackTheme';
+import blackThemeTeam from './js/blackTheme/blackThemeTeam';
+// ?
 
 import scrollBtn from './js/scroll-btn';
 
@@ -59,11 +63,11 @@ function onClickStateUser() {
     }
   });
 }
+
 // ----------------------------------
 onClickHome();
 
 renderFooter();
-
 function onClickHome() {
   header.innerHTML = HeaderPage1();
   const status = onClickStateUser();
@@ -118,6 +122,7 @@ function onClickLibrary() {
     onClickHome();
   });
 }
+
 
 function getLibr() {
   const libr = document.querySelector('.library-link');
@@ -222,6 +227,9 @@ function userName() {
 
 function renderFooter() {
   footer.innerHTML = footerMarkup();
+  // ! --------------------------------
+  document.querySelector(".switch__checkbox").addEventListener("change", switcher);
+  // ! --------------------------------
 }
 
 export function createNewUser() {
@@ -258,6 +266,9 @@ function renderModalTeam() {
     modalWindowTeam.innerHTML = '';
   }
   window.addEventListener('keydown', closeModalHandler);
+
+  // todo BLOK BLACK THEME
+  blackThemeTeam();
 
   function closeModalHandler(e) {
     if (e.code === 'Escape') {

@@ -3,13 +3,11 @@
 @import './base/container';
 @import './base/section';
 
-//Black Theme
-@import './components/black_theme';
-
 //Header
 @import './layouts/headerPage1';
 @import './layouts/headerLib';
 @import './layouts/modal-loginForm';
+@import './layouts/switch';
 //Card markup
 @import './components/card-markup';
 
@@ -23,3 +21,6 @@
 
 //Modal Team
 @import './layouts/modal-team';
+
+//Black Theme
+@import './components/black_theme';
