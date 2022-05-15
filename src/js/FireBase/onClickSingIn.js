@@ -19,6 +19,23 @@ const firebaseConfig = {
   appId: '1:809306812153:web:98a43635dcd9e66607fc28',
 };
 
+Notiflix.Notify.merge({
+  width: '320px',
+  fontSize: '18px',
+  zindex: 10002,
+  // timeout: 1500,
+  pauseOnHover: false,
+  clickToClose: true,
+  backOverlay: true,
+
+  warning: {
+    background: 'rgba(0,0,0,0.8)',
+    textColor: '#FF6B08',
+    notiflixIconColor: '#FF6B08',
+    backOverlayColor: 'rgba(0,0,0,0.4)',
+  },
+});
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -51,12 +68,8 @@ export default function onClickSingIn() {
 
         onAuthStateChanged(auth, user => {
           if (user) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
             uid = user.uid;
             onClickStateUser();
-            //console.log(auth.signOut());
-            // ...
           } else {
             // User is signed out
             // ...
@@ -65,7 +78,7 @@ export default function onClickSingIn() {
         // ...
       })
       .catch(error => {
-        Notiflix.Notify.failure('Something is wrong. Please try again');
+        Notiflix.Notify.warning('Something is wrong. Please try again');
         const errorCode = error.code;
         const errorMessage = error.message;
       });

@@ -12,6 +12,7 @@ const KEY = '067f291d21ed1c6d30bd9ade17d843cc';
 const picturesUrl = `https://image.tmdb.org/t/p/${posterSizes.w342}`;
 const containerP = document.getElementById('pagination');
 const containerF = document.getElementById('pagination-find');
+let oldQuery = '';
 let query = '';
 let page = 1;
 
@@ -38,13 +39,28 @@ export function searchMovies(event) {
     return;
   }
 
-  fetchMovies(query, page).then(({ results }) => {
+  fetchMovies(query, page).then(({ results, total_pages }) => {
     if (results.length === 0) {
       Notiflix.Notify.warning(
         'Search result not successful. Enter the correct movie name and try again',
       );
       return;
     }
+    const options = {
+      totalItems: 1,
+      itemsPerPage: 20,
+      visiblePages: 5,
+    };
+    options.totalItems = total_pages;
+
+    const paginationF = new Pagination(containerF, options);
+    if (oldQuery === query) {
+      paginationF.reset();
+    }
+    oldQuery = query;
+    paginationF.on('afterMove', ({ page }) => {
+      fetchMovies(query, page).then(({ results }) => renderMarkup(results));
+    });
     renderMarkup(results);
   });
   content.innerHTML = '';
@@ -57,15 +73,3 @@ function renderMarkup(movies) {
 
   content.addEventListener('click', buttonHandler);
 }
-
-const options = {
-  totalItems: 500,
-  itemsPerPage: 10,
-  visiblePages: 5,
-};
-
-const paginationF = new Pagination(containerF, options);
-
-paginationF.on('afterMove', ({ page }) => {
-  fetchMovies(query, page).then(({ results }) => renderMarkup(results));
-});

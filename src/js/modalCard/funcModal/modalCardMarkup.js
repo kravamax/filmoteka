@@ -5,15 +5,12 @@ import changingButtonStyles from './changingButtonStyles/changingButtonStyles';
 import blackThemeEmpty from '../../blackTheme/blackThemeEmpty';
 import jBox from 'jbox';
 
-Notiflix.Notify.init({
-
-  
-});
+Notiflix.Notify.init({});
 Notiflix.Notify.merge({
   width: '320px',
   fontSize: '18px',
   zindex: 10002,
-  timeout: 1500,
+  // timeout: 1500,
   pauseOnHover: false,
   clickToClose: true,
   backOverlay: true,
