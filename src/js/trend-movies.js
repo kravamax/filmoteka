@@ -30,13 +30,10 @@ function fetchTrendMovies(page) {
   });
 }
 
-function fetchTrendMoviesResponse(movies) {
-  // trendMovies = [...trendMovies, ...movies.results];
-
-  const moviesTrendList = createsFilmCardMarkup(movies.results, pictureUrl);
+function fetchTrendMoviesResponse({ results, total_pages }) {
+  const moviesTrendList = createsFilmCardMarkup(results, pictureUrl);
   insertList(moviesTrendList);
-  // page += 1;
-  // console.log(page);
+
   document.querySelector('#content').addEventListener('click', buttonHandler);
   blackThemeText();
 }
@@ -45,41 +42,9 @@ function insertList(moviesTrendList) {
   content.innerHTML = moviesTrendList;
 }
 
-// function scroll() {
-//   const scroll = document.querySelector('.scroll');
-
-//   const loadMoreScroll = entries => {
-//     entries.forEach(entry => {
-//       if (entry.isIntersecting) {
-//         fetchTrendMovies(page).then(fetchTrendMoviesResponse);
-//       }
-//     });
-//   };
-
-//   const observer = new IntersectionObserver(movies => {
-//     loadMoreScroll(movies);
-//   });
-
-//   observer.observe(scroll);
-// }
-
-// function scroll() {
-//   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-//   const total = 500;
-//   if (scrollTop + clientHeight >= scrollHeight - 5 && (total === 0 || page * 20 < total)) {
-//     console.log('in if');
-
-//     page += 1;
-//     console.log(page);
-//     fetchTrendMovies(page).then(fetchTrendMoviesResponse);
-//     console.log(10);
-//     // fetchTrendMovies(page).then(console.log);
-//   }
-// }
-// -----Pagination
 const options = {
-  totalItems: 500,
-  itemsPerPage: 10,
+  totalItems: 1000,
+  itemsPerPage: 20,
   visiblePages: 5,
 };
 const containerP = document.getElementById('pagination');
