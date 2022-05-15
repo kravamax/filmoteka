@@ -10,6 +10,7 @@ import 'jbox/dist/jBox.all.css';
 export const modal = new jBox('Modal', {
   createOnInit: false,
   closeButton: false,
+  fade: 350,
   onOpen() {
     document.querySelector('.modal__button').addEventListener('click', modalButtonHandler);
     forOpen();
@@ -24,8 +25,10 @@ export const modal = new jBox('Modal', {
 export const buttonHandler = e => {
   e.preventDefault();
 
-  if (e.target.id === 'content' ||
-    e.target.className === 'header__btn header__btn--empty btn-active') {
+  if (
+    e.target.id === 'content' ||
+    e.target.className === 'header__btn header__btn--empty btn-active'
+  ) {
     return;
   }
 
