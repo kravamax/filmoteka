@@ -15,10 +15,11 @@
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
   background-color: #fff;
+  position: relative;
 
   border-radius: 3px;
-  width: 270px;
-  height: 170px;
+  max-width: 500px;
+  max-height: 300px;
   padding: 10px;
 }
 .login-form {
@@ -39,11 +40,22 @@
 }
 
 .login__subm {
-  background: white;
   border: 1px solid black;
   color: black;
   margin-left: auto;
   margin-right: auto;
-  max-width: 70px;
+  max-width: 250px;
   height: 35px;
+}
+
+.modal__button-container--head {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.modal__reg-head {
+  color: #ff6b01;
+  font-size: 25px;
+  margin-bottom: 10px;
 }

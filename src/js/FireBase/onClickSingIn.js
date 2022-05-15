@@ -41,7 +41,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 export default function onClickSingIn() {
-  modalWindow.innerHTML = modalAuth('Login');
+  modalWindow.innerHTML = modalAuth('Login', 'Sign in');
   const form = document.querySelector('.login-form');
   const login__cls = document.querySelector('.modal__cross--reg');
 
