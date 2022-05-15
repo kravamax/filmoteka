@@ -32,7 +32,7 @@ import handleButtonPage from './js/modalCard/funcModal/handleButtonPage/handleBu
 
 // ----------------------------------
 import { onAuthStateChanged } from 'firebase/auth';
-
+import { pagination } from './js/trend-movies';
 import renderNavList from './js/FireBase/renderNavList';
 import renderNavListNoUser from './js/FireBase/renderNavListNoUser';
 
@@ -74,6 +74,7 @@ const containerF = document.getElementById('pagination-find');
 onClickHome();
 
 function onClickHome() {
+  pagination.reset();
   containerF.classList.add('invisible');
   header.innerHTML = HeaderPage1();
   renderFooter();
