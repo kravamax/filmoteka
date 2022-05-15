@@ -37,8 +37,8 @@
 .team__content {
   background-color: white;
   color: black;
-  max-width: 900px;
-  height: 1000px;
+  width: 740px;
+  height: 95%;
   padding: 10px;
   position: relative;
   border-radius: 15px;
@@ -48,20 +48,24 @@
 
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     margin: auto;
-    width: 700px;
-    max-height: 1300px;
+    // width: 700px;
+    // max-height: 1300px;
     // height: 850px;
   }
-  @media screen and (min-width: 1024px) {
-    min-width: 900px;
-  }
+  // @media screen and (min-width: 1024px) {
+  //   min-width: 900px;
+  // }
 
   @media screen and (max-width: 767px) {
-    padding-left: 10px;
-    padding-right: 25px;
-    min-width: 430px;
-    height: 1500px;
+    // padding-left: 10px;
+    // padding-right: 25px;
+    width: 460px;
+    min-height: 1600px;
     // height: 950px;
+  }
+  @media screen and (max-width: 467px) {
+    width: 90%;
+    min-height: 2900px;
   }
 }
 
@@ -87,18 +91,22 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 4%;
-  @media screen and (min-width: 767px) and (max-width: 1023px) {
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 4%;
   }
 
-  @media screen and (max-width: 766px) {
+  @media screen and (min-width: 468px) and (max-width: 767px) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 5%;
+    grid-gap: 3%;
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 467px) {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 2%;
   }
 }

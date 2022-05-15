@@ -9,7 +9,7 @@ import photoRoman from '../images/team/Roman.jpg';
 import photoVlad from '../images/team/Vlad.jpg';
 import photoValeriia from '../images/team/Valeriia.jpg';
 import photoOlekciy from '../images/team/Olekciy.jpg';
-import photoPerson from '../images/team/person.jpg';
+import photoKostya from '../images/team/Kostya.jpg';
 
 export default function modalTeam() {
   return `
@@ -144,7 +144,7 @@ export default function modalTeam() {
              </a>
            </li>
            <li class="team-card-list-item">
-             <img class="team__img" src="${photoPerson}" width="150" alt="team-member" />
+             <img class="team__img" src="${photoKostya}" width="150" alt="team-member" />
              <h2 class="team__name"><span class="under">-</span> Konstantin <span class="under">-</span></h2>
              <p class="team__discription">Developer</p>
              <a
