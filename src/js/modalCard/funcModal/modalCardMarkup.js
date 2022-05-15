@@ -263,13 +263,18 @@ export const queueButton = e => {
 const trailerModal = new jBox('Modal', {
   closeButton: true,
   overlay: true,
+  animation: {open: 'zoomIn',
+  close: "zoomOut"},
   fade: 350,
   attach: '#trailerModal',
   content: `<div class="modal-trailer__container"></div>`,
   onOpen() {
     document.querySelector('#jBox2').style.opacity = 0;
+    const border = [...document.querySelectorAll('.jBox-content')];
+    border[1].classList.add('jBox-container-border');
   },
   onClose() {
+    // trailerModal.animate('fadein', {});
     document.querySelector('#jBox2').style.opacity = 1;
   },
 });
