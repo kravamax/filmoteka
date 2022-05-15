@@ -51,7 +51,7 @@ export function searchMovies(event) {
       itemsPerPage: 20,
       visiblePages: 5,
     };
-    options.totalItems = total_pages;
+    options.totalItems = total_pages * 20;
 
     const paginationF = new Pagination(containerF, options);
     if (oldQuery === query) {

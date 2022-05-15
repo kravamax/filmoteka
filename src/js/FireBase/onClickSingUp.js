@@ -39,7 +39,7 @@ Notiflix.Notify.merge({
   },
 });
 export default function onClickSingUp() {
-  modalWindow.innerHTML = modalAuth('Register');
+  modalWindow.innerHTML = modalAuth('Register', 'Sign up');
   const login__cls = document.querySelector('.modal__cross--reg');
 
   login__cls.addEventListener('click', () => {

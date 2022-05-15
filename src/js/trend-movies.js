@@ -1,11 +1,11 @@
 import createsFilmCardMarkup from './card-markup';
 import blackThemeText from './blackTheme/blackThemeText';
 import Pagination from 'tui-pagination';
-// import 'tui-pagination/dist/tui-pagination.css';
+
 import { buttonHandler } from './modalCard/modalCard';
 
 import posterSizes from './poster-sizes';
-let page = 1;
+
 export default function loadTrendMovies(page) {
   let signedIn = false;
   const isSignedIn = 'is-Signed-In';
@@ -13,7 +13,6 @@ export default function loadTrendMovies(page) {
   if (localStorage.getItem('state-user-Button') === 'true') {
     localStorage.setItem(isSignedIn, 'true');
   }
-  // scroll();
 
   fetchTrendMovies(page).then(fetchTrendMoviesResponse);
 }
@@ -48,7 +47,7 @@ const options = {
   visiblePages: 5,
 };
 const containerP = document.getElementById('pagination');
-const pagination = new Pagination(containerP, options);
+export const pagination = new Pagination(containerP, options);
 
 pagination.on('afterMove', ({ page }) => {
   loadTrendMovies(page);

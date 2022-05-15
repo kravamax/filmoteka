@@ -104,6 +104,11 @@
 }
 
 .list-nav {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    margin-top: 10px;
+    margin-right: 50px;
+    display: block;
+  }
   display: flex;
 
   font-weight: 500;
@@ -114,6 +119,9 @@
 }
 
 .item {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    margin-bottom: 30px;
+  }
   display: block;
 
   &:not(:last-child) {
