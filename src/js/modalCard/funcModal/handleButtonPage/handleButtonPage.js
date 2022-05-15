@@ -22,12 +22,12 @@ const createMarkUp = arg => {
                 genres.splice(2, genres.length - 1, { name: ' other' });
             };
 
-            return `<div class="film-card">
+            return `<div id="${id}" class="film-card">
                         <img id="${id}" src="https://image.tmdb.org/t/p/w342${poster_path}" alt="${title}"/>
-                            <h2 class="film-title">${title}</h2>
-                        <div class="film-info">
-                            <p class="film-info__genre"> ${genres.map(({ name }) => ' ' + name)} | ${date}</p>
-                            <p class="film-info__rating">${vote_average}</p>
+                            <h2 id="${id}" class="film-title">${title}</h2>
+                        <div id="${id}" class="film-info">
+                            <p id="${id}" class="film-info__genre"> ${genres.map(({ name }) => ' ' + name)} | ${date}</p>
+                            <p id="${id}" class="film-info__rating">${vote_average}</p>
                         </div>
                     </div>`;
         }).join("");
