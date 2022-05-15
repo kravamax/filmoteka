@@ -21,6 +21,7 @@ import switcher from './js/blackTheme/blackTheme';
 import blackThemeTeam from './js/blackTheme/blackThemeTeam';
 import blackThemeBody from './js/blackTheme/blackThemeBody';
 import blackThemeText from './js/blackTheme/blackThemeText';
+import blackThemeEmpty from './js/blackTheme/blackThemeEmpty';
 // ?
 
 import scrollBtn from './js/scroll-btn';
@@ -84,10 +85,15 @@ function onClickHome() {
   getLogo();
   loadTrendMovies(1);
   containerP.classList.remove('invisible');
+
+  // search - movies - name
+  const formEl = document.querySelector('.header-form');
+  formEl.addEventListener('submit', searchMovies);
 }
 
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
+
   containerP.classList.add('invisible');
   containerF.classList.add('invisible');
   renderFooter();
@@ -159,6 +165,7 @@ function getHome() {
 
 function ifEmptyLib() {
   content.innerHTML = emptyLib();
+  blackThemeEmpty();
   const backHome = document.querySelector('.header__btn--empty');
   backHome.addEventListener('click', e => {
     onClickStateUser();
@@ -195,6 +202,7 @@ function onClickWatched() {
       return;
     } else {
       handleButtonPage(getArrayW);
+      blackThemeText();
     }
   } else {
     ifEmptyLib();
@@ -215,6 +223,7 @@ function onClickQueue() {
       return;
     } else {
       handleButtonPage(getArrayQ);
+      blackThemeText();
     }
   } else {
     ifEmptyLib();
@@ -268,10 +277,6 @@ export function createNewUser() {
 }
 
 //=================================================================================================
-
-// search - movies - name
-const formEl = document.querySelector('.header-form');
-formEl.addEventListener('submit', searchMovies);
 
 // modalTeam
 //const openTeam = document.querySelector('.footer__link');

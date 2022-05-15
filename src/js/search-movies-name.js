@@ -8,7 +8,6 @@ import { getRefs } from './getRefs';
 const { content } = getRefs();
 
 const URL = 'https://api.themoviedb.org/3/search/movie';
-
 const KEY = '067f291d21ed1c6d30bd9ade17d843cc';
 const picturesUrl = `https://image.tmdb.org/t/p/${posterSizes.w342}`;
 const containerP = document.getElementById('pagination');

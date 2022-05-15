@@ -2,6 +2,7 @@ import Notiflix from 'notiflix';
 import iconCross from '../../../images/modalCard/math-multiplication.svg';
 import handleButtonPage from './handleButtonPage/handleButtonPage';
 import changingButtonStyles from './changingButtonStyles/changingButtonStyles';
+import blackThemeEmpty from '../../blackTheme/blackThemeEmpty';
 import jBox from 'jbox';
 
 Notiflix.Notify.init({});
@@ -167,7 +168,8 @@ export const watchedButton = e => {
           if (getArray.length === 0) {
             document.querySelector(
               '#content',
-            ).innerHTML = `<div class="empty-lib"><h1>Empty</h1></div>`;
+            ).innerHTML = `<div class="empty-lib"><h1 class="empty__text">Empty</h1></div>`;
+            blackThemeEmpty();
             return;
           }
           handleButtonPage(getArray);
@@ -231,7 +233,8 @@ export const queueButton = e => {
           if (getArray.length === 0) {
             document.querySelector(
               '#content',
-            ).innerHTML = `<div class="empty-lib"><h1>Empty</h1></div>`;
+            ).innerHTML = `<div class="empty-lib"><h1 class="empty__text">Empty</h1></div>`;
+            blackThemeEmpty();
             return;
           }
           handleButtonPage(getArray);

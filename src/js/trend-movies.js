@@ -1,7 +1,7 @@
 import createsFilmCardMarkup from './card-markup';
 import blackThemeText from './blackTheme/blackThemeText';
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+// import 'tui-pagination/dist/tui-pagination.css';
 import { buttonHandler } from './modalCard/modalCard';
 
 import posterSizes from './poster-sizes';
