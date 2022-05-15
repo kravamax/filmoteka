@@ -1,6 +1,7 @@
 .film-card {
   margin: 20px;
-  padding: 8px;
+  padding-bottom: 8px;
+  border-radius: 5px;
 }
 
 .film-card img {
@@ -15,6 +16,7 @@
 }
 
 .film-title {
+  margin-left: 8px;
   max-width: 280px;
   text-align: left;
   font-weight: 500;
@@ -27,6 +29,7 @@
 .film-info {
   display: flex;
   align-items: center;
+  margin-left: 8px;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
@@ -78,9 +81,13 @@
     color: #fcff37;
   }
 
+  .film-card img:hover {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
   .film-card:hover {
     cursor: pointer;
-    border-radius: 5px;
     box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
   }
 }

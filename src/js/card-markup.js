@@ -26,7 +26,7 @@ export default function createsFilmCardMarkup(data, pictureUrl) {
       ${
         poster_path
           ? `<img id="${id}" src="${pictureUrl}${poster_path}" alt="${title}"/>`
-          : `<img/>`
+          : `<img id="${id}"/>`
       }
         <h2 id="${id}" class="film-title">${title}</h2>
       <div id="${id}" class="film-info">
