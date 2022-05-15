@@ -168,7 +168,7 @@ export const watchedButton = e => {
           if (getArray.length === 0) {
             document.querySelector(
               '#content',
-            ).innerHTML = `<div class="empty-lib"><h1 class="empty__text">Empty</h1></div>`;
+            ).innerHTML = `<div class="empty-lib"><h1 class="empty__text">You've removed all movies</h1></div>`;
             blackThemeEmpty();
             return;
           }
@@ -233,7 +233,7 @@ export const queueButton = e => {
           if (getArray.length === 0) {
             document.querySelector(
               '#content',
-            ).innerHTML = `<div class="empty-lib"><h1 class="empty__text">Empty</h1></div>`;
+            ).innerHTML = `<div class="empty-lib"><h1 class="empty__text">You've removed all movies</h1></div>`;
             blackThemeEmpty();
             return;
           }
