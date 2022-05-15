@@ -10,15 +10,14 @@ Notiflix.Notify.merge({
   width: '320px',
   fontSize: '18px',
   zindex: 10002,
-  // timeout: 1500,
-  pauseOnHover: false,
+  // timeout: 500,
   clickToClose: true,
   backOverlay: true,
 
   warning: {
     background: 'rgba(0,0,0,0.8)',
-    textColor: '#FF6B08',
-    notiflixIconColor: '#FF6B08',
+    textColor: '#FF6B01',
+    notiflixIconColor: '#FF6B01',
     backOverlayColor: 'rgba(0,0,0,0.4)',
   },
 });
@@ -26,9 +25,9 @@ Notiflix.Notify.merge({
 Notiflix.Notify.merge({
   success: {
     background: 'rgba(0,0,0,0)',
-    textColor: '#fcff37',
+    textColor: '#FF6B01',
     childClassName: 'notiflix-notify-success',
-    notiflixIconColor: '#fcff37',
+    notiflixIconColor: '#FF6B01',
     backOverlayColor: 'rgba(0,0,0,0.0)',
   },
 });
