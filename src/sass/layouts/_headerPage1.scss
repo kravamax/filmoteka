@@ -178,6 +178,9 @@
   background-color: transparent;
 
   cursor: pointer;
+  &:hover .input-images {
+    stroke: #ff6b08;
+  }
 }
 
 .input-images {
