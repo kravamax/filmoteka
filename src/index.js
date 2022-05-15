@@ -170,6 +170,7 @@ function getHome() {
 
 function ifEmptyLib() {
   content.innerHTML = emptyLib();
+  
   const backHome = document.querySelector('.header__btn--empty');
   backHome.addEventListener('click', e => {
     onClickStateUser();
