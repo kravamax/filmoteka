@@ -19,22 +19,22 @@ const firebaseConfig = {
   appId: '1:809306812153:web:98a43635dcd9e66607fc28',
 };
 
-Notiflix.Notify.merge({
-  width: '320px',
-  fontSize: '18px',
-  zindex: 10002,
-  // timeout: 1500,
-  pauseOnHover: false,
-  clickToClose: true,
-  backOverlay: true,
+// Notiflix.Notify.merge({
+//  width: '320px',
+//  fontSize: '18px',
+//  zindex: 10002,
+//   timeout: 1500,
+//  pauseOnHover: false,
+//  clickToClose: true,
+//   backOverlay: true,
 
-  warning: {
-    background: 'rgba(0,0,0,0.8)',
-    textColor: '#FF6B08',
-    notiflixIconColor: '#FF6B08',
-    backOverlayColor: 'rgba(0,0,0,0.4)',
-  },
-});
+//   warning: {
+//     background: 'rgba(0,0,0,0.8)',
+//     textColor: '#FF6B08',
+//     notiflixIconColor: '#FF6B08',
+//    backOverlayColor: 'rgba(0,0,0,0.4)',
+//  },
+// });
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

@@ -12,13 +12,13 @@ Notiflix.Notify.merge({
   zindex: 10002,
   // timeout: 500,
   clickToClose: true,
-  backOverlay: true,
+  //backOverlay: true,
 
   warning: {
     background: 'rgba(0,0,0,0.8)',
     textColor: '#FF6B01',
     notiflixIconColor: '#FF6B01',
-    backOverlayColor: 'rgba(0,0,0,0.4)',
+   // backOverlayColor: 'rgba(0,0,0,0.4)',
   },
 });
 
@@ -28,7 +28,7 @@ Notiflix.Notify.merge({
     textColor: '#FF6B01',
     childClassName: 'notiflix-notify-success',
     notiflixIconColor: '#FF6B01',
-    backOverlayColor: 'rgba(0,0,0,0.0)',
+    //backOverlayColor: 'rgba(0,0,0,0.0)',
   },
 });
 
