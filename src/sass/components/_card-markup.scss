@@ -13,6 +13,10 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .film-title {
@@ -62,6 +66,10 @@
   .film-card img {
     width: 336px;
     height: 455px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 
@@ -79,12 +87,16 @@
     width: 309px;
     height: 449px;
     color: #fcff37;
-  }
-
-  .film-card img:hover {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
+
+  // .film-card img:hover {
+  //   border-bottom-left-radius: 0;
+  //   border-bottom-right-radius: 0;
+  // }
 
   .film-card:hover {
     cursor: pointer;
