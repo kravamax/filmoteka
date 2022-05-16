@@ -13,14 +13,24 @@
   overflow: hidden;
 }
 
-.tui-pagination {
+.pagination__container {
   display: flex;
+  justify-content: center;
+}
+
+.tui-pagination {
+  display: inline-flex;
   justify-content: center;
   height: 40px;
   margin: 50px 0 60px;
   line-height: normal;
   text-align: center;
   font-size: 0;
+  background-color: #ff6b08;
+  border-radius: 5px;
+
+  @media screen {
+  }
 }
 
 .tui-pagination .tui-page-btn {
@@ -33,7 +43,7 @@
   height: 40px;
   border-radius: 5px;
   border: none;
-  color: #000000;
+  color: #ffffff;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
@@ -41,8 +51,13 @@
   vertical-align: middle;
 }
 
+a.tui-page-btn {
+  color: white;
+}
+
 .tui-pagination .tui-page-btn:hover {
-  background-color: #f7f7f7;
+  background-color: #fff;
+  color: #000000;
 }
 
 .tui-pagination .tui-is-selected,
@@ -54,7 +69,7 @@
 }
 
 .tui-pagination .tui-is-selected:hover {
-  background-color: #ff6b08;
+  // background-color: #ff6b08;
 }
 
 .tui-pagination .tui-first-child.tui-is-selected,
@@ -218,4 +233,9 @@
 
 .invisible {
   display: none;
+}
+
+.tui-pagination .tui-is-selected {
+  background-color: #fff;
+  color: #000000;
 }
