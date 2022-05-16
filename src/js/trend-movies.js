@@ -6,7 +6,7 @@ import { buttonHandler } from './modalCard/modalCard';
 
 import posterSizes from './poster-sizes';
 
-export default function loadTrendMovies(page) {
+export default function loadTrendMovies(page, period) {
   let signedIn = false;
   const isSignedIn = 'is-Signed-In';
   localStorage.setItem(isSignedIn, signedIn);
@@ -14,17 +14,17 @@ export default function loadTrendMovies(page) {
     localStorage.setItem(isSignedIn, 'true');
   }
 
-  fetchTrendMovies(page).then(fetchTrendMoviesResponse);
+  fetchTrendMovies(page, period).then(fetchTrendMoviesResponse);
 }
 
 let trendMovies = [];
 const key = '067f291d21ed1c6d30bd9ade17d843cc';
-const url = 'https://api.themoviedb.org/3/trending/movie/week';
+const url = 'https://api.themoviedb.org/3/trending/movie/';
 const content = document.getElementById('content');
 const pictureUrl = `https://image.tmdb.org/t/p/${posterSizes.w342}`;
 
-function fetchTrendMovies(page) {
-  return fetch(`${url}?api_key=${key}&page=${page}`).then(response => {
+function fetchTrendMovies(page, period) {
+  return fetch(`${url}${period}?api_key=${key}&page=${page}`).then(response => {
     return response.json();
   });
 }
