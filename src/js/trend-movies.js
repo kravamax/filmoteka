@@ -5,7 +5,7 @@ import Pagination from 'tui-pagination';
 import { buttonHandler } from './modalCard/modalCard';
 
 import posterSizes from './poster-sizes';
-
+let periodToLoad = 'day';
 export default function loadTrendMovies(page, period) {
   let signedIn = false;
   const isSignedIn = 'is-Signed-In';
@@ -14,10 +14,16 @@ export default function loadTrendMovies(page, period) {
     localStorage.setItem(isSignedIn, 'true');
   }
 
+  if (periodToLoad !== period) {
+    console.log('reset');
+    pagination.reset();
+  }
+
+  periodToLoad = period;
+  console.log(period);
   fetchTrendMovies(page, period).then(fetchTrendMoviesResponse);
 }
 
-let trendMovies = [];
 const key = '067f291d21ed1c6d30bd9ade17d843cc';
 const url = 'https://api.themoviedb.org/3/trending/movie/';
 const content = document.getElementById('content');
@@ -48,7 +54,11 @@ const options = {
 };
 const containerP = document.getElementById('pagination');
 export const pagination = new Pagination(containerP, options);
+let period = 'day';
 
 pagination.on('afterMove', ({ page }) => {
-  loadTrendMovies(page);
+  period = periodToLoad;
+  loadTrendMovies(page, period);
 });
+
+pagination.on('beforeMove', () => {});
