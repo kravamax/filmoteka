@@ -104,7 +104,6 @@
 }
 
 .list-nav {
-
   display: flex;
 
   font-weight: 500;
@@ -115,14 +114,13 @@
 }
 
 .item {
-
   display: block;
 
   &:not(:last-child) {
     margin-right: 39px;
-      @media screen and (min-width: 300px) and (max-width: 450px) {
-          margin-right: 20px;
-        }
+    @media screen and (min-width: 300px) and (max-width: 450px) {
+      margin-right: 20px;
+    }
   }
 }
 
@@ -190,19 +188,16 @@
   }
 
   &--day {
-
     background-color: #fff;
     color: black;
     border: 1px solid black;
     margin-right: 10px;
-
   }
 
   &--week {
     background-color: #fff;
     color: black;
     border: 1px solid black;
-
   }
 }
 
@@ -211,10 +206,11 @@
   margin-top: 10px;
 }
 
-
 .btn-active {
   background-color: #ff6b01;
   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+  color: #fff;
+  border: 1px solid #ff6b01;
 }
 
 .empty-lib {
@@ -227,3 +223,8 @@
   margin: 20px auto;
   display: block;
 }
+
+// .header__btn--day:hover,
+// .header__btn--day:hover {
+//   border: 1px solid #ff6b01;
+// }
