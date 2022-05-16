@@ -55,6 +55,7 @@ function onClickStateUser() {
       const uid = user.uid;
       user = userName();
       renderNavList(user);
+      createMoreRefs();
       getLibr();
 
       logOut();
@@ -62,6 +63,7 @@ function onClickStateUser() {
       // User is signed out
 
       renderNavListNoUser();
+      createMoreRefs();
       createNewUser();
       // ...
     }
@@ -79,17 +81,35 @@ function onClickHome() {
   header.innerHTML = HeaderPage1();
   renderFooter();
   const status = onClickStateUser();
+  // const week = 'week';
+  // const day = 'day';
 
   document.querySelector('.switch__checkbox').checked = JSON.parse(localStorage.getItem('toggle'));
   blackThemeBody();
 
   getLogo();
-  loadTrendMovies(1);
+  
+  
   containerP.classList.remove('invisible');
+  // loadTrendMovies(1, week);
 
+  onRenderMoviesToday();
   // search - movies - name
   const formEl = document.querySelector('.header-form');
   formEl.addEventListener('submit', searchMovies);
+}
+function createMoreRefs() {
+  const renderMoviesWeek = document.querySelector('.week-link');
+  const renderMoviesToday = document.querySelector('.today-link');
+  renderMoviesWeek.addEventListener('click', onRenderMoviesWeek);
+  renderMoviesToday.addEventListener('click', onRenderMoviesToday);
+}
+
+function onRenderMoviesWeek() {
+  loadTrendMovies(1, 'week');
+}
+function onRenderMoviesToday() {
+  loadTrendMovies(1, 'day');
 }
 
 function onClickLibrary() {
@@ -180,6 +200,10 @@ function getButtons() {
     home.classList.remove('item-current');
     const libr = document.querySelector('.library-link');
     libr.classList.add('item-current');
+    const renderMoviesWeek = document.querySelector('.week-link');
+    renderMoviesWeek.classList.add('.item-current');
+    const renderMoviesToday = document.querySelector('.today-link');
+    renderMoviesToday.classList.add('.item-current');
   };
   changePage();
 
