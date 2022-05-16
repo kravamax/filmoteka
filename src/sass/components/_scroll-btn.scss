@@ -13,6 +13,10 @@
   opacity: 0;
   transition: 0.2s;
   transform: translateY(25px);
+
+  @media screen and (max-width: 319px) {
+    display: none;
+  }
 }
 
 .scroll-up::before {
