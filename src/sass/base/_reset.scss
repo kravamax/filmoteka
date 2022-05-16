@@ -59,14 +59,12 @@ img {
   text-decoration: none;
 }
 
-// .header,
-// .main,
-// .footer {
-//   @media screen and (max-width: 239px) {
-//     display: none;
-//   }
-
-//   @media screen and (min-width: 240px) {
-//     display: block;
-//   }
-// }
+.header,
+#content,
+.header__btn-cont .header__top,
+.pagination__container,
+.footer {
+  @media screen and (max-width: 319px) {
+    display: none;
+  }
+}
