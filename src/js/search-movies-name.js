@@ -13,6 +13,7 @@ const KEY = '067f291d21ed1c6d30bd9ade17d843cc';
 const picturesUrl = `https://image.tmdb.org/t/p/${posterSizes.w342}`;
 const containerP = document.getElementById('pagination');
 const containerF = document.getElementById('pagination-find');
+const trendButtons = document.querySelector('.header__top');
 let oldQuery = '';
 let query = '';
 let page = 1;
@@ -30,6 +31,8 @@ async function fetchMovies(query, page) {
 
 export function searchMovies(event) {
   event.preventDefault();
+
+  trendButtons.classList.add('invisible');
   containerP.classList.add('invisible');
   containerF.classList.remove('invisible');
   content.innerHTML = '';
@@ -75,4 +78,4 @@ function renderMarkup(movies) {
   content.addEventListener('click', buttonHandler);
   // todo add blackTheme
   blackThemeText();
-};
+}
