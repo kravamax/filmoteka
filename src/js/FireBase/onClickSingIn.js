@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-
+import Notiflix from 'notiflix';
 import { onAuthStateChanged } from 'firebase/auth';
 import modalAuth from './modalAuth';
 import closeModalAuth from './closeModalAuth';
@@ -19,12 +19,29 @@ const firebaseConfig = {
   appId: '1:809306812153:web:98a43635dcd9e66607fc28',
 };
 
+// Notiflix.Notify.merge({
+//  width: '320px',
+//  fontSize: '18px',
+//  zindex: 10002,
+//   timeout: 1500,
+//  pauseOnHover: false,
+//  clickToClose: true,
+//   backOverlay: true,
+
+//   warning: {
+//     background: 'rgba(0,0,0,0.8)',
+//     textColor: '#FF6B08',
+//     notiflixIconColor: '#FF6B08',
+//    backOverlayColor: 'rgba(0,0,0,0.4)',
+//  },
+// });
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 export default function onClickSingIn() {
-  modalWindow.innerHTML = modalAuth('Login');
+  modalWindow.innerHTML = modalAuth('Login', 'Sign in');
   const form = document.querySelector('.login-form');
   const login__cls = document.querySelector('.modal__cross--reg');
 
@@ -46,17 +63,13 @@ export default function onClickSingIn() {
       .then(userCredential => {
         // Signed in
         const user = userCredential.user;
-        alert(`Enter ${user.email} successful`);
+
         modalWindow.innerHTML = '';
 
         onAuthStateChanged(auth, user => {
           if (user) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
             uid = user.uid;
             onClickStateUser();
-            //console.log(auth.signOut());
-            // ...
           } else {
             // User is signed out
             // ...
@@ -65,6 +78,7 @@ export default function onClickSingIn() {
         // ...
       })
       .catch(error => {
+        Notiflix.Notify.warning('Something is wrong. Please try again');
         const errorCode = error.code;
         const errorMessage = error.message;
       });

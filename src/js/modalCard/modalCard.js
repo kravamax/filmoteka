@@ -1,6 +1,8 @@
 import { modalCardMarkup } from './funcModal/modalCardMarkup';
 import { forOpen, forClose } from './funcForListener/funcForListener';
 import movieById from './funcModal/movieById';
+import blackThemeModal from '../blackTheme/blackThemeModal';
+
 import jBox from 'jbox';
 import 'jbox/dist/jBox.all.css';
 // ? npm install --save jbox
@@ -8,9 +10,11 @@ import 'jbox/dist/jBox.all.css';
 export const modal = new jBox('Modal', {
   createOnInit: false,
   closeButton: false,
+  fade: 350,
   onOpen() {
     document.querySelector('.modal__button').addEventListener('click', modalButtonHandler);
     forOpen();
+    blackThemeModal();
   },
   onClose() {
     document.querySelector('.modal__button').removeEventListener('click', modalButtonHandler);

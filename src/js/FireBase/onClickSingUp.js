@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import modalAuth from './modalAuth';
-
+import Notiflix from 'notiflix';
 //import getModalData from './FireBase/getModalData';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -22,8 +22,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+// Notiflix.Notify.merge({
+//  width: '320px',
+//   fontSize: '18px',
+//   zindex: 10002,
+//   timeout: 1500,
+//   pauseOnHover: false,
+//   clickToClose: true,
+//   backOverlay: true,
+
+//   warning: {
+//     background: 'rgba(0,0,0,0.8)',
+//     textColor: '#FF6B08',
+//     notiflixIconColor: '#FF6B08',
+//     backOverlayColor: 'rgba(0,0,0,0.4)',
+//   },
+// });
 export default function onClickSingUp() {
-  modalWindow.innerHTML = modalAuth('Register');
+  modalWindow.innerHTML = modalAuth('Register', 'Sign up');
   const login__cls = document.querySelector('.modal__cross--reg');
 
   login__cls.addEventListener('click', () => {
@@ -40,13 +56,14 @@ export default function onClickSingUp() {
     createUserWithEmailAndPassword(auth, user.email, user.password)
       .then(userCredential => {
         const user = userCredential.user;
-        alert(`Register ${user.email} successful`);
+
         modalWindow.innerHTML = '';
         // console.log(user);
         onClickStateUser();
         // ...
       })
       .catch(error => {
+        Notiflix.Notify.warning('Something is wrong. Please try again');
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..

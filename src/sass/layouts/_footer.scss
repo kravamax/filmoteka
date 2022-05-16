@@ -3,7 +3,7 @@ p {
     margin: 0;
   }
   
-  footer {
+  .footer {
     font-family: $primaryFontFamily;
     font-style: normal;
     font-weight: 400;
@@ -15,7 +15,7 @@ p {
       font-size: 14px;
     }
   }
-  .footer.container {
+  .footer__contain {
     padding-right: 36px;
     padding-left: 48px;
     text-align: center;

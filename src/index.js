@@ -1,4 +1,5 @@
 import './sass/main.scss';
+
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getRefs } from './js/getRefs';
@@ -9,21 +10,29 @@ import HeaderLib from './js/HeaderLib/HeaderLib';
 import loadTrendMovies from './js/trend-movies';
 import emptyLib from './js/emptyLib';
 import footerMarkup from './js/footer';
-import * as modalCard from './js/modalCard/modalCard';
 import { searchMovies } from './js/search-movies-name';
 
 import onClickSingUp from './js/FireBase/onClickSingUp';
 import onClickSingIn from './js/FireBase/onClickSingIn';
 import onClickLogOut from './js/FireBase/onClickLoqOut';
 
+// ? Black Theme
+import switcher from './js/blackTheme/blackTheme';
+import blackThemeTeam from './js/blackTheme/blackThemeTeam';
+import blackThemeBody from './js/blackTheme/blackThemeBody';
+import blackThemeText from './js/blackTheme/blackThemeText';
+import blackThemeEmpty from './js/blackTheme/blackThemeEmpty';
+// ?
+
 import scrollBtn from './js/scroll-btn';
 
 import modalTeam from './js/modal-team';
-import handleWatchedPage from './js/modalCard/funcModal/handleWatchedPage/handleWatchedPage';
+// *
+import handleButtonPage from './js/modalCard/funcModal/handleButtonPage/handleButtonPage';
 
 // ----------------------------------
 import { onAuthStateChanged } from 'firebase/auth';
-
+import { pagination } from './js/trend-movies';
 import renderNavList from './js/FireBase/renderNavList';
 import renderNavListNoUser from './js/FireBase/renderNavListNoUser';
 
@@ -39,8 +48,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-let keyL = 0;
-
 
 function onClickStateUser() {
   onAuthStateChanged(auth, user => {
@@ -60,34 +67,73 @@ function onClickStateUser() {
     }
   });
 }
-// ----------------------------------
+// -----Pagination
+const containerP = document.getElementById('pagination');
+const containerF = document.getElementById('pagination-find');
+
 onClickHome();
 
-renderFooter();
-
 function onClickHome() {
+  pagination.reset();
+  containerF.classList.add('invisible');
   header.innerHTML = HeaderPage1();
+  renderFooter();
   const status = onClickStateUser();
 
-  getLogo();
+  document.querySelector('.switch__checkbox').checked = JSON.parse(localStorage.getItem('toggle'));
+  blackThemeBody();
 
-  loadTrendMovies();
+  getLogo();
+  loadTrendMovies(1);
+  containerP.classList.remove('invisible');
+
+  // search - movies - name
+  const formEl = document.querySelector('.header-form');
+  formEl.addEventListener('submit', searchMovies);
 }
+
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
-  
-  keyL = localStorage.getItem('Key');
-      const getArray = JSON.parse(localStorage.getItem(keyL));
 
-  if (getArray) {
-    
-  if (getArray.length === 0) {
-    ifEmptyLib();
+  containerP.classList.add('invisible');
+  containerF.classList.add('invisible');
+  renderFooter();
+
+  document.querySelector('.switch__checkbox').checked = JSON.parse(localStorage.getItem('toggle'));
+  blackThemeBody();
+
+  let keyW = '';
+  let keyQ = '';
+  keyW = localStorage.getItem('currentUserWatched');
+  const getArrayW = JSON.parse(localStorage.getItem(keyW));
+
+  keyQ = localStorage.getItem('currentUserQueue');
+  const getArrayQ = JSON.parse(localStorage.getItem(keyQ));
+
+  if (getArrayQ) {
+    if (getArrayQ.length !== 0) {
+      onClickQueue();
+    } else if (getArrayW) {
+      if (getArrayW.length !== 0) {
+        onClickWatched();
+      } else {
+        ifEmptyLib();
+      }
+    } else {
+      ifEmptyLib();
+    }
+  } else if (getArrayW) {
+    if (getArrayW.length !== 0) {
+      onClickWatched;
+    } else {
+      ifEmptyLib();
+    }
   } else {
-    onClickWatched();
+    ifEmptyLib();
   }
-  }
-  
+
+  ////?
+  blackThemeText();
 
   const user = userName();
   renderNavList(user);
@@ -106,7 +152,6 @@ function onClickLibrary() {
 
 function getLibr() {
   const libr = document.querySelector('.library-link');
-
   libr.addEventListener('click', onClickLibrary);
   libr.classList.remove('item-current');
 }
@@ -121,6 +166,7 @@ function getHome() {
 
 function ifEmptyLib() {
   content.innerHTML = emptyLib();
+  blackThemeEmpty();
   const backHome = document.querySelector('.header__btn--empty');
   backHome.addEventListener('click', e => {
     onClickStateUser();
@@ -140,27 +186,52 @@ function getButtons() {
   const watchet = document.querySelector('.header__btn--watchet');
   const queue = document.querySelector('.header__btn--queue');
   watchet.addEventListener('click', onClickWatched);
-  queue.addEventListener('click', () => {
-    queue.classList.add('btn-active');
-    watchet.classList.remove('btn-active');
-    content.innerHTML = '<h1>queue</h1>';
-  });
+  queue.addEventListener('click', onClickQueue);
 }
 
 function onClickWatched() {
-  const keyL = localStorage.getItem('Key');
-  const getArray = JSON.parse(localStorage.getItem(keyL));
+  const keyW = localStorage.getItem('currentUserWatched');
+  const getArrayW = JSON.parse(localStorage.getItem(keyW));
   const watchet = document.querySelector('.header__btn--watchet');
   const queue = document.querySelector('.header__btn--queue');
 
   watchet.classList.add('btn-active');
   queue.classList.remove('btn-active');
-  if (getArray.length === 0) {
+  if (getArrayW) {
+    if (getArrayW.length === 0) {
+      ifEmptyLib();
+      return;
+    } else {
+      handleButtonPage(getArrayW);
+      blackThemeText();
+    }
+  } else {
     ifEmptyLib();
-    return;
   }
-  handleWatchedPage(getArray);
 }
+
+function onClickQueue() {
+  const keyQ = localStorage.getItem('currentUserQueue');
+  const getArrayQ = JSON.parse(localStorage.getItem(keyQ));
+  const watchet = document.querySelector('.header__btn--watchet');
+  const queue = document.querySelector('.header__btn--queue');
+
+  queue.classList.add('btn-active');
+  watchet.classList.remove('btn-active');
+  if (getArrayQ) {
+    if (getArrayQ.length === 0) {
+      ifEmptyLib();
+      return;
+    } else {
+      handleButtonPage(getArrayQ);
+      blackThemeText();
+    }
+  } else {
+    ifEmptyLib();
+  }
+}
+
+// ******************************************************
 
 function getLogo() {
   const logo = document.querySelector('.logo');
@@ -185,6 +256,11 @@ function userName() {
 
 function renderFooter() {
   footer.innerHTML = footerMarkup();
+  // ! --------------------------------
+  document.querySelector('.switch__checkbox').addEventListener('change', switcher);
+  // ! --------------------------------
+  document.querySelector('.footer__link').addEventListener('click', renderModalTeam);
+  // ! --------------------------------
 }
 
 export function createNewUser() {
@@ -203,14 +279,9 @@ export function createNewUser() {
 
 //=================================================================================================
 
-// search - movies - name
-const formEl = document.querySelector('.header-form');
-formEl.addEventListener('submit', searchMovies);
-
 // modalTeam
-const openTeam = document.querySelector('.footer__link');
-
-openTeam.addEventListener('click', renderModalTeam);
+//const openTeam = document.querySelector('.footer__link');
+//openTeam.addEventListener('click', renderModalTeam);
 
 function renderModalTeam() {
   modalWindowTeam.innerHTML = modalTeam();
@@ -221,6 +292,9 @@ function renderModalTeam() {
     modalWindowTeam.innerHTML = '';
   }
   window.addEventListener('keydown', closeModalHandler);
+
+  // todo BLOK BLACK THEME
+  blackThemeTeam();
 
   function closeModalHandler(e) {
     if (e.code === 'Escape') {

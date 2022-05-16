@@ -5,6 +5,7 @@ export default function HeaderPage1() {
     <div class="header-wrapper">
     
         <div class="header-top">
+        <div class='wrapper-logoANDswitch'>
             <div class="logo">
                 <a href='#' class="logo-link">
 
@@ -17,10 +18,15 @@ export default function HeaderPage1() {
                 </span>
                 </a>
             </div>
+            <div class="switch__container">
+                <label class="switch">
+                    <input class="switch__checkbox" type="checkbox" />
+                    <span class="switch__slider"></span>
+                </label>
+            </div>
+            </div>
             <nav class="nav-menu">
-                <ul class="list-nav">
-                    
-                   
+                <ul class="list-nav"> 
                 </ul>
             </nav>
         </div>
