@@ -5,6 +5,7 @@ import createsFilmCardMarkup from './card-markup';
 import { buttonHandler } from './modalCard/modalCard';
 import posterSizes from './poster-sizes';
 import { getRefs } from './getRefs';
+import blackThemeText from './blackTheme/blackThemeText';
 const { content } = getRefs();
 
 const URL = 'https://api.themoviedb.org/3/search/movie';
@@ -72,4 +73,6 @@ function renderMarkup(movies) {
   content.innerHTML = searchList;
 
   content.addEventListener('click', buttonHandler);
-}
+  // todo add blackTheme
+  blackThemeText();
+};

@@ -7,8 +7,7 @@ const blackThemeEmpty = () => {
         else {
             document.querySelector(".empty__text").classList.remove('black--text');
         };
-    }
-    
+    };   
 };
 
 export default blackThemeEmpty;
