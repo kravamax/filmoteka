@@ -32,7 +32,7 @@ export default function HeaderPage1() {
         </div>
         <form class="header-form">
         <label class='form-label'>
-            <input class='header-input' type="text" name="filmName" placeholder="Поиск фильмов" />
+            <input class='header-input' type="text" name="filmName" placeholder="Search movie" />
             </label>
             <button class='header-button--submit' type="submit">
 

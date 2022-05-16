@@ -49,6 +49,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+const trendButtons = document.querySelector('.header__top');
+
 function onClickStateUser() {
   onAuthStateChanged(auth, user => {
     if (user) {
@@ -76,6 +78,7 @@ const containerF = document.getElementById('pagination-find');
 onClickHome();
 
 function onClickHome() {
+  trendButtons.classList.remove('invisible');
   pagination.reset();
   containerF.classList.add('invisible');
   header.innerHTML = HeaderPage1();
@@ -99,21 +102,31 @@ function onClickHome() {
   formEl.addEventListener('submit', searchMovies);
 }
 function createMoreRefs() {
-  const renderMoviesWeek = document.querySelector('.week-link');
-  const renderMoviesToday = document.querySelector('.today-link');
+  const renderMoviesWeek = document.querySelector('.header__btn--week');
+  const renderMoviesToday = document.querySelector('.header__btn--day');
   renderMoviesWeek.addEventListener('click', onRenderMoviesWeek);
   renderMoviesToday.addEventListener('click', onRenderMoviesToday);
 }
 
 function onRenderMoviesWeek() {
   loadTrendMovies(1, 'week');
+  const renderMoviesWeek = document.querySelector('.header__btn--week');
+  const renderMoviesToday = document.querySelector('.header__btn--day');
+  renderMoviesWeek.classList.add('btn-active');
+  renderMoviesToday.classList.remove('btn-active');
 }
 function onRenderMoviesToday() {
   loadTrendMovies(1, 'day');
+  const renderMoviesWeek = document.querySelector('.header__btn--week');
+  const renderMoviesToday = document.querySelector('.header__btn--day');
+  renderMoviesWeek.classList.remove('btn-active');
+  renderMoviesToday.classList.add('btn-active');
 }
 
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
+   
+  trendButtons.classList.add('invisible');
 
   containerP.classList.add('invisible');
   containerF.classList.add('invisible');
@@ -200,10 +213,6 @@ function getButtons() {
     home.classList.remove('item-current');
     const libr = document.querySelector('.library-link');
     libr.classList.add('item-current');
-    const renderMoviesWeek = document.querySelector('.week-link');
-    renderMoviesWeek.classList.add('.item-current');
-    const renderMoviesToday = document.querySelector('.today-link');
-    renderMoviesToday.classList.add('.item-current');
   };
   changePage();
 
