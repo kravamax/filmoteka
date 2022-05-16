@@ -20,7 +20,7 @@ export default function loadTrendMovies(page, period) {
   }
 
   periodToLoad = period;
-  console.log(period);
+
   fetchTrendMovies(page, period).then(fetchTrendMoviesResponse);
 }
 
