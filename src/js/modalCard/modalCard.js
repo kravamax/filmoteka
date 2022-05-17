@@ -27,7 +27,8 @@ export const buttonHandler = e => {
 
   if (
     e.target.id === 'content' ||
-    e.target.className === 'header__btn header__btn--empty btn-active'
+    e.target.className === 'header__btn header__btn--empty btn-active' ||
+    e.target.className === 'empty__text'
   ) {
     return;
   }

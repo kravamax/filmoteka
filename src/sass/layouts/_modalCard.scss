@@ -252,13 +252,13 @@
 
 .modal-trailer__container {
   @media screen and (min-width: 320px) {
-    width: 200px;
-    height: 100px;
+    min-width: 250px;
+    min-height: 150px;
   }
 
   @media screen and (min-width: 480px) {
-    width: 300px;
-    height: 200px;
+    min-width: 400px;
+    min-height: 250px;
   }
 
   @media screen and (min-width: 768px) {
@@ -273,6 +273,6 @@
 }
 
 .jBox-Modal .jBox-content.jBox-container-border {
-background-color: #fff;
-padding: 5px;
+  background-color: #fff;
+  padding: 5px;
 }

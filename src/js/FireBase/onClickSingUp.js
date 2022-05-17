@@ -63,7 +63,7 @@ export default function onClickSingUp() {
         // ...
       })
       .catch(error => {
-        Notiflix.Notify.warning('Something is wrong. Please try again');
+        Notiflix.Notify.warning('That user is already registered. Enter other login');
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..

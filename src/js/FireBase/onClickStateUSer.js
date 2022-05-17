@@ -1,4 +1,3 @@
-
 import { onAuthStateChanged } from 'firebase/auth';
 
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -35,18 +34,18 @@ export default function onClickStateUser() {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user;
-      console.log(uid.email)
+      // console.log(uid.email)
       mainKey = user.uid;
 
-          //////////////////////////////////////////
+      //////////////////////////////////////////
       currentUser = mainKey;
-      if(!allKeysWatched.includes(mainKey)) {
+      if (!allKeysWatched.includes(mainKey)) {
         allKeysWatched.push(mainKey);
       }
-      if(!allKeysQueue.includes(mainKey + "!")) {
-        allKeysQueue.push(mainKey + "!");
+      if (!allKeysQueue.includes(mainKey + '!')) {
+        allKeysQueue.push(mainKey + '!');
       }
-///////////////////////////////////////////
+      ///////////////////////////////////////////
 
       putKeyToLocal();
     }
@@ -59,18 +58,17 @@ function putKeyToLocal() {
   // localStorage.setItem(keyQ, currentUser + "!");
   localStorage.setItem('state-user-Button', true);
 
-    // localStorage.setItem('is-Signed-In', true);
+  // localStorage.setItem('is-Signed-In', true);
   // localStorage.setItem(key, currentUser);
   // localStorage.setItem('state-user-Button', true);
 
-
   //  /////////////////////////////////////////////////////
-   localStorage.setItem('allKeysWatched', JSON.stringify(allKeysWatched));
-   localStorage.setItem('allKeysQueue', JSON.stringify(allKeysQueue));
-   localStorage.setItem('currentUserWatched', currentUser);
-   localStorage.setItem('currentUserQueue', currentUser + "!")
-   console.log("KEY2");
-  // 
+  localStorage.setItem('allKeysWatched', JSON.stringify(allKeysWatched));
+  localStorage.setItem('allKeysQueue', JSON.stringify(allKeysQueue));
+  localStorage.setItem('currentUserWatched', currentUser);
+  localStorage.setItem('currentUserQueue', currentUser + '!');
+  // console.log('KEY2');
+  //
 
-   //////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////
 }

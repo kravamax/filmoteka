@@ -22,7 +22,7 @@ export default function createsFilmCardMarkup(data, pictureUrl) {
       const date = release_date.slice(0, 4);
 
       return `
-    <div id="${id}" class="film-card">
+    <div id="${id}" class="film-card animate__animated animate__fadeIn">
       ${
         poster_path
           ? `<img id="${id}" src="${pictureUrl}${poster_path}" alt="${title}"/>`

@@ -18,7 +18,7 @@ Notiflix.Notify.merge({
     background: 'rgba(0,0,0,0.8)',
     textColor: '#FF6B01',
     notiflixIconColor: '#FF6B01',
-   // backOverlayColor: 'rgba(0,0,0,0.4)',
+    // backOverlayColor: 'rgba(0,0,0,0.4)',
   },
 });
 
@@ -46,7 +46,7 @@ if (!allKeysWatchedArray === null) {
   for (let i = 0; i <= allKeysWatchedArray.length; i += 1) {
     if (allKeysWatchedArray[i] === keyW) {
       currentWatchedArr = JSON.parse(localStorage.getItem(keyW));
-      console.log(localStorage.getItem(keyW));
+      // console.log(localStorage.getItem(keyW));
     }
   }
 }
@@ -56,7 +56,7 @@ if (!allKeysQueueArray === null) {
     if (allKeysQueueArray[i] === keyQ) {
       // queueArr = currentQueueArr;
       currentQueueArr = JSON.parse(localStorage.getItem(keyQ));
-      console.log(localStorage.getItem(keyQ));
+      // console.log(localStorage.getItem(keyQ));
     }
   }
 }
@@ -147,12 +147,12 @@ export const watchedButton = e => {
   }
 
   if (JSON.parse(localStorage.getItem(keyW))) {
-    console.log('First IF');
+    // console.log('First IF');
     let finder = [...JSON.parse(localStorage.getItem(keyW))];
     let libraryFilter = finder.find(elem => elem.id === libraryData.id);
 
     if (libraryFilter) {
-      console.log('Second IF');
+      // console.log('Second IF');
       Notiflix.Notify.success(`Movie removed successfully!`);
       finder.splice(finder.indexOf(libraryFilter), 1);
 
@@ -176,7 +176,7 @@ export const watchedButton = e => {
       }
     } else {
       Notiflix.Notify.success(`You've just added movie to watched library!`);
-      console.log('Second ELSE');
+      // console.log('Second ELSE');
       finder.push(libraryData);
 
       currentWatchedArr = [...finder];
@@ -184,14 +184,14 @@ export const watchedButton = e => {
       document.querySelector('#watchedButton').textContent = `Remove from watched`;
     }
   } else if (JSON.parse(localStorage.getItem(keyW)) === null) {
-    console.log('its in ELSE');
+    // console.log('its in ELSE');
     currentWatchedArr = [];
     currentWatchedArr.push(libraryData);
     localStorage.setItem(keyW, JSON.stringify(currentWatchedArr));
     document.querySelector('#watchedButton').textContent = `Remove from watched`;
     Notiflix.Notify.success(`You've just added your first movie to watched library!`);
   }
-  console.log(JSON.parse(localStorage.getItem(keyW)));
+  // console.log(JSON.parse(localStorage.getItem(keyW)));
 };
 
 // todo QUEUE BUTTON
@@ -212,13 +212,13 @@ export const queueButton = e => {
   }
 
   if (JSON.parse(localStorage.getItem(keyQ))) {
-    console.log('First IF Q');
+    // console.log('First IF Q');
     let finder = [...JSON.parse(localStorage.getItem(keyQ))];
     let libraryFilter = finder.find(elem => elem.id === libraryData.id);
 
     if (libraryFilter) {
       Notiflix.Notify.success(`Movie removed successfully!`);
-      console.log('Second IF Q');
+      // console.log('Second IF Q');
       finder.splice(finder.indexOf(libraryFilter), 1);
 
       currentQueueArr = [...finder];
@@ -241,7 +241,7 @@ export const queueButton = e => {
       }
     } else {
       Notiflix.Notify.success(`You've just added movie to queue!`);
-      console.log('Second ELSE Q');
+      // console.log('Second ELSE Q');
       finder.push(libraryData);
 
       currentQueueArr = [...finder];
@@ -249,22 +249,21 @@ export const queueButton = e => {
       document.querySelector('#queueButton').textContent = `Remove from queue`;
     }
   } else if (JSON.parse(localStorage.getItem(keyQ)) === null) {
-    console.log('its in ELSE Q');
+    // console.log('its in ELSE Q');
     currentQueueArr = [];
     currentQueueArr.push(libraryData);
     localStorage.setItem(keyQ, JSON.stringify(currentQueueArr));
     document.querySelector('#queueButton').textContent = `Remove from queue`;
     Notiflix.Notify.success(`You've just added your first movie to queue!`);
   }
-  console.log(JSON.parse(localStorage.getItem(keyQ)));
+  // console.log(JSON.parse(localStorage.getItem(keyQ)));
 };
 
 // Trailer button
 const trailerModal = new jBox('Modal', {
   closeButton: true,
   overlay: true,
-  animation: {open: 'zoomIn',
-  close: "zoomOut"},
+  animation: { open: 'zoomIn', close: 'zoomOut' },
   fade: 350,
   attach: '#trailerModal',
   content: `<div class="modal-trailer__container"></div>`,

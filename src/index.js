@@ -1,4 +1,5 @@
 import './sass/main.scss';
+import 'animate.css';
 
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -91,8 +92,7 @@ function onClickHome() {
   blackThemeBody();
 
   getLogo();
-  
-  
+
   containerP.classList.remove('invisible');
   // loadTrendMovies(1, week);
 
@@ -125,7 +125,7 @@ function onRenderMoviesToday() {
 
 function onClickLibrary() {
   header.innerHTML = HeaderLib();
-   
+
   trendButtons.classList.add('invisible');
 
   containerP.classList.add('invisible');

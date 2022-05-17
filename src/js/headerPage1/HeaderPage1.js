@@ -31,11 +31,10 @@ export default function HeaderPage1() {
             </nav>
         </div>
         <form class="header-form">
-        <label class='form-label'>
+        <label class='form-label animate__animated animate__slideInUp'>
             <input class='header-input' type="text" name="filmName" placeholder="Search movie" />
             </label>
-            <button class='header-button--submit' type="submit">
-
+            <button class='header-button--submit animate__animated animate__slideInUp' type="submit">
                 <svg width="12" height="12" class="input-images">
                     <use href="${icon}#search"></use>
                 </svg>
