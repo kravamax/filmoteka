@@ -6,6 +6,8 @@ import { buttonHandler } from './modalCard/modalCard';
 
 import posterSizes from './poster-sizes';
 
+import blackThemePagination from './blackTheme/blackThemePagination';
+
 export default function loadTrendMovies(page) {
   let signedIn = false;
   const isSignedIn = 'is-Signed-In';
@@ -46,8 +48,10 @@ const options = {
   itemsPerPage: 20,
   visiblePages: 5,
 };
+
 const containerP = document.getElementById('pagination');
 export const pagination = new Pagination(containerP, options);
+//blackThemePagination();
 
 pagination.on('afterMove', ({ page }) => {
   loadTrendMovies(page);

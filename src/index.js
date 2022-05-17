@@ -22,6 +22,7 @@ import blackThemeTeam from './js/blackTheme/blackThemeTeam';
 import blackThemeBody from './js/blackTheme/blackThemeBody';
 import blackThemeText from './js/blackTheme/blackThemeText';
 import blackThemeEmpty from './js/blackTheme/blackThemeEmpty';
+import blackThemePagination from './js/blackTheme/blackThemePagination';
 // ?
 
 import scrollBtn from './js/scroll-btn';
