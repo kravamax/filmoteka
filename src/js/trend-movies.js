@@ -15,7 +15,6 @@ export default function loadTrendMovies(page, period) {
   }
 
   if (periodToLoad !== period) {
-    // console.log('reset');
     pagination.reset();
   }
 
