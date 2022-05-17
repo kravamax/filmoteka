@@ -8,6 +8,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import getModalData from './getModalData';
 import closeModalAuth from './closeModalAuth';
 import onClickStateUser from './onClickStateUSer';
+import blackThemeLogin from '../blackTheme/blackThemeLogin';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA0Jg3owd7CYZ_lII5XL2NnspjHhLrMIPQ',
@@ -45,6 +46,7 @@ export default function onClickSingUp() {
   login__cls.addEventListener('click', () => {
     modalWindow.innerHTML = '';
   });
+  blackThemeLogin();
   const form = document.querySelector('.login-form');
 
   closeModalAuth();

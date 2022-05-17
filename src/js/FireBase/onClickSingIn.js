@@ -4,6 +4,7 @@ import Notiflix from 'notiflix';
 import { onAuthStateChanged } from 'firebase/auth';
 import modalAuth from './modalAuth';
 import closeModalAuth from './closeModalAuth';
+import blackThemeLogin from '../blackTheme/blackThemeLogin';
 //import getModalData from './FireBase/getModalData';
 
 import getModalData from './getModalData';
@@ -44,6 +45,7 @@ export default function onClickSingIn() {
   modalWindow.innerHTML = modalAuth('Login', 'Sign in');
   const form = document.querySelector('.login-form');
   const login__cls = document.querySelector('.modal__cross--reg');
+  blackThemeLogin();
 
   login__cls.addEventListener('click', () => {
     modalWindow.innerHTML = '';
